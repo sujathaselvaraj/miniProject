@@ -1,0 +1,249 @@
+<div class="main">
+        <div class="a">
+                <form [formGroup]="myform" (ngSubmit)="submit()">
+                        <h2>Doctor Detail
+                        </h2>
+                        <div>
+                                <div>
+                                        <label>First Name:</label>
+                                        <input type="text" name="first_name" placeholder="Enter first name"
+                                                class="form-control" id="first_name" formControlName="first_name"
+                                                name="first_name"><br>
+                                </div>
+                                <div *ngIf="f.first_name?.touched && f.first_name?.invalid" class="alert alert-danger">
+                                        <div *ngIf="f.first_name.errors?.required">First Name is required.</div>
+                                        <div *ngIf="f.first_name.errors?.minlength">First Name should be 3 character.
+                                        </div>
+                                </div>
+
+                                <label>Middle Name:</label>
+                                <input type="text" name="middle_name" placeholder="Enter middle name"
+                                        class="form-control" id="middle_name" formControlName="middle_name"
+                                        name="middle_name"><br>
+                                <div *ngIf="f.middle_name?.touched && f.middle_name?.invalid"
+                                        class="alert alert-danger">
+                                        <div *ngIf="f.middle_name.errors?.required">FIrst Name is required.</div>
+                                </div>
+
+
+                                <label>Last Name:</label>
+                                <input type="text" name="last_name" placeholder="Enter last name" class="form-control"
+                                        id="last_name" formControlName="last_name" name="last_name"><br>
+                                <div *ngIf="f.last_name?.touched && f.last_name?.invalid" class="alert alert-danger">
+                                        <div *ngIf="f.last_name.errors?.required">Last Name is required.</div>
+                                        <div *ngIf="f.last_name.errors?.minlength">Last Name should be 3 character.
+                                        </div>
+                                </div>
+                                <div>
+                                        <h3>Educational Qualifications:</h3>
+                                        <table id="table">
+                                                <tr>
+                                                        <th>Serial</th>
+                                                        <th>Degree</th>
+                                                        <th>Board/Institute</th>
+                                                        <th>Year</th>
+                                                        <th>Division/CGPA</th>
+                                                        <th>Position</th>
+                                                </tr>
+                                                <tr>
+                                                        <td><label>1.</label></td>
+                                                        <td>SSC/O'Levels</td>
+                                                        <td><input type="text" name="ssc_inst_name"
+                                                                        placeholder="ssc_insert institute name"
+                                                                        class="form-control" id="ssc_inst_name"
+                                                                        formControlName="ssc_inst_name"></td>
+                                                        <td><input type="text" name="ssc_year"
+                                                                        placeholder="ssc_insert year of graduation"
+                                                                        class="form-control" id="ssc_year"
+                                                                        formControlName="ssc_year"></td>
+                                                        <td><input type="text" name="ssc_cgpa"
+                                                                        placeholder="ssc_insert division/cgpa"
+                                                                        class="form-control" id="ssc_cgpa"
+                                                                        formControlName="ssc_cgpa"></td>
+                                                        <td><input type="text" name="ssc_position"
+                                                                        placeholder="ssc_insert position"
+                                                                        class="form-control" id="ssc_position"
+                                                                        formControlName="ssc_position"></td>
+                                                </tr>
+
+                                                <tr>
+                                                        <td><label>2.</label></td>
+                                                        <td>HSC/A'Levels</td>
+                                                        <td><input type="text" name="hsc_inst_name"
+                                                                        placeholder="hsc_insert institute name"
+                                                                        class="form-control" id="hsc_inst_name"
+                                                                        formControlName="hsc_inst_name"></td>
+                                                        <td><input type="text" name="hsc_year"
+                                                                        placeholder="hsc_insert year of graduation"
+                                                                        class="form-control" id="hsc_year"
+                                                                        formControlName="hsc_year"></td>
+                                                        <td><input type="text" name="hsc_cgpa"
+                                                                        placeholder="hsc_insert division/cgpa"
+                                                                        class="form-control" id="hsc_cgpa"
+                                                                        formControlName="hsc_cgpa"></td>
+                                                        <td><input type="text" name="hsc_position"
+                                                                        placeholder="hsc_insert position"
+                                                                        class="form-control" id="hsc_position"
+                                                                        formControlName="hsc_position"></td>
+                                                </tr>
+
+                                                <tr>
+                                                        <td><label>3.</label></td>
+                                                        <td>MBBS</td>
+                                                        <td><input type="text" name="mbbs_inst_name"
+                                                                        placeholder="mbbs_insert institute name"
+                                                                        class="form-control" id="mbbs_inst_name"
+                                                                        formControlName="mbbs_inst_name"></td>
+                                                        <td><input type="text" name="mbbs_year"
+                                                                        placeholder="mbbs_insert year of graduation"
+                                                                        class="form-control" id="mbbs_year"
+                                                                        formControlName="mbbs_year"></td>
+                                                        <td><input type="text" name="mbbs_cgpa"
+                                                                        placeholder="mbbs_insert division/cgpa"
+                                                                        class="form-control" id="mbbs_cgpa"
+                                                                        formControlName="mbbs_cgpa"></td>
+                                                        <td><input type="text" name="mbbs_position"
+                                                                        placeholder="mbbs_insert position"
+                                                                        class="form-control" id="mbbs_position"
+                                                                        formControlName="mbbs_position"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td><label>4.</label></td>
+                                                        <td><input type="text" name="inst_name"
+                                                                        placeholder="insert institute name"
+                                                                        class="form-control" id="inst_name"
+                                                                        formControlName="inst_name"></td>
+                                                        <td><input type="text" name="year"
+                                                                        placeholder="insert year of graduation"
+                                                                        class="form-control" id="year"
+                                                                        formControlName="year"></td>
+                                                        <td><input type="text" name="cgpa"
+                                                                        placeholder="insert division/cgpa"
+                                                                        class="form-control" id="cgpa"
+                                                                        formControlName="cgpa"></td>
+                                                        <td><input type="text" name="position"
+                                                                        placeholder="insert position"
+                                                                        class="form-control" id="position"
+                                                                        formControlName="position"></td>
+                                                </tr>
+
+
+                                        </table>
+                                </div>
+                                <div>
+                                        <h3>Experience:</h3>
+                                        <table id="table">
+                                                <tr>
+                                                        <th>Serial</th>
+                                                        <th>Job Designation</th>
+                                                        <th>From</th>
+                                                        <th>To</th>
+                                                        <th>Organization</th>
+                                                </tr>
+                                                <tr>
+                                                        <td><label>1.</label></td>
+                                                        <td><input type="test" name="job_desg1"
+                                                                        placeholder="insert job designation"
+                                                                        class="form-control" id="job_desg1"
+                                                                        formControlName="job_desg1"></td>
+                                                        <td><input type="date" name="from_date1"
+                                                                        placeholder="insert starting date"
+                                                                        class="form-control" id="from_date1"
+                                                                        formControlName="from_date1"></td>
+                                                        <td><input type="date" name="to_date1"
+                                                                        placeholder="insert regination date"
+                                                                        class="form-control" id="to_date1"
+                                                                        formControlName="to_date1"></td>
+                                                        <td><input type="test" name="org_name1"
+                                                                        placeholder="insert name of organization"
+                                                                        class="form-control" id="org_name1"
+                                                                        formControlName="org_name1"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td><label>2.</label></td>
+                                                        <td><input type="test" name="job_desg2"
+                                                                        placeholder="insert job designation"
+                                                                        class="form-control" id="job_desg2"
+                                                                        formControlName="job_desg2"></td>
+                                                        <td><input type="date" name="fromdate2"
+                                                                        placeholder="insert starting date"
+                                                                        class="form-control" id="from_date2"
+                                                                        formControlName="from_date2"></td>
+                                                        <td><input type="date" name="todate2"
+                                                                        placeholder="insert regination date"
+                                                                        class="form-control" id="to_date2"
+                                                                        formControlName="to_date2"></td>
+                                                        <td><input type="test" name="org_name2"
+                                                                        placeholder="insert name of organization"
+                                                                        class="form-control" id="org_name2"
+                                                                        formControlName="org_name2"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td><label>3.</label></td>
+                                                        <td><input type="test" name="job_desg3"
+                                                                        placeholder="insert job designation"
+                                                                        class="form-control" id="job_desg3"
+                                                                        formControlName="job_desg3"></td>
+                                                        <td><input type="date" name="fromdate3"
+                                                                        placeholder="insert starting date"
+                                                                        class="form-control" id="from_date3"
+                                                                        formControlName="from_date3"></td>
+                                                        <td><input type="date" name="todate3"
+                                                                        placeholder="insert regination date"
+                                                                        class="form-control" id="to_date3"
+                                                                        formControlName="to_date3"></td>
+                                                        <td><input type="test" name="org_name3"
+                                                                        placeholder="insert name of organization"
+                                                                        class="form-control" id="org_name3"
+                                                                        formControlName="org_name3"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td><label>4.</label></td>
+                                                        <td><input type="test" name="job_desg4"
+                                                                        placeholder="insert job designation"
+                                                                        class="form-control" id="job_desg4"
+                                                                        formControlName="job_desg4"></td>
+                                                        <td><input type="date" name="fromdate4"
+                                                                        placeholder="insert starting date"
+                                                                        class="form-control" id="from_date4"
+                                                                        formControlName="from_date4"></td>
+                                                        <td><input type="date" name="todate4"
+                                                                        placeholder="insert regination date"
+                                                                        class="form-control" id="to_date4"
+                                                                        formControlName="to_date4"></td>
+                                                        <td><input type="test" name="org_name4"
+                                                                        placeholder="insert name of organization"
+                                                                        class="form-control" id="org_name4"
+                                                                        formControlName="org_name4"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td><label>5.</label></td>
+                                                        <td><input type="test" name="job_desg5"
+                                                                        placeholder="insert job designation"
+                                                                        class="form-control" id="job_desg5"
+                                                                        formControlName="job_desg5"></td>
+                                                        <td><input type="date" name="from_date5"
+                                                                        placeholder="insert starting date"
+                                                                        class="form-control" id="from_date5"
+                                                                        formControlName="from_date5"></td>
+                                                        <td><input type="date" name="todate5"
+                                                                        placeholder="insert regination date"
+                                                                        class="form-control" id="to_date5"
+                                                                        formControlName="to_date5"></td>
+                                                        <td><input type="test" name="org_name5"
+                                                                        placeholder="insert name of organization"
+                                                                        class="form-control" id="org_name5"
+                                                                        formControlName="org_name5"></td>
+                                                </tr>
+
+                                        </table>
+                                </div>
+
+                        </div> <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+
+                <div class="footer">
+                        <p>&copy; All Rights Reserved by We Care Hospital </p>
+                </div>
+        </div>
+</div>

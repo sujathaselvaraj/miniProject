@@ -1,0 +1,71 @@
+<form [formGroup]="myform" (ngSubmit)="submit()">
+    <div>
+        <label>First Name:</label>
+        <input type="text" name="first_name" placeholder="Enter first name" class="form-control" id="first_name"
+            formControlName="first_name" name="first_name"><br>
+    </div>
+    <div *ngIf="f.first_name?.touched && f.first_name?.invalid" class="alert alert-danger">
+        <div *ngIf="f.first_name.errors?.required">First Name is required.</div>
+        <div *ngIf="f.first_name.errors?.minlength">First Name should be 3 character.
+        </div>
+    </div>
+    <label>Last Name:</label>
+    <input type="text" name="last_name" placeholder="Enter last name" class="form-control" id="last_name"
+        formControlName="last_name" name="last_name"><br>
+    <div *ngIf="f.last_name?.touched && f.last_name?.invalid" class="alert alert-danger">
+        <div *ngIf="f.last_name.errors?.required">Last Name is required.</div>
+        <div *ngIf="f.last_name.errors?.minlength">Last Name should be 3 character.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="mobileno">Mobile No:</label>
+        <input formControlName="mobileno" id="mobileno" placeholder="Enter Your Mobile Number" type="text"
+            class="form-control">
+        <div *ngIf="f.mobileno?.touched && f.mobileno?.invalid" class="alert alert-danger">
+            <div *ngIf="f.mobileno.errors?.required">Mobile Number is required.</div>
+            <div *ngIf="f.mobileno.errors?.maxlength">Mobile Number should have only 10 digits.</div>
+        </div>
+    </div>
+    <div> <label>Date of birth:
+            <input type="date" name="dob" class="form-control" id="dob" placeholder="Enter Your Date Of Birth"
+                formControlName="dob" name="dob">
+        </label></div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input formControlName="email" id="email" type="text" class="form-control" placeholder="Enter Your Mail Id"
+            name="email">
+        <div *ngIf="f.email?.touched && f.email?.invalid" class="alert alert-danger">
+            <div *ngIf="f.email.errors?.required">Email is required.</div>
+            <div *ngIf="f.email.errors?.email">Please, enter valid email address.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="userName">User Name</label>
+        <input formControlName="userName" id="userName" type="text" class="form-control" name="userName"
+            placeholder="Enter Your userName">
+        <div *ngIf="f.userName?.touched && f.userName?.invalid" class="alert alert-danger">
+            <div *ngIf="f.userName.errors?.required">User Name is required.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input formControlName="password" id="password" type="password" class="form-control" name="password">
+        <div *ngIf="f.password?.touched && f.password?.invalid" class="alert alert-danger">
+            <div *ngIf="f.password.errors?.required">Password is required.</div>
+            <div *ngIf="f.password.errors?.password">Please, enter valid Password address.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input formControlName="confirmPassword" id="confirmPassword" type="password" class="form-control"
+            name="confirmPassword">
+        <div *ngIf="f.confirmPassword?.touched && f.confirmPassword?.invalid" class="alert alert-danger">
+            <div *ngIf="f.confirmPassword.errors?.required">Confirm Password is required.</div>
+            <div *ngIf="f.confirmPassword.errors?.confirmedValidator">Password and Confirm Password must be match.</div>
+            <!-- <div *ngIf="f.confirmPassword.errors?.confirmPassword">Please, enter valid Password address.</div> -->
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+
+</form>

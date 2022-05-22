@@ -1,0 +1,263 @@
+* {
+    font-family: 'Times New Roman', sans-serif;
+}
+
+.stars_intro {
+    margin-top: 15vh;
+    background-color: rgb(210, 247, 240);
+}
+
+.star_images_row1,
+.star_images_row2,
+.star_images_row3 {
+    display: flex;
+    flex-direction: row;
+    height: 40vh;
+    width: 1200px;
+    justify-content: space-between;
+}
+
+.star_img {
+    width: 100%;
+    height: 100%;
+    border: 0.5px solid white;
+    box-shadow: rgb(25, 241, 231);
+    margin-left: 70px;
+    transition: transform .2s;
+}
+
+.star_img:hover {
+    transform: scale(1.5);
+}
+
+.stars_intro_definition {
+    font-size: 30px;
+    font-weight: 500;
+    /* font-style: oblique; */
+    color: blue;
+    text-shadow: aqua;
+    text-align: center;
+    padding: 15px;
+}
+
+.heading {
+    font-size: 35px;
+    font-weight: 500;
+    color: blue;
+    text-shadow: aqua;
+    text-align: center;
+    padding: 15px;
+}
+
+.about_achivers {
+    /* font-family: Apple Chancery, cursive; */
+    width: 900px;
+    height: 200vh;
+    margin-left: 200px;
+    margin-top: 15vh;
+}
+
+.motivation_head {
+    font-size: 30px;
+    padding: 40px;
+    text-align: center;
+    word-spacing: 10px;
+    line-height: 40px;
+}
+
+.motivation_body {
+    font-size: 23px;
+    padding-left: 50px;
+    line-height: 35px;
+    padding-right: 50px;
+
+}
+
+/* .arunimaSinha,
+.jyotiAmge {
+
+    justify-content: space-between;
+
+} */
+
+/* .sudhaChandran,
+.girishSharma {
+    height: 45vh;
+    margin-top: 5vh;
+
+} */
+
+.arunimaSinha,
+.sudhaChandran,
+.girishSharma,
+.jyotiAmge,
+.harryBonifacePrabhu,
+.preethiSrinivasan,
+.bharatKumar,
+.lalitKumar {
+    width: 700px;
+    padding: 20px;
+    margin-left: 50px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    height: 45vh;
+    justify-content: space-between;
+}
+
+.sudhaChandran,
+.jyotiAmge,
+.lalitKumar {
+    margin-top: 10vh;
+}
+
+.harryBonifacePrabhu {
+    margin-top: 25vh;
+}
+
+.bharatKumar {
+    margin-top: 10vh;
+}
+
+.arunimaSinhaDetail,
+.sudhaChandranDetail,
+.girishSharmaImage,
+.jyotiAmgeImage,
+.preethiSrinivasanImage,
+.bharatKumarDetail,
+.lalitKumarImage {
+    float: left;
+}
+
+.arunimaSinhaImage,
+.sudhaChandranImage,
+.girishSharmaDetail,
+.jyotiAmgeDetail,
+.harryBonifacePrabhuDetail,
+.preethiSrinivasanDetail,
+.bharatKumarImage,
+.lalitKumarDetail {
+    float: right;
+}
+
+.arunimaSinhaDetail,
+.girishSharmaDetail,
+.jyotiAmgeDetail,
+.preethiSrinivasanDetail {
+    width: 75%;
+    height: 100%;
+}
+
+.harryBonifacePrabhuDetail,
+.bharatKumarDetail,
+.lalitKumarDetail {
+    width: 70%;
+    height: 100%;
+    margin-right: 10%;
+}
+
+.lalitKumarDetail {
+    margin-left: 120px;
+}
+
+.arunimaSinhaDetail {
+    padding: 20px;
+}
+
+.jyotiAmgeDetail {
+    padding-left: 120px;
+    margin-top: -6vh;
+}
+
+.girishSharmaDetail {
+    /* padding: 40px; */
+    margin-left: 100px;
+    margin-top: 5vh;
+}
+
+
+.sudhaChandranDetail {
+    width: 80%;
+    height: 100%;
+}
+
+.arunimaSinhaImage,
+.sudhaChandranImage,
+.girishSharmaImage,
+.jyotiAmgeImage,
+.harryBonifacePrabhuImage,
+.preethiSrinivasanImage,
+.bharatKumarImage,
+.lalitKumarImage {
+    width: 30%;
+    height: 100%;
+    margin-left: -30px;
+}
+
+.arunimaSinhaImage {
+    margin-top: -10vh;
+    margin-left: 50px;
+}
+
+.sudhaChandranImage {
+    margin-top: 10vh;
+}
+
+.girishSharmaImage {
+    margin-top: 1vh;
+
+}
+
+.girishSharmaImage {
+    width: 250px;
+    height: 250px;
+}
+
+.arinimaProfile,
+.girishSharmaProfile,
+.jyotiAmgeProfile,
+.harryBonifacePrabhuProfile,
+.preethiSrinivasanProfile,
+.bharatKumarProfile,
+.lalitKumarProfile {
+    width: 250px;
+    height: 250px;
+}
+
+.sudhaChndranProfile {
+    width: 250px;
+    height: 250px;
+    margin-left: -100px;
+
+}
+
+.preethiSrinivasanDetail {
+    margin-left: 18%;
+}
+
+.jyotiAmgeProfil,
+.arinimaProfile,
+.sudhaChndranProfile,
+.girishSharmaProfile,
+.jyotiAmgeProfile,
+.harryBonifacePrabhuProfile,
+.preethiSrinivasanProfile,
+.bharatKumarProfile,
+.lalitKumarProfile {
+
+    border-radius: 100%;
+
+}
+
+.arinimaProfile:hover,
+.girishSharmaProfile:hover,
+.sudhaChndranProfile:hover,
+.jyotiAmgeProfile:hover,
+.harryBonifacePrabhuProfile:hover,
+.preethiSrinivasanProfile:hover,
+.bharatKumarProfile:hover,
+.lalitKumarProfile:hover {
+    width: 300px;
+    height: 300px;
+    margin-top: -20px;
+}

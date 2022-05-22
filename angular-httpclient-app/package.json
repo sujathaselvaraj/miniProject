@@ -1,5 +1,5 @@
 {
-  "name": "community-to-grow",
+  "name": "angular-httpclient-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -12,20 +12,14 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.0.0",
-    "@angular/cdk": "^11.2.13",
     "@angular/common": "~11.0.0",
     "@angular/compiler": "~11.0.0",
     "@angular/core": "~11.0.0",
     "@angular/forms": "~11.0.0",
-    "@angular/http": "^7.2.16",
-    "@angular/material": "^11.2.13",
     "@angular/platform-browser": "~11.0.0",
     "@angular/platform-browser-dynamic": "~11.0.0",
     "@angular/router": "~11.0.0",
-    "@ngmodule/material-carousel": "^0.6.0",
-    "bootstrap": "^5.1.3",
     "rxjs": "~6.6.0",
-    "rxjs-compat": "^6.6.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
