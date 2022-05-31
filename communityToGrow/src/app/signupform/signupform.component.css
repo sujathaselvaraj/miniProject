@@ -1,0 +1,11 @@
+.container {
+    margin-top: 10vh;
+}
+
+a {
+    color: black;
+    font-weight: 100px;
+    margin-left: 260px;
+    margin-top: -5vh;
+    text-decoration: none;
+}

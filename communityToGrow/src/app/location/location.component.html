@@ -1,0 +1,21 @@
+<div class="container">
+
+
+        <form [formGroup]="locationForm" (ngSubmit)="submit()">
+                <h2>Choose the location of our Organisation to you want be a part.</h2>
+
+                <div class="form-group">
+                        <label for="location">location:</label>
+                        <select formControlName="location" class="form-control">
+                                <option disabled>Select location</option>
+                                <option>Choose location</option>
+                                <option *ngFor="let web of locationList">{{web.location}}</option>
+                        </select>
+                        <div *ngIf="f.location?.touched && f.location?.invalid" class="alert alert-danger">
+                                <div *ngIf="f.location.errors?.required">Name is required.</div>
+                        </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+</div>

@@ -1,10 +1,15 @@
 * {
+    color: aliceblue;
     font-family: 'Times New Roman', sans-serif;
 }
 
 .stars_intro {
-    margin-top: 15vh;
     background-color: rgb(210, 247, 240);
+    background-image: url('../../images/76YS.gif');
+    margin-top: 15vh;
+    padding-top: 15vh;
+
+
 }
 
 .star_images_row1,
@@ -13,17 +18,17 @@
     display: flex;
     flex-direction: row;
     height: 40vh;
-    width: 1200px;
     justify-content: space-between;
+    width: 1200px;
 }
 
 .star_img {
-    width: 100%;
-    height: 100%;
     border: 0.5px solid white;
     box-shadow: rgb(25, 241, 231);
+    height: 100%;
     margin-left: 70px;
     transition: transform .2s;
+    width: 100%;
 }
 
 .star_img:hover {
@@ -31,61 +36,67 @@
 }
 
 .stars_intro_definition {
-    font-size: 30px;
-    font-weight: 500;
-    /* font-style: oblique; */
     color: blue;
-    text-shadow: aqua;
-    text-align: center;
+    font-size: 30px;
+    font-style: oblique;
+    font-weight: 500;
     padding: 15px;
+    text-align: center;
+    text-shadow: aqua;
+}
+
+.heading_content {
+    padding-bottom: 10vh;
 }
 
 .heading {
+    color: blue;
     font-size: 35px;
     font-weight: 500;
-    color: blue;
-    text-shadow: aqua;
+    margin-top: -15vh;
+    padding-bottom: 10vh;
+    padding-top: 15vh;
     text-align: center;
-    padding: 15px;
+    text-shadow: aqua;
 }
 
 .about_achivers {
-    /* font-family: Apple Chancery, cursive; */
-    width: 900px;
-    height: 200vh;
+    border-radius: 0px 16px;
+    border: 5px solid rgb(248, 242, 242);
+    font-family: Apple Chancery, cursive;
+    height: 83vh;
     margin-left: 200px;
     margin-top: 15vh;
+    width: 900px;
 }
 
 .motivation_head {
     font-size: 30px;
+    line-height: 40px;
     padding: 40px;
     text-align: center;
     word-spacing: 10px;
-    line-height: 40px;
 }
 
 .motivation_body {
     font-size: 23px;
-    padding-left: 50px;
     line-height: 35px;
-    padding-right: 50px;
-
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-/* .arunimaSinha,
-.jyotiAmge {
-
-    justify-content: space-between;
-
-} */
-
-/* .sudhaChandran,
-.girishSharma {
-    height: 45vh;
-    margin-top: 5vh;
-
-} */
+.stars_travel {
+    background-image: url('../../images/wp3284831-backgrounds-for-html-gif.gif');
+    border-radius: 0px 16px;
+    border: 5px solid rgb(247, 250, 250);
+    font-size: 18px;
+    height: 640vh;
+    line-height: 18px;
+    margin-left: 180px;
+    margin-top: 10vh;
+    padding: 4%;
+    width: 950px;
+}
 
 .arunimaSinha,
 .sudhaChandran,
@@ -94,29 +105,35 @@
 .harryBonifacePrabhu,
 .preethiSrinivasan,
 .bharatKumar,
-.lalitKumar {
-    width: 700px;
-    padding: 20px;
-    margin-left: 50px;
+.lalitKumar,
+.ravindraJain,
+.ramakrishnan,
+.saiPrasadVishwanathan {
     border-radius: 12px;
     display: flex;
     flex-direction: row;
     height: 45vh;
     justify-content: space-between;
+    margin-left: 50px;
+    padding: 20px;
+    width: 700px;
 }
 
 .sudhaChandran,
-.jyotiAmge,
-.lalitKumar {
+.lalitKumar,
+.bharatKumar,
+.ramakrishnan,
+.ravindraJain {
+    margin-top: 15vh;
+}
+
+.saiPrasadVishwanathan {
     margin-top: 10vh;
 }
 
-.harryBonifacePrabhu {
-    margin-top: 25vh;
-}
-
-.bharatKumar {
-    margin-top: 10vh;
+.harryBonifacePrabhu,
+.jyotiAmge {
+    margin-top: 20vh;
 }
 
 .arunimaSinhaDetail,
@@ -125,7 +142,10 @@
 .jyotiAmgeImage,
 .preethiSrinivasanImage,
 .bharatKumarDetail,
-.lalitKumarImage {
+.lalitKumarImage,
+.ravindraJainDetail,
+.ramakrishnanImage,
+.saiPrasadVishwanathanDetail {
     float: left;
 }
 
@@ -136,7 +156,10 @@
 .harryBonifacePrabhuDetail,
 .preethiSrinivasanDetail,
 .bharatKumarImage,
-.lalitKumarDetail {
+.lalitKumarDetail,
+.ravindraJainImage,
+.ramakrishnanDetail,
+.saiPrasadVishwanathanImage {
     float: right;
 }
 
@@ -144,19 +167,25 @@
 .girishSharmaDetail,
 .jyotiAmgeDetail,
 .preethiSrinivasanDetail {
-    width: 75%;
     height: 100%;
+    width: 75%;
 }
 
 .harryBonifacePrabhuDetail,
 .bharatKumarDetail,
-.lalitKumarDetail {
-    width: 70%;
+.ravindraJainDetail,
+.saiPrasadVishwanathanDetail {
     height: 100%;
     margin-right: 10%;
+    width: 70%;
 }
 
-.lalitKumarDetail {
+.saiPrasadVishwanathanDetail {
+    margin-top: 10vh;
+}
+
+.lalitKumarDetail,
+.ramakrishnanDetail {
     margin-left: 120px;
 }
 
@@ -165,20 +194,23 @@
 }
 
 .jyotiAmgeDetail {
-    padding-left: 120px;
     margin-top: -6vh;
+    padding-left: 120px;
 }
 
 .girishSharmaDetail {
-    /* padding: 40px; */
     margin-left: 100px;
     margin-top: 5vh;
+    padding: 40px;
 }
 
-
 .sudhaChandranDetail {
-    width: 80%;
     height: 100%;
+    width: 80%;
+}
+
+.ravindraJainDetail {
+    margin-top: 5vh;
 }
 
 .arunimaSinhaImage,
@@ -188,15 +220,18 @@
 .harryBonifacePrabhuImage,
 .preethiSrinivasanImage,
 .bharatKumarImage,
-.lalitKumarImage {
-    width: 30%;
+.lalitKumarImage,
+.ravindraJainImage,
+.ramakrishnanImage,
+.saiPrasadVishwanathanImage {
     height: 100%;
     margin-left: -30px;
+    width: 30%;
 }
 
 .arunimaSinhaImage {
-    margin-top: -10vh;
     margin-left: 50px;
+    margin-top: -1vh;
 }
 
 .sudhaChandranImage {
@@ -205,12 +240,11 @@
 
 .girishSharmaImage {
     margin-top: 1vh;
-
 }
 
 .girishSharmaImage {
-    width: 250px;
     height: 250px;
+    width: 250px;
 }
 
 .arinimaProfile,
@@ -219,16 +253,18 @@
 .harryBonifacePrabhuProfile,
 .preethiSrinivasanProfile,
 .bharatKumarProfile,
-.lalitKumarProfile {
-    width: 250px;
+.lalitKumarProfile,
+.ravindraJainProfile,
+.ramakrishnanProfile,
+.saiPrasadVishwanathanProfile {
     height: 250px;
+    width: 250px;
 }
 
 .sudhaChndranProfile {
-    width: 250px;
     height: 250px;
     margin-left: -100px;
-
+    width: 250px;
 }
 
 .preethiSrinivasanDetail {
@@ -243,10 +279,11 @@
 .harryBonifacePrabhuProfile,
 .preethiSrinivasanProfile,
 .bharatKumarProfile,
-.lalitKumarProfile {
-
+.lalitKumarProfile,
+.ravindraJainProfile,
+.ramakrishnanProfile,
+.saiPrasadVishwanathanProfile {
     border-radius: 100%;
-
 }
 
 .arinimaProfile:hover,
@@ -256,8 +293,11 @@
 .harryBonifacePrabhuProfile:hover,
 .preethiSrinivasanProfile:hover,
 .bharatKumarProfile:hover,
-.lalitKumarProfile:hover {
-    width: 300px;
+.lalitKumarProfile:hover,
+.ravindraJainProfile:hover,
+.ramakrishnanProfile:hover,
+.saiPrasadVishwanathanProfile:hover {
     height: 300px;
     margin-top: -20px;
+    width: 300px;
 }

@@ -1,67 +1,85 @@
 <nav class="heading">
-  <p class="nav_statement">MAF's statement on the coronavirus outbreak:&nbsp;&nbsp;<a href="" class="nav_links">READ
-      MORE ></a></p>
+  <p class="nav_statement">Never Give Up</p>
 </nav>
-<div>
-  <nav class="option">
-    <div class="topnav" align="right">
-      <button class="menu" type="submit">Stay Connected</button>
-      <button class="menu" type="submit">Contact</button>
-      <button class="menu" type="submit">Donate</button>
-    </div>
-  </nav>
-  <nav class="dropdownlist">
-    <div class="nav_button" align="right">
-      <div class="dropdown">
-        <button class="dropdownmenu" type="submit">Who We Are</button>
-        <div class="dropdown-content">
-          <a href="#">About MAF</a>
-          <a href="#">MAF Divisions</a>
-          <a href="#">Support and Management Services</a>
-          <a href="#">Login</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropdownmenu" type="submit">Who We Support</button>
-        <div class="dropdown-content">
-          <a href="#">Autistic Disorder</a>
-          <a href="#">Brain Injury</a>
-          <a href="#">Challenging Behaviours</a>
-          <a href="#">Deaf/Blindness</a>
-          <a href="#">Development Disabilities</a>
-          <a href="#">Dual Diagnoses</a>
-          <a href="#">Physical Disabilities</a>
-          <a href="#">Prader-Willi Syndrome</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropdownmenu" type="submit">How We Support</button>
-        <div class="dropdown-content">
-          <a href="#">Case Management</a>
-          <a href="#">Supported Employment</a>
-          <a href="#">Residential Supports</a>
-          <a href="#">Acquired & Traumatic Brain Injury</a>
-        </div>
-      </div>
-      <button class="dropdownmenu" type="submit">Our Successes</button>
-      <button class="dropdownmenu" type="submit">Careers</button>
-    </div>
-  </nav>
-  <div class="logo_position">
-    <app-logo></app-logo>
-  </div>
+<div class="initial">
   <div>
-    <app-success></app-success>
+    <app-menu></app-menu>
   </div>
-  <!-- </div>
+  <app-volunteerlist></app-volunteerlist>
+  <app-location></app-location>
+  <div class="routing">
+    <router-outlet></router-outlet>
+  </div>
 
-<div>
-  <app-family-system></app-family-system>
-</div> -->
-  <!-- <div> -->
-  <!-- <app-donation-form></app-donation-form> -->
-  <!-- <app-doctor-list-update></app-doctor-list-update> -->
-  <!-- <app-patient-detail-update></app-patient-detail-update> -->
-  <!-- <app-login></app-login> -->
-  <!-- <app-signin></app-signin> -->
-  <!-- <app-signupform></app-signupform> -->
+  <hr>
+</div>
+<div class="footer">
+  <div class="footer_address">
+    <div class="footer_row1">
+      <div class="tnbranch">
+        <h3>Tamil Nadu</h3><br>No:420,<br>tdy Bypass Road,<br>Coimabtore,<br>Tamil
+        Nadu.<br>Phone : 90876547980<br>Email:karthik@343.gmail.com<br>Fax: (960) 482-89088
+      </div>
+      <div class="apbranch">
+        <h3>Andra Pradesh</h3>
+        <br>No:14/16,<br>SumanRajPathiriReddy
+        Road,<br>Kakinada,<br>AndhraPradesh.<br>Phone : 90872345621<br>Email:akil@97898.gmail.com<br>Fax:
+        (900) 482-2123
+      </div>
+      <div class="kerbranch">
+        <h3>Kerala</h3><br>No:11,<br>NsNAk
+        MAla,<br>Kolikodu,<br>Kerala<br>Phone : 90876532987<br>Email:deborah@48798.gmail.com<br>Fax: (760)
+        0987-2678
+      </div>
+      <div class="punbranch">
+        <h3>Punjab</h3><br>No:328,<br>Sathiyababa
+        Nagar,<br>Punjab<br>Phone : 9087654321<br>Email:janisa@38798.gmail.com<br>Fax: (860) 482-2678
+      </div>
+    </div>
+    <hr>
+    <div class="footer_row2">
+      <div class="mumbranch">
+        <h3>Mumbai</h3>No:67S<br>Honey Bee
+        Colony,<br>Dharabi,<br>Mumbai<br>Phone : 45677654321<br>Email:mahir@98.gmail.com<br>Fax: (360)
+        342-2678
+      </div>
+      <div class="delbranch">
+        <h3>Delhi</h3><br>No:173,<br>Agra,<br>New
+        Delhi<br>Phone : 9087654321<br>Email:ahadKhan@38798.gmail.com<br>Fax: (980)0958-2678
+      </div>
+      <div class="rajbranch">
+        <h3>Rajastan</h3><br>No:89,<br>Sagara
+        Desert,<br>Rajastan<br>Phone : 90876532521<br>Email:sumithran@67798.gmail.com<br>Fax: (891)
+        3242-2678
+      </div>
+      <div class="gujbranch">
+        <h3>Gujarat</h3><br>No:908,<br>Near Kabadi
+        Ground,<br>Tahr Desert,<br>Gujarat<br>Phone : 879898654321<br>Email:sherwat@1998.gmail.com<br>Fax:
+        (760) 872-2678
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="footer_link">
+  <nav class="option">
+    <div class="topnav">
+      <a class="menu" href="stayConnected">Stay Connected</a>
+      <a class="menu" href="donate">Donate</a>
+      <a class="menu" href="login">Login</a>
+      <a class="menu" href="signUp">Register</a>
+    </div>
+  </nav>
+  <nav class="navigationlist">
+    <div class="navigation">
+      <a class="navigationmenu" href="who_we_are">Who We Are</a>
+      <a class="navigationmenu" href="buildcommunity">Build Community</a>
+      <a class="navigationmenu" href="oursuccess">Our Success</a>
+      <a class="navigationmenu" href="contact">Contact</a>
+
+    </div>
+  </nav>
+</div>
+<div class="heading">
+  <div class="copyright">Copyright &#169; 2022 Mak - All Rights Reserved</div>
+</div>

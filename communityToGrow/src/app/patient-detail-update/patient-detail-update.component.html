@@ -1,113 +1,49 @@
 <div class="patientForm">
-    <h2><br />Patients Details Form</h2>
-    <form [formGroup]="myform" (ngSubmit)="submit()">
+    <form [formGroup]="patientForm" (ngSubmit)="submit()">
+        <h2><br />Patients Details Form</h2>
+
         <div>
             <label>First Name
-                <input type="text" name="first_name" placeholder="Enter first name" class="form-control" id="first_name"
-                    formControlName="first_name" name="first_name"><br></label>
-        </div>
-        <div *ngIf="f.first_name?.touched && f.first_name?.invalid" class="alert alert-danger">
-            <div *ngIf="f.first_name.errors?.required">First Name is required.</div>
-            <div *ngIf="f.first_name.errors?.minlength">First Name should be 3 character.</div>
+                <input type="text" name="f_name" placeholder="Enter first name" class="form-control" id="f_name"
+                    formControlName="f_name" name="f_name"><br></label>
         </div>
 
-        <label>Middle Name:</label>
-        <input type="text" name="middle_name" placeholder="Enter middle name" class="form-control" id="middle_name"
-            formControlName="middle_name" name="middle_name"><br>
-        <div *ngIf="f.middle_name?.touched && f.middle_name?.invalid" class="alert alert-danger">
-            <div *ngIf="f.middle_name.errors?.required">FIrst Name is required.</div>
-        </div>
-
-
-        <label>Last Name:</label>
-        <input type="text" name="last_name" placeholder="Enter last name" class="form-control" id="last_name"
-            formControlName="last_name" name="last_name"><br>
-        <div *ngIf="f.last_name?.touched && f.last_name?.invalid" class="alert alert-danger">
-            <div *ngIf="f.last_name.errors?.required">Last Name is required.</div>
-            <div *ngIf="f.last_name.errors?.minlength">Last Name should be 3 character.</div>
-        </div>
-
+        <label>Last Name:</label><br>
+        <input type="text" name="l_name" placeholder="Enter Last name" cl="form-control" id="l_name"
+            formControlName="l_name" name="l_name"><br>
         <h3><br />Patients Info</h3>
         <p>
             <label>Date of birth:
                 <input type="date" name="dob" class="form-control" id="dob" formControlName="dob" name="dob">
             </label>
         </p>
-
-        <p>
-            <label>Age:
-                <input type="tel" name="age" class="form-control" id="age" formControlName="age" name="age">
-            </label>
-        </p>
-
-        <fieldset>
+        <div>
             <h5>Gender:</h5>
             <p><input type="radio" name="gender" formControlName="gender" (change)="changeGender()" value="male">Male
             </p>
             <p><input type="radio" name="gender" formControlName="gender" (change)="changeGender()"
                     value="female">Female
             </p>
-            <p><input type="radio" name="gender" formControlName="gender" (change)="changeGender()"
-                    value="others">Others
-            </p>
-        </fieldset>
-
-        <fieldset>
-            <h5>Profession:</h5>
-            <p><input type="radio" name="profession" formControlName="profession" (change)="changeProfession()"
-                    value="Government Job">
-                Government Job </p>
-            <p><input type="radio" name="profession" formControlName="profession" (change)="changeProfession()"
-                    value="Private Job"> Private
-                Job</p>
-            <p><input type="radio" name="profession" formControlName="profession" (change)="changeProfession()"
-                    value="Business">
-                Business</p>
-            <p><input type="radio" name="profession" formControlName="profession" (change)="changeProfession()"
-                    value="Farmer">
-                Farmer</p>
-            <p><input type="radio" name="profession" formControlName="profession" (change)="changeProfession()"
-                    value="Retired">
-                Retired</p>
-            <p><input type="radio" name="profession" formControlName="profession" (change)="changeProfession()"
-                    value="Others">Others</p>
-        </fieldset>
-        <div>
-            <h5>Blood Group:</h5>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()"
-                    value="">Select
-                One<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()" value="A+">A
-                +ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()"
-                    value="A+">A1
-                +ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()"
-                    value="A+">A1
-                -ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()" value="A-">A
-                -ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()" value="B+">B
-                +ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()" value="B-">B
-                -ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()"
-                    value="AB+">AB
-                +ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()"
-                    value="AB+">A1B
-                +ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()"
-                    value="AB+">A1B
-                -ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()"
-                    value="AB-">AB
-                -ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()" value="O+">O
-                +ve<br></div>
-            <div><input type="radio" name="bloodGroup" formControlName="bloodGroup" (change)="bloodgroup()" value="O-">O
-                -ve<br></div>
         </div>
+
+        <p>
+            <label>Age:
+                <input type="tel" name="age" class="form-control" id="age" formControlName="age" name="age">
+            </label>
+        </p>
+        <div>
+            <label for="bloodgroup">Blood Group:</label>
+            <select formControlName="bloodgroup" class="form-control">
+                <option disabled>Select BloodGroup</option>
+                <option>Choose BloodGroup</option>
+                <option *ngFor="let group of bloodGroup">{{group}}</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Aadhar</label>
+            <input id="aadhar" type="text" formControlName="aadhar" class="form-control" name="aadhar">
+        </div><br>
 
         <p>
             <label>Phone Number:
@@ -121,211 +57,64 @@
                 <input type="email" class="form-control" id="email" formControlName="email" name="email">
             </label>
         </p>
-
-
-        <h3><br />Present Address</h3>
-        <p>
-            <label>Street No.:
-                <input type="tel" name="presentStreet_number" class="form-control" id="presentStreet_number"
-                    formControlName="presentStreet_number">
+        <div>
+            <label for="disability">
+                Disorder:
+                <input type="text" class="form-control" id="disorder" formControlName="disorder" name="disorder">
             </label>
-        </p>
-
-        <p>
-            <label>Street Name:
-                <input type="text" name="presentStreet_name" class="form-control" id="presentStreet_name"
-                    formControlName="presentStreet_name">
+        </div><br>
+        <div>
+            <label for="Hepler Name">
+                Helper Name:
+                <input type="text" class="form-control" id="helper_name" formControlName="helper_name"
+                    name="helper_name">
             </label>
-        </p>
-
-        <p>
-            <label>Area/village:
-                <input type="text" name="presentArea" class="form-control" id="presentArea"
-                    formControlName="presentArea">
+        </div><br>
+        <label for="volunteer">volunteer:</label>
+        <select formControlName="volunteer" class="form-control">
+            <option disabled>Select volunteer</option>
+            <option>Choose volunteer</option>
+            <option *ngFor="let web of volunteerList" value="{{web['_id']}}">{{web.first_name}}</option>
+        </select><br>
+        <!-- <div>
+            <label for="Hepler Name">
+                Helper Aadhar Number:
+                <input type="text" class="form-control" id="helper_aadhar_number" formControlName="helper_aadhar_number"
+                    name="helper_aadhar_number">
             </label>
-        </p>
+        </div><br> -->
 
-        <p>
-            <label>District:
-                <input type="text" name="presentDistrict" class="form-control" id="presentDistrict"
-                    formControlName="presentDistrict">
-            </label>
-        </p>
-        <label>Postal Code:
-            <input type="tel" name="presentPostal_number" class="form-control" id="presentPostal_number"
-                formControlName="presentPostal_number">
-        </label>
-
-        <h3><br />Permanent Address</h3>
-        <p>
-            <label>Street No.:
-                <input type="text" name="permanentStreet_number" class="form-control" id="permanentStreet_number"
-                    formControlName="permanentStreet_number">
-            </label>
-        </p>
-
-        <p>
-            <label>Street Name:
-                <input type="text" name="permanentStreet_name" class="form-control" id="permanentStreet_name"
-                    formControlName="permanentStreet_name">
-            </label>
-        </p>
-
-        <p>
-            <label>Area/village:
-                <input type="text" name="permanentArea" class="form-control" id="permanentArea"
-                    formControlName="permanentArea">
-            </label>
-        </p>
-
-
-        <p>
-            <label>District:
-                <input type="text" name="permanentDistrict" class="form-control" id="permanentDistrict"
-                    formControlName="permanentDistrict">
-            </label>
-        </p>
-        <label>Postal Code:
-            <input type="tel" name="permanentPostal_number" class="form-control" id="permanentPostal_number"
-                formControlName="permanentPostal_number">
-        </label>
-        <h3><br />Room info</h3>
-
-        <p>
-        <fieldset>
-            <h5>Room Choice:</h5>
-            <p><input type="radio" name="roomchoice" value="cabin" formControlName="roomchoice" (change)="changeroom()">
-                Cabin </p>
-            <p><input type="radio" name="roomchoice" value="bed" formControlName="roomchoice" (change)="changeroom()">
-                Bed
-            </p>
-        </fieldset>
-
-        <p>
-            <label>Disease Name and Severity:
-                <input type="text" name="disease" value="disease" formControlName="disease">
-            </label>
-        </p>
-
-        <p>
-            <label>Special Note:
-                <textarea name="comments" maxlength="500" value="comments" formControlName="comments"></textarea>
-            </label>
-        </p>
-
-
-        <h3><br />Patient Personal Info</h3>
-        <p>
-            <label>Height:
-                <input type="tel" name="height" placeholder="Enter height" value="height" formControlName="height">
-            </label>
-
-            <label>Weight:
-                <input type="tel" name="weight" placeholder="Enter weight" value="weight" formControlName="weight">
-            </label>
-
-        </p>
-
-
-        <h3><br />Symptoms of Disease</h3>
-        <p>
-            <label>1:
-                <input type="text" name="disease_1" placeholder="Disease" value="disease_1" formControlName="disease_1">
-            </label>
-            <label>2:
-                <input type="text" name="disease_2" value="disease_2" formControlName="disease_2">
-            </label>
-            <label>3:
-                <input type="text" name="disease_3" value="disease_3" formControlName="disease_3">
-            </label>
-            <label>4:
-                <input type="text" name="disease_4" value="disease_4" formControlName="disease_4">
-            </label>
-            <label>5:
-                <input type="text" name="disease_5" value="disease_5" formControlName="disease_5">
-            </label>
-            <label>6:
-                <input type="text" name="disease_6" value="disease_6" formControlName="disease_6">
-            </label>
-        </p>
-
-        <h3><br />Blood Pressure:</h3>
-        <p>
-            <label>Upper:
-                <input type="tel" name="upper" value="upper" formControlName="upper">
-            </label>
-
-            <label>Lower:
-                <input type="tel" name="lower" value="lower" formControlName="lower">
-            </label>
-
-        </p>
-        <h3><br />General Food Habbit</h3>
-        <p>
-        <h6>Breakfast</h6>
-        <label> 1:
-            <input type="text" name="breakf_1" formControlName="breakf_1">
-        </label>
-        <label>
-            2:
-            <input type="text" name="breakf_2" formControlName="breakf_2">
-        </label>
-        <label> 3:
-            <input type="text" name="breakf_3" formControlName="breakf_3">
-        </label>
-        <label>
-            <h6>Lunch </h6>1:
-            <input type="text" name="lunch_1" formControlName="lunch_1">
-        </label>
-        <label> 2:
-            <input type="text" name="lunch_2" formControlName="lunch_2">
-        </label>
-        <label> 3:
-            <input type="text" name="lunch_3" formControlName="lunch_3">
-        </label>
-        <label>
-            <h6>Dinner</h6> 1:
-            <input type="text" name="dinner_1" formControlName="dinner_1">
-        </label>
-        <label> 2:
-            <input type="text" name="dinner_2" formControlName="dinner_2">
-        </label>
-        <label> 3:
-            <input type="text" name="dinner_3" formControlName="dinner_3">
-        </label>
-        <h3><br />Hobby</h3>
-        <fieldset>
-            <h5>Game:</h5>
-            <div><input type="radio" name="game" value="football" formControlName="game" (change)="changegame()">Foot
-                ball<br></div>
-            <div><input type="radio" name="game" value="hockey" formControlName="game"
-                    (change)="changeroom()">Hockey<br></div>
-            <div><input type="radio" name="game" value="cricket" formControlName="game"
-                    (change)="changeroom()">Cricket<br></div>
-            <div><input type="radio" name="game" value="chess" formControlName="game" (change)="changeroom()">Chess<br>
-            </div>
-            <div><input type="radio" name="game" value="all" formControlName="game" (change)="changeroom()">All<br>
-            </div>
-            <div><input type="radio" name="game" value="none" formControlName="game" (change)="changeroom()">None<br>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <h5>Others:</h5>
-            <p><input type="radio" name="others" value="tourism" value="tourism" formControlName="others"
-                    (change)="changeOthers()"> Tourism
-            </p>
-            <p><input type="radio" name="others" value="writing" value="writing" formControlName="others"
-                    (change)="changeOthers()">
-                Writing</p>
-        </fieldset>
-
-        <button class="btn btn-primary" type="submit">Submit</button>
-
+        <div>
+            <button class="btn btn-primary" type="submit">Submit</button>&nbsp;&nbsp;
+            <button class="btn btn-primary" type="button" (click)="patient()">Patient List in Our Organisation</button>
+        </div>
 
     </form>
+    <table align="center">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Type</th>
+            <th>Mobile Number</th>
+            <th>Mail Id</th>
+            <th>Disorder</th>
+            <th>Helper Name</th>
+            <th>Helper Aadhar Number</th>
+        </tr>
+        <tr>
 
-    <div class="footer">
-        <p> <b> &copy; All Rights Reserved by We Care Hospital </b></p>
-
-    </div>
+            <div *ngFor="let patient of patientRecord">
+                <td>{{patient.f_name}}</td>
+                <td>{{patient.l_name}}</td>
+                <td>{{patient.gender}}</td>
+                <td>{{patient.type}}</td>
+                <td>{{patient.phone_number}}</td>
+                <td>{{patient.email}}</td>
+                <td>{{patient.disorder}}</td>
+                <td>{{patient.helper_name}}</td>
+                <td>{{patient.helper_aadhar_number}}</td>
+            </div>
+        </tr>
+    </table>
+</div>

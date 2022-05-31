@@ -1,0 +1,39 @@
+<div class="creditCardInformation">
+    <form [formGroup]="bankdetail" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label for="cardholdername">Card Holder Name</label>
+            <input type="text" class="form-control" id="cardholdername" formControlName="cardholdername"
+                name="cardholdername"><br>
+        </div>
+        <div *ngIf="f.cardholdername?.touched && f.cardholdername?.invalid" class="alert alert-danger">
+            <div *ngIf="f.cardholdername.errors?.required">Credit Card Name is required.</div>
+            <div *ngIf="f.cardholdername.errors?.minlength">Credit Card Name should be 3 character.</div>
+        </div>
+        <div id="cardImage"><img src="../../images/cards_v_mc_dscvr.jpg" alt="Card Images" id="cardimg"></div>
+        <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber" name="cardNumber"><br>
+        </div>
+        <div *ngIf="f.cardNumber?.touched && f.cardNumber?.invalid" class="alert alert-danger">
+            <div *ngIf="f.cardNumber.errors?.required">Credit Card Number is required.</div>
+            <div *ngIf="f.cardNumber.errors?.minlength">Credit Card Number should be 12 character.</div>
+        </div>
+        <div class="form-group">
+            <label for="accountNumber">Account Number</label>
+            <input type="text" class="form-control" id="accountNumber" formControlName="accountNumber"
+                name="accountNumber"><br>
+        </div>
+        <div *ngIf="f.accountNumber?.touched && f.accountNumber?.invalid" class="alert alert-danger">
+            <div *ngIf="f.accountNumber.errors?.required">Account Number is required.</div>
+            <div *ngIf="f.accountNumber.errors?.minlength">Account Number should be 12 character.</div>
+        </div>
+        <div class="form-group">
+            <label for="expirationDate">Expiration Date</label>
+            <input type="month" class="form-control" id="expirationDate" formControlName="expirationDate"
+                name="expirationDate"><br>
+        </div>
+
+        <button type="submit">Register</button><br><br>
+
+    </form>
+</div>

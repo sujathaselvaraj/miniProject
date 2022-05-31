@@ -1,0 +1,145 @@
+* {
+    color: navy;
+    font-family: 'Times New Roman', sans-serif;
+}
+
+.who_we_are {
+    background-color: rgb(212, 185, 238);
+    background-image: url('../../images/colorful.jpg');
+    border-radius: 12px;
+    border: 3px solid blueviolet;
+    font-size: 19px;
+    height: 460vh;
+    line-height: 40px;
+    margin-left: 200px;
+    margin-top: 200px;
+    padding: 50px;
+    width: 1000px;
+}
+
+.about_mak,
+.successStories,
+.mission {
+    display: flex;
+    flex-direction: row;
+    height: 60vh;
+}
+
+.about_mak_definition,
+.mission_details {
+    height: 100vh;
+    padding: 20px;
+    width: 70%;
+}
+
+.about_mak_image,
+.missionImages {
+    height: 100vh;
+    width: 30%;
+}
+
+.missionImg {
+    margin-left: 100px;
+    margin-top: 10vh;
+}
+
+.successStory,
+.missionImages {
+    float: right;
+    margin-left: -100px;
+    margin-top: -10vh;
+    width: 50%;
+}
+
+.successStoryImage,
+.missionImages {
+    width: 50%;
+}
+
+.mak_image,
+.successStoryImages,
+.missionImg {
+    border-radius: 16px;
+    height: 250px;
+    width: 250px;
+}
+
+h1 {
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+}
+
+.helpingImg {
+    border-radius: 50%;
+    height: 400px;
+    margin-left: 200px;
+    width: 400px;
+}
+
+.state_details,
+.mak_details {
+    margin-top: 15vh;
+    padding: 40px;
+
+    /*  */
+}
+
+.helpingImg:hover {
+    border-radius: 50%;
+    height: 500px;
+    margin-left: 150px;
+    margin-top: -10vh;
+    width: 500px;
+}
+
+span {
+    font-size: 40px;
+}
+
+span:hover {
+    font-size: 60px;
+}
+
+.mak_image:hover,
+.successStoryImages:hover,
+.missionImg:hover {
+    height: 300px;
+    width: 300px;
+}
+
+.mak_image:hover,
+.successStoryImages:hover {
+    margin-left: -30px;
+}
+
+.missionImg {
+    margin-left: 130px;
+}
+
+.registerForm {
+    height: 100vh;
+}
+
+.registerForm,
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: -35px;
+    margin-top: 3vh;
+    width: 1000px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.volunteer,
+.donate,
+.volunteerDoctor {
+    height: 100%;
+    padding: 1%;
+    width: 30%;
+}

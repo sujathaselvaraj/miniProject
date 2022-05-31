@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 import { DaoserviceService } from '../daoservice.service';
-// import { DaoserviceService } from '../daoservice.service'
-// import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-donation-form',
@@ -10,103 +9,98 @@ import { DaoserviceService } from '../daoservice.service';
   styleUrls: ['./donation-form.component.css']
 })
 export class DonationFormComponent implements OnInit {
-  other: any;
+  donationform!: FormGroup;
+  donationDetail: any = {
+    fund: '',
+    fundOther: '',
+    frequency: '',
+    instructions: '',
+    typeOfTribute: '',
+    tribute: '',
+    fname: '',
+    lname: '',
+    gender: '',
+    paymentRecord: {
+      cardholdername: '',
+      cardNumber: '',
+      accountNumber: '',
+      expirationDate: ''
+    }
+  };
 
-  constructor(public angulardbsvc: DaoserviceService) {
-  }
-
-
-  // get f() {
-  //   return this.form.controls;
-  // }
-
-  // submit() {
-  //   console.log(this.form.value);
-  // }
-
-  changeFund() {
-    return this.form.value.gender;
-  }
-  otherFund() {
-    return this.form.value.otherFund;
-  }
-  changeDonationType() {
-    return this.form.value.donationType;
-  }
-  changeFrequency() {
-    return this.form.value.frequency;
-  }
-
-  ngOnInit(): void {
-    // throw new Error('Method not implemented')
-    console.log("It's Working");
-  }
-  display() {
-    return this.form.value.typeOfTribute;
-  }
-  genderSelection() {
-    return this.form.value.gender;
-  }
-  confirmation() {
-    return this.form.value.confirmation;
-  }
-  form = new FormGroup({
-    fund: new FormControl(),
-    fundOther: new FormControl(),
-    donationType: new FormControl(),
-    frequency: new FormControl(),
-    instructions: new FormControl('', [Validators.required, Validators.minLength(20)]),
-    typeOfTribute: new FormControl(),
-    tribute: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    fname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    lname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    gender: new FormControl(),
-    temporaryAddress: new FormControl('', [Validators.required, Validators.minLength(30)]),
-    permanentAddress: new FormControl('', [Validators.required, Validators.minLength(30)]),
-    city: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    state: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    zip: new FormControl('', [Validators.required, Validators.maxLength(6)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    contactfname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    contactlname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    contacttemporaryAddress: new FormControl('', [Validators.required, Validators.minLength(30)]),
-    contactpermanentAddress: new FormControl('', [Validators.required, Validators.minLength(30)]),
-    mobileno: new FormControl('', [Validators.required, Validators.maxLength(10)]),
-    contactcity: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    contactstate: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    contactzip: new FormControl('', [Validators.required, Validators.maxLength(6)]),
-    contactemail: new FormControl('', [Validators.required, Validators.email]),
-    contactmobileno: new FormControl('', [Validators.required, Validators.maxLength(10)]),
-    confirmation: new FormControl(),
-    cardholdername: new FormControl(),
-    cardAccountNumber: new FormControl(),
-    accountNumber: new FormControl(),
-    expirationDate: new FormControl(),
-    securityCode: new FormControl(),
-    // billingAddressIsSame: new FormControl(),
-    billingAddress: new FormControl(),
-    billingCity: new FormControl(),
-    billingState: new FormControl(),
-    billingZip: new FormControl(),
-    billingEmail: new FormControl()
-  })
-  get f() {
-    return this.form.controls;
-  }
-  submit() {
-    this.angulardbsvc.postDetails(this.form.value, "donation_details_db").subscribe((data) => {
-      console.log(data)
-      console.log("Success");
-      this.form.reset();
+  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, private http: HttpClient) {
+    this.donationform = this.fb.group({
+      fund: [this.donationDetail.fund],
+      fundOther: [this.donationDetail.fundOther],
+      frequency: [this.donationDetail.frequency],
+      instructions: [this.donationDetail.instructions],
+      typeOfTribute: [this.donationDetail.typeOfTribute],
+      tribute: [this.donationDetail.tribute],
+      fname: [this.donationDetail.fname],
+      lname: [this.donationDetail.lname],
+      gender: [this.donationDetail.gender],
+      cardholdername: [this.donationDetail.paymentRecord.cardholdername],
+      cardNumber: [this.donationDetail.paymentRecord.cardNumber],
+      accountNumber: [this.donationDetail.paymentRecord.accountNumber],
+      expirationDate: [this.donationDetail.paymentRecord.expirationDate]
     });
   }
 
+  typeofTribute() {
+    return this.donationform.value.typeOfTribute;
+  }
+
+  changeFund() {
+    return this.donationform.value.gender;
+  }
+  otherFund() {
+    return this.donationform.value.otherFund;
+  }
+  changeDonationType() {
+    return this.donationform.value.donationType;
+  }
+  changeFrequency() {
+    return this.donationform.value.frequency;
+  }
+  confirmation() {
+    return this.donationform.value.confirmation;
+  }
+  display() {
+    return this.donationform.value.typeOfTribute;
+  }
+  genderSelection() {
+    return this.donationform.value.gender;
+  }
 
 
-  // createNewData(formValue: any) {
-  //   this.apiService.addData(formValue).subscribe((data: {}) => {
-  //     console.log(data);
-  //   });
-  // }
+  ngOnInit(): void {
+    this.donationform = this.fb.group({
+      fund: [''],
+      fundOther: [''],
+      frequency: [''],
+      instructions: ['', [Validators.required, Validators.minLength(3)]],
+      typeOfTribute: [''],
+      tribute: [''],
+      fname: ['', [Validators.required, Validators.minLength(3)]],
+      lname: ['', [Validators.required, Validators.minLength(3)]],
+      gender: [''],
+      cardholdername: ['', [Validators.required, Validators.minLength(3)]],
+      cardNumber: ['', [Validators.required, Validators.minLength(16)]],
+      accountNumber: ['', [Validators.required, Validators.minLength(12)]],
+      expirationDate: ['']
+    })
+  }
 
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.donationform.controls;
+  }
+  submit() {
+    console.log(this.donationform.value)
+    this.angulardbsvc.postDetails(this.donationform.value, "project_db").subscribe((data) => {
+      console.log(data)
+      console.log("Success");
+      this.donationform.reset();
+    });
+  }
 }

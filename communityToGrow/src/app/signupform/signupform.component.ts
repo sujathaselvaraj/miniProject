@@ -3,7 +3,8 @@ import { FormGroup, Validators, AbstractControl, FormBuilder } from '@angular/fo
 import Validation from './utils/validation';
 import { DaoserviceService } from '../daoservice.service';
 import { NodeapiService } from '../nodeapi.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signupform',
@@ -12,23 +13,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class SignupformComponent implements OnInit {
   checkout: FormGroup;
-  submitted = false;
+  submitted = true;
   userRecord: any = {
     fullName: '',
-    Username: '',
+    aadhar: '',
     emailId: '',
     Password: '',
     Confirmpassword: '',
+    type: ''
 
   };
-  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public nodesvc: NodeapiService, private http: HttpClient) {
+
+  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public nodesvc: NodeapiService, private http: HttpClient, private router: Router) {
 
     this.checkout = this.fb.group({
       fullName: [this.userRecord.fullname],
-      Username: [this.userRecord.username],
+      aadhar: [this.userRecord.aadhar],
       emailId: [this.userRecord.emailId],
       Password: [this.userRecord.Password],
       Confirmpassword: [this.userRecord.Confirmpassword],
+      type: [],
 
 
     });
@@ -38,7 +42,7 @@ export class SignupformComponent implements OnInit {
     this.checkout = this.fb.group(
       {
         fullname: ['', Validators.required],
-        username: [
+        aadhar: [
           '',
           [
             Validators.required,
@@ -47,7 +51,8 @@ export class SignupformComponent implements OnInit {
           ]
         ],
         email: ['', [Validators.required, Validators.email]],
-        password: [
+        type: ['Register'],
+        Password: [
           '',
           [
             Validators.required,
@@ -55,8 +60,7 @@ export class SignupformComponent implements OnInit {
             Validators.maxLength(40)
           ]
         ],
-        confirmPassword: ['', Validators.required],
-        acceptTerms: [false, Validators.requiredTrue]
+        confirmPassword: ['', Validators.required]
       },
       {
         validators: [Validation.match('password', 'confirmPassword')]
@@ -72,14 +76,13 @@ export class SignupformComponent implements OnInit {
       console.log("data returned from server", data);
     })
     this.submitted = true;
-    if (this.checkout.invalid) {
+    if (this.checkout.valid) {
+      this.router.navigate(['/who_we_are']);
+
       return;
     }
     console.log(JSON.stringify(this.checkout.value, null, 2));
-  }
-  onReset(): void {
-    this.submitted = false;
-    this.checkout.reset();
+
   }
 
 }

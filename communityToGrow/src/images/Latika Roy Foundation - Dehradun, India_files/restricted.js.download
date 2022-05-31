@@ -1,0 +1,11 @@
+var $j = jQuery.noConflict();
+$j(document).ready(function ($) {
+       $j('.restricted').click(function(e){
+        e.preventDefault();
+         PUM.open(15342);
+         var anchor = e.target.closest("a");     // Find closest Anchor (or self)
+         // console.log( anchor.getAttribute('href'));  // Log to test
+          //   console.log(e.currentTarget.getAttribute('href'));
+        document.getElementById("page_url").value = anchor.getAttribute('href');
+   });
+});

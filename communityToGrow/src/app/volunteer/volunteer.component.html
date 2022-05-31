@@ -1,0 +1,102 @@
+<div class="main">
+    <div class="volunteerContainer">
+        <form [formGroup]="volunteerform" (ngSubmit)="submit()">
+            <h2>Volunteer Detail
+            </h2>
+            <div>
+                <div>
+                    <label>First Name:</label>
+                    <input type="text" name="first_name" placeholder="Enter first name" class="form-control"
+                        id="first_name" formControlName="first_name" name="first_name"><br>
+                </div>
+                <div *ngIf="f.first_name?.touched && f.first_name?.invalid" class="alert alert-danger">
+                    <div *ngIf="f.first_name.errors?.required">First Name is required.</div>
+                    <div *ngIf="f.first_name.errors?.minlength">First Name should be 3 character.
+                    </div>
+                </div>
+                <div>
+                    <label>Last Name:</label>
+                    <input type="text" name="last_name" placeholder="Enter last name" class="form-control"
+                        id="last_name" formControlName="last_name" name="last_name"><br>
+                </div>
+                <div *ngIf="f.last_name?.touched && f.last_name?.invalid" class="alert alert-danger">
+                    <div *ngIf="f.last_name.errors?.required">Last Name is required.</div>
+                    <div *ngIf="f.last_name.errors?.minlength">Last Name should be 3 character.
+                    </div>
+                </div>
+                <div><label for="gender">Gender</label><br>
+                    <input type="radio" name="gender" value="male" id="male" formControlName="gender"
+                        (change)="genderSelection()"> Male<br>
+                    <input type="radio" name="gender" value="female" id="female" formControlName="gender"
+                        (change)="genderSelection()"> Female<br>
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input id="emailId" type="text" formControlName="emailId" class="form-control">
+
+                </div>
+                <div>
+                    <label for="mobileNo">Mobile No</label>
+                    <input type="text" class="form-control" id="mobileNo" formControlName="mobileNo"
+                        name="mobileNo"><br>
+                </div>
+                <div *ngIf="f.mobileNo?.touched && f.mobileNo?.invalid" class="alert alert-danger">
+                    <div *ngIf="f.mobileNo.errors?.required">Mobile No is required.</div>
+                    <div *ngIf="f.mobileNo.errors?.minlength">Mobile No should be 10 character.
+                    </div>
+                </div>
+                <h2>Choose the location of our Organisation to you want be a part.</h2>
+
+                <!-- <div class="form-group">
+                    <label for="location">location:</label>
+                    <select formControlName="location" class="form-control">
+                        <option disabled>Select location</option>
+                        <option>Choose location</option>
+                        <option *ngFor="let web of locationList">{{web.location}}</option>
+                    </select>
+                    <div *ngIf="f.location?.touched && f.location?.invalid" class="alert alert-danger">
+                        <div *ngIf="f.location.errors?.required">Name is required.</div>
+                    </div>
+                </div> -->
+                <div class="form-group">
+                    <label>Aadhar</label>
+                    <input id="aadhar" type="text" formControlName="aadhar" class="form-control">
+
+                </div><br>
+                <label>Job:</label>
+                <input type="text" name="Job" class="form-control" id="Job" formControlName="Job" name="Job" /><br>
+                <div *ngIf="f.Job?.touched && f.Job?.invalid" class="alert alert-danger">
+                    <div *ngIf="f.Job.errors?.required">Job detail is required.
+                    </div>
+                </div><br>
+
+            </div>
+            <div> <button class="btn btn-primary" type="submit">Submit</button>&nbsp;&nbsp;
+                <button class="btn btn-primary" type="button" (click)="volunteer()">Volunteer List in Our
+                    Organisation</button>
+            </div><br>
+
+        </form>
+        <table border="3" align="center">
+            <tr>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Gender</td>
+                <td>Type</td>
+                <td>Mobile Number</td>
+                <td>Mail Id</td>
+            </tr>
+            <tr *ngFor="let one of volunteerRecord">
+                <td>{{one.first_name}}</td>
+                <td>{{one.last_name}}</td>
+                <td>{{one.gender}}</td>
+                <td>{{one.type}}</td>
+                <td>{{one.mobileNo}}</td>
+                <td>{{one.emailId}}</td>
+                <!-- <td>{{obj.zip}}</td> -->
+            </tr>
+        </table>
+
+
+    </div>
+</div>

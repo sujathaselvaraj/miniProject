@@ -1,72 +1,161 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 import { DaoserviceService } from '../daoservice.service';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-doctor-list-update',
   templateUrl: './doctor-list-update.component.html',
   styleUrls: ['./doctor-list-update.component.css']
 })
 export class DoctorListUpdateComponent implements OnInit {
+  locationList: any = [''];
 
-  constructor(public donationsvc: DaoserviceService) { }
+  userData: any;
+  userId: any;
+  id: any;
+  // locationRecords:any=[];
+  // locationDetails:any=[]
+
+
+
+  doctorform: FormGroup;
+  doctordetails: any = [];
+  doctorRecord: any = {
+    first_name: '',
+    last_name: '',
+    gender: '',
+    emailId: '',
+    mobileNo: '',
+    type: '',
+    Login: '',
+    location: '',
+    education: {
+      qualification: '',
+      insti_name: '',
+    },
+    job: {
+      desig: '',
+      org_name: ''
+    },
+
+  }
+  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, private http: HttpClient) {
+    const queryParams = {
+      "type": "Location"
+    }
+    // Getting parent Id from Local Storage
+    this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
+    this.userId = this.userData;
+    this.id = this.userId._id;
+    console.log("Parent Id", this.id)
+    this.doctorform = this.fb.group({
+      first_name: [this.doctorRecord.first_name],
+      last_name: [this.doctorRecord.last_name],
+      gender: [this.doctorRecord.gender],
+      emailId: [this.doctorRecord.emailId],
+      aadhar: [this.doctorRecord.aadhar],
+      mobileNo: [this.doctorRecord.mobileNo],
+      type: [this.doctorRecord.type],
+      location: [this.locationList._id],
+      qualification: [this.doctorRecord.education.qualification],
+      insti_name: [this.doctorRecord.education.insti_name],
+      desig: [this.doctorRecord.job.desig],
+      org_name: [this.doctorRecord.job.org_name],
+      Login: [this.id]
+
+    }),
+
+      angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
+        console.log(res)
+        this.locationList = res.docs
+        console.log("Location Details", this.locationList)
+      })
+
+  }
+  // radio button value assigning
   genderSelection() {
-    return this.myform.value.gender;
+    return this.doctorRecord.gender;
   }
   ngOnInit(): void {
-  }
-  myform = new FormGroup({
-    first_name: new FormControl(),
-    middle_name: new FormControl(),
-    last_name: new FormControl(),
-    ssc_inst_name: new FormControl(),
-    ssc_year: new FormControl(),
-    ssc_cgpa: new FormControl(),
-    ssc_position: new FormControl(),
-    hsc_inst_name: new FormControl(),
-    hsc_year: new FormControl(),
-    hsc_cgpa: new FormControl(),
-    hsc_position: new FormControl(),
-    mbbs_inst_name: new FormControl(),
-    mbbs_year: new FormControl(),
-    mbbs_cgpa: new FormControl(),
-    mbbs_position: new FormControl(),
-    inst_name: new FormControl(),
-    year: new FormControl(),
-    cgpa: new FormControl(),
-    position: new FormControl(),
-    job_desg1: new FormControl(),
-    from_date1: new FormControl(),
-    to_date1: new FormControl(),
-    org_name1: new FormControl(),
-    job_desg2: new FormControl(),
-    from_date2: new FormControl(),
-    to_date2: new FormControl(),
-    org_name2: new FormControl(),
-    job_desg3: new FormControl(),
-    from_date3: new FormControl(),
-    to_date3: new FormControl(),
-    org_name3: new FormControl(),
-    job_desg4: new FormControl(),
-    from_date4: new FormControl(),
-    to_date4: new FormControl(),
-    org_name4: new FormControl(),
-    job_desg5: new FormControl(),
-    from_date5: new FormControl(),
-    to_date5: new FormControl(),
-    org_name5: new FormControl()
+    this.doctorform = this.fb.group({
+      first_name: [
+        '', [
+          Validators.required,
+          Validators.minLength(3),
+        ]
+      ],
+      last_name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+        ]
+      ],
+      gender: ['', Validators.required],
+      emailId: ['', [Validators.required, Validators.email]],
+      aadhar: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(20)
+        ]
+      ],
+      mobileNo: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(11)
+        ]
+      ],
+      type: ['Doctor'],
+      location: [''],
+      qualification: ['', Validators.required, Validators.minLength(2)],
+      insti_name: [
+        '',
+        [
+          Validators.required
+        ]
+      ],
 
+      desig: ['', Validators.required],
 
-  })
-  get f() {
-    return this.myform.controls;
+      org_name: ['', Validators.required],
+      Login: this.id
+
+    });
   }
-  submit() {
-    this.donationsvc.postDetails(this.myform.value, "doctor_details_db").subscribe((data) => {
+  get f(): { [key: string]: AbstractControl } {
+    return this.doctorform.controls;
+  }
+  //calling the function that in service  to post the data
+  doctorDetailSubmission() {
+    this.angulardbsvc.postDetails(this.doctorform.value, "project_db").subscribe((data) => {
       console.log(data)
       console.log("Success");
-      this.myform.reset();
+      this.doctorform.reset();
     });
-
+  }
+  // fetchLocation(){
+  //   this.angulardbsvc.fetchDataUsingFind("Location")
+  // }
+  // function call to get the data from couch
+  // doctor() {
+  //   this.angulardbsvc.doctorDetails("project_db").subscribe((datas: any) => {
+  //     console.log("Patient Details", datas)
+  //     this.doctorRecord = datas.docs;
+  //     this.doctordetails = this.doctorRecord;
+  //   });
+  // }
+  doctor() {
+    this.angulardbsvc.view().subscribe((datas: any) => {
+      console.log("Doctor View", datas)
+      this.doctorRecord = datas.rows;
+      this.doctordetails = this.doctorRecord.map((el: any) => el.doc);
+    });
   }
 }
+
+
+

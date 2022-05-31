@@ -1,0 +1,10 @@
+.stayConnected {
+    background-image: url('../../images/white.webp');
+    width: 100%;
+}
+
+.stayConnectedImg {
+    height: 600px;
+    margin-left: 200px;
+    width: 1000px;
+}

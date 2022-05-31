@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 import { DaoserviceService } from '../daoservice.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-patient-detail-update',
@@ -8,87 +9,125 @@ import { DaoserviceService } from '../daoservice.service';
   styleUrls: ['./patient-detail-update.component.css']
 })
 export class PatientDetailUpdateComponent implements OnInit {
+  volunteerList: any = [''];
+  volunteerRecord: any = {
+    volunteer: ''
+  }
 
-  constructor(public angulardbsvc: DaoserviceService) { }
+  bloodGroup: any = ['A+ve', 'A1+ve', 'A1B+ve', 'B+ve', 'O+ve', 'AB+ve', 'A-ve', 'A1-ve', 'A1B-ve', 'B-ve', 'O-ve', 'AB-ve']
+
+  patientForm: FormGroup;
+  patientRecord: any = [];
+  details: any = {
+    f_name: '',
+    l_name: '',
+    dob: '',
+    age: '',
+    gender: '',
+    bloodgroup: '',
+    aadhar: '',
+    phone_number: '',
+    email: '',
+    disorder: '',
+    volunteer: '',
+    helper_name: '',
+    type: '',
+    Login: ''
+  }
+  userData: any;
+  userId: any;
+  id: any;
+
+
+  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public http: HttpClient) {
+    //getting the parent id from localStorage
+
+    this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
+    this.userId = this.userData
+    this.id = this.userId._id;
+    console.log(this.id)
+    const queryParam = {
+      "type": "Volunteer"
+    }
+    angulardbsvc.fetchDataUsing('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((res: any) => {
+      console.log(res)
+      this.volunteerList = res.docs;
+      console.log("volunteer Details", this.volunteerList)
+    })
+    this.patientForm = this.fb.group({
+      f_name: [this.details.f_name],
+      l_name: [this.details.l_name],
+      dob: [this.details.dob],
+      age: [this.details.age],
+      gender: [this.details.gender],
+      bloodgroup: [this.details.bloodGroup],
+      aadhar: [this.details.aadhar],
+      phone_number: [this.details.phone_number],
+      email: [this.details.email],
+      disorder: [this.details.disorder],
+      volunteer: [this.volunteerRecord._id],
+
+      // helper_name: [this.details.helper_name],
+      type: [this.details.disorder],
+      Login: [this.id]
+
+    })
+  }
+  // function to assign value in radio button
   changeGender() {
-    return this.myform.value.gender;
+    return this.details.gender;
   }
-  changeProfession() {
-    return this.myform.value.profession;
-  }
-  bloodgroup() {
-    return this.myform.value.bloodGroup;
-  }
-  changeroom() {
-    return this.myform.value.roomchoice;
-  }
-  changegame() {
-    return this.myform.value.game;
-  }
-  changeOthers() {
-    return this.myform.value.others;
-  }
+  // function to assign value in radio button
+  // bloodgroup() {
+  //   return this.details.bloodGroup;
+  // }
+
+
   ngOnInit(): void {
-  }
-  myform = new FormGroup({
-    first_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    middle_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    last_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    dob: new FormControl(),
-    age: new FormControl(),
-    gender: new FormControl(),
-    profession: new FormControl(),
-    bloodGroup: new FormControl(),
-    phone_number: new FormControl(),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    presentStreet_number: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    presentStreet_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    presentArea: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    presentDistrict: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    presentPostal_number: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    permanentStreet_number: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    permanentStreet_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    permanentArea: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    permanentDistrict: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    permanentPostal_number: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    roomchoice: new FormControl(),
-    disease: new FormControl(),
-    comments: new FormControl(),
-    height: new FormControl(),
-    weight: new FormControl(),
-    disease_1: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    disease_2: new FormControl(),
-    disease_3: new FormControl(),
-    disease_4: new FormControl(),
-    disease_5: new FormControl(),
-    disease_6: new FormControl(),
-    upper: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    lower: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    breakf_1: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    breakf_2: new FormControl(),
-    breakf_3: new FormControl(),
-    lunch_1: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    lunch_2: new FormControl(),
-    lunch_3: new FormControl(),
-    dinner_1: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    dinner_2: new FormControl(),
-    dinner_3: new FormControl(),
-    game: new FormControl(),
-    others: new FormControl(),
 
+    this.patientForm = this.fb.group({
+      f_name: ['', [Validators.required]],
+      l_name: ['', [Validators.required]],
+      dob: ['', [Validators.required]],
+      age: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      bloodgroup: ['', [Validators.required]],
+      aadhar: ['', [Validators.required]],
+      phone_number: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      disorder: ['', [Validators.required]],
+      volunteer: [''],
+      helper_name: ['Not yet get Help'],
+      type: ['Patient'],
+      Login: this.id
 
-  })
-  get f() {
-    return this.myform.controls;
-  }
-  submit() {
-    this.angulardbsvc.postDetails(this.myform.value, "patient_details_db").subscribe((data) => {
-      console.log(data)
-      console.log("Success");
-      this.myform.reset();
     });
-    // console.log(this.myform.value)
+  }
 
+  get f(): { [key: string]: AbstractControl } {
+    return this.details.controls;
+  }
+  // function call to post data in couch db
+  submit() {
+    console.log("User Id", this.id)
+    console.log(this.patientForm.value);
+
+    this.angulardbsvc.postDetails(this.patientForm.value, "project_db").subscribe((datas) => {
+      console.log(datas)
+      console.log("Success", datas);
+      console.log(this.patientForm.value.bloodgroup)
+    });
+  }
+  // function call to get data which has type Patient
+  patient() {
+
+    this.angulardbsvc.patientDetails("project_db").subscribe((datas: any) => {
+      console.log("Patient Details", datas)
+      this.details = datas.docs;
+      this.patientRecord = this.details;
+    });
 
   }
 }
+
+

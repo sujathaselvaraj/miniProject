@@ -1,6 +1,5 @@
-<app-logo></app-logo>
-<h3>Donation Information</h3>
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="donationform" (ngSubmit)="submit()">
+    <h2>Donation Information</h2>
     <div class="form-group"><label for="amount">Amount</label><br>
         <input type="radio" name="fund" value="500" id="500" formControlName="fund" (change)="changeFund()"> $500<br>
         <input type="radio" name="fund" value="200" id="200" formControlName="fund" (change)="changeFund()"> $200<br>
@@ -27,14 +26,6 @@
         Yearly<br>
 
     </div>
-    <!-- <div><label for="donationsector">Where would you like your donation to go?</label>
-        <select>
-            <option value="" name="donationsector">Where needed most!</option>
-            <option value="connecticut" name="donationsector">MAF Connecticut</option>
-            <option value="delaware" name="donationsector">MAF Delaware</option>
-            <option value="support" name="donationsector">Support and Management</option>
-        </select><br>
-    </div> -->
 
     <div class="form-group">
         <label for="instruction">Special Instructions</label>
@@ -50,21 +41,11 @@
 
     <div class="dedicateDonation">
         <div><label for="typeOfTribute">Type Of Tribute</label>
-            <input type="text" class="form-control" id="typeOfTribute" formControlName="typeOfTribute"
-                name="typeOfTribute" placeholder="In Memory Of / In Honour Of"><br>
-            <div *ngIf="f.typeOfTribute?.touched && f.typeOfTribute?.invalid" class="alert alert-danger">
-                <div *ngIf="f.typeOfTribute.errors?.required">Type Of Tribute is required.</div>
-                <div *ngIf="f.typeOfTribute.errors?.minlength">Type Of Tribute should be 3 character.</div>
-            </div>
-
-            <!-- <select>
-                <option value="" name="typeOfTribute" id="typeOfTribute" formControlName="typeOfTribute"
-                    (change)="typeOftribute()">Type Of Tribute</option>
-                <option value="memory" name="typeOfTribute" id="monthly" formControlName="typeOfTribute"
-                    (change)="typeOftribute()">In Memory Of</option>
-                <option value="honor" name="typeOfTribute" id="monthly" formControlName="typeOfTribute"
-                    (change)="typeOftribute()">In Honour Of</option>
-            </select><br> -->
+            <input type="radio" value="In Memory Of" name="typeOfTribute" id="typeOfTribute"
+                formControlName="typeOfTribute" (change)="typeofTribute()">
+            In Memory Of<br>
+            <input type="radio" value="In Honour Of" name="typeOfTribute" id="typeOfTribute"
+                formControlName="typeOfTribute" (change)="typeofTribute()">In Honour Of<br>
         </div>
         <div><label for="tributeName">Tribute Name</label>
             <input type="text" class="form-control" id="tribute" formControlName="tribute" name="tribute"><br>
@@ -74,7 +55,6 @@
             <div *ngIf="f.tribute.errors?.minlength">Tribute Name should be 3 character.</div>
         </div>
         <div><label for="notification">
-                Send Notification to:
             </label>
             <div class="form-group">
                 <label for="fname">First Name</label>
@@ -98,168 +78,8 @@
                 <input type="radio" name="gender" value="female" id="female" formControlName="gender"
                     (change)="genderSelection()"> Female<br>
             </div>
-
-            <div><label for="temporaryAddress">Temporary Address</label>
-                <input type="text" class="form-control" id="temporaryAddress" formControlName="temporaryAddress"><br>
-            </div>
-            <div *ngIf="f.temporaryAddress?.touched && f.temporaryAddress?.invalid" class="alert alert-danger">
-                <div *ngIf="f.temporaryAddress.errors?.required">Temporary Address is required.</div>
-                <div *ngIf="f.temporaryAddress.errors?.minlength">Temporary Address should be 30 character.</div>
-            </div>
-            <div class="form-group"><label for="permanentAddress">Permanent Address</label>
-                <input type="text" class="form-control" id="permanentAddress" formControlName="permanentAddress"><br>
-            </div>
-            <div *ngIf="f.permanentAddress?.touched && f.permanentAddress?.invalid" class="alert alert-danger">
-                <div *ngIf="f.permanentAddress.errors?.required">Permanent Address is required.</div>
-                <div *ngIf="f.permanentAddress.errors?.minlength">Permanent Address should be 30 character.</div>
-            </div>
-            <div class="form-group">
-                <label for="mobileno">Mobile No:</label>
-                <input formControlName="mobileno" id="mobileno" type="text" class="form-control">
-                <div *ngIf="f.mobileno?.touched && f.mobileno?.invalid" class="alert alert-danger">
-                    <div *ngIf="f.mobileno.errors?.required">Mobile Number is required.</div>
-                    <div *ngIf="f.mobileno.errors?.maxlength">Mobile Number should have only 10 digits.</div>
-                </div>
-            </div>
-            <div class="form-group"><label for="city">City</label>
-                <input type="text" class="form-control" id="city" formControlName="city" name="city"><br>
-            </div>
-            <div *ngIf="f.city?.touched && f.city?.invalid" class="alert alert-danger">
-
-                <div *ngIf="f.city.errors?.required">City is required.</div>
-                <div *ngIf="f.city.errors?.minlength">City should be 3 character.</div>
-            </div>
         </div>
-        <div class="form-group"><label for="state">State/Province</label>
-            <input type="text" class="form-control" id="state" formControlName="state" name="state"><br>
-        </div>
-        <div *ngIf="f.state?.touched && f.state?.invalid" class="alert alert-danger">
-            <div *ngIf="f.state.errors?.required">State is required.</div>
-            <div *ngIf="f.state.errors?.minlength">State should be 3 character.</div>
-        </div>
-        <div class="form-group"><label for="zip">Zip/Postal Code</label>
-            <input type="text" class="form-control" id="zip" formControlName="zip" name="zip"><br>
-        </div>
-        <div *ngIf="f.zip?.touched && f.zip?.invalid" class="alert alert-danger">
-            <div *ngIf="f.zip.errors?.required">Zip is required.</div>
-            <div *ngIf="f.zip.errors?.minlength">Zip should have 6 digits.</div>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input formControlName="email" id="email" type="text" class="form-control" name="email">
-            <div *ngIf="f.email?.touched && f.email?.invalid" class="alert alert-danger">
-                <div *ngIf="f.email.errors?.required">Email is required.</div>
-                <div *ngIf="f.email.errors?.email">Please, enter valid email address.</div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <h2>Contact Information</h2>
-        <div class="form-group">
-            <label for="contactfname">First Name</label>
-            <input type="text" class="form-control" id="contactfname" name="contactfname"
-                formControlName="contactfname"><br>
-        </div>
-        <div *ngIf="f.contactfname?.touched && f.contactfname?.invalid" class="alert alert-danger">
-            <div *ngIf="f.contactfname.errors?.required">First Name is required.</div>
-            <div *ngIf="f.contactfname.errors?.minlength">First Name should be 3 character.</div>
-        </div>
-        <div class="form-group">
-            <label for="contactlname">Last Name</label>
-            <input type="text" class="form-control" id="contactlname" formControlName="contactlname"
-                name="contactlname"><br>
-        </div>
-        <div *ngIf="f.contactlname?.touched && f.contactlname?.invalid" class="alert alert-danger">
-            <div *ngIf="f.contactlname.errors?.required">Last Name is required.</div>
-            <div *ngIf="f.contactlname.errors?.minlength">Last Name should be 3 character.</div>
-        </div>
-
-
-        <div><label for="contacttemporaryAddress">Temporary Address</label>
-            <input type="text" class="form-control" id="contacttemporaryAddress"
-                formControlName="contacttemporaryAddress" name="contacttemporaryAddress"><br>
-        </div>
-        <div *ngIf="f.contacttemporaryAddress?.touched && f.contacttemporaryAddress?.invalid"
-            class="alert alert-danger">
-            <div *ngIf="f.contacttemporaryAddress.errors?.required">Temporary Address is required.</div>
-            <div *ngIf="f.contacttemporaryAddress.errors?.minlength">Temporary Address should be 30 character.</div>
-        </div>
-        <div class="form-group"><label for="contactpermanentAddress">Permanent Address</label>
-            <input type="text" class="form-control" id="contactpermanentAddress"
-                formControlName="contactpermanentAddress" name="contactpermanentAddress"><br>
-        </div>
-        <div *ngIf="f.contactpermanentAddress?.touched && f.contactpermanentAddress?.invalid"
-            class="alert alert-danger">
-            <div *ngIf="f.contactpermanentAddress.errors?.required">Permanent Address is required.</div>
-            <div *ngIf="f.contactpermanentAddress.errors?.minlength">Permanent Address should be 30 character.</div>
-        </div>
-        <div class="form-group">
-            <label for="contactmobileno">Mobile No:</label>
-            <input formControlName="contactmobileno" id="contactmobileno" name="contactmobileno" type="text"
-                class="form-control">
-            <div *ngIf="f.contactmobileno?.touched && f.contactmobileno?.invalid" class="alert alert-danger">
-                <div *ngIf="f.contactmobileno.errors?.required">Mobile Number is required.</div>
-                <div *ngIf="f.contactmobileno.errors?.maxlength">Mobile Number should have only 10 digits.</div>
-            </div>
-        </div>
-        <div class="form-group"><label for="contactcity">City</label>
-            <input type="text" class="form-control" id="contactcity" name="contactcity" formControlName="contactcity"
-                name="contactcity"><br>
-        </div>
-
-        <div *ngIf="f.contactcity?.touched && f.contactcity?.invalid" class="alert alert-danger">
-
-            <div *ngIf="f.contactcity.errors?.required">City is required.</div>
-            <div *ngIf="f.contactcity.errors?.minlength">City should be 3 character.</div>
-        </div>
-    </div>
-    <div class="form-group"><label for="contactstate">State/Province</label>
-        <input type="text" class="form-control" id="contactstate" name="contactstate" formControlName="contactstate"
-            name="contactstate"><br>
-    </div>
-    <div *ngIf="f.contactstate?.touched && f.contactstate?.invalid" class="alert alert-danger">
-        <div *ngIf="f.contactstate.errors?.required">State is required.</div>
-        <div *ngIf="f.contactstate.errors?.minlength">State should be 3 character.</div>
-    </div>
-    <div class="form-group"><label for="contactzip">Zip/Postal Code</label>
-        <input type="text" class="form-control" id="contactzip" formControlName="contactzip" name="contactzip"><br>
-    </div>
-    <div *ngIf="f.contactzip?.touched && f.contactzip?.invalid" class="alert alert-danger">
-        <div *ngIf="f.contactzip.errors?.required">Zip is required.</div>
-        <div *ngIf="f.contactzip.errors?.minlength">Zip should have 6 digits.</div>
-    </div>
-    <div class="form-group">
-        <label for="contactemail">Email</label>
-        <input formControlName="contactemail" id="contactemail" type="text" class="form-control" name="contactemail">
-        <div *ngIf="f.contactemail?.touched && f.contactemail?.invalid" class="alert alert-danger">
-            <div *ngIf="f.contactemail.errors?.required">Email is required.</div>
-            <div *ngIf="f.contactemail.errors?.contactemail">Please, enter valid email address.</div>
-        </div>
-    </div>
-    <div>
-        <h2>Help Us Cover Costs</h2>
-        <div><label for="coverCosts"><b>Simply leave "Yes!" checked below to ensure that 100% of your intended donation
-                    is available for our mission.</b></label><br>
-            <input type="radio" name="confirmation" value="Yes" id="yes" formControlName="confirmation"
-                (change)="confirmation()">Yes! I want $100.00 to go to Community Systems,Inc and I
-            will
-            donate $103.00<br>
-            <input type="radio" name="confirmation" value="No" id="no" formControlName="confirmation"
-                (change)="confirmation()"> No.I will donate $100.00 and Community Systems,Inc will
-            cover
-            the processing costs.<br>
-        </div>
-    </div>
-    <div>
-        <h2>Payment Information</h2>
-        <label for="paymentOptions"></label>
-        <select>
-            <option value="creditCard" name="paymentOptions">Credit Card
-            </option>
-            <option value="bankAccount" name="paymentOptions">Bank Account</option>
-        </select>
-    </div>
-    <div class="creditCardInformation">
+        <div class="paymentdetails">Payment Details</div>
         <div class="form-group">
             <label for="cardholdername">Card Holder Name</label>
             <input type="text" class="form-control" id="cardholdername" formControlName="cardholdername"
@@ -271,13 +91,12 @@
         </div>
         <div id="cardImage"><img src="../../images/cards_v_mc_dscvr.jpg" alt="Card Images" id="cardimg"></div>
         <div class="form-group">
-            <label for="cardAccountNumber">Card Number</label>
-            <input type="text" class="form-control" id="cardAccountNumber" formControlName="cardAccountNumber"
-                name="cardAccountNumber"><br>
+            <label for="cardNumber">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber" name="cardNumber"><br>
         </div>
-        <div *ngIf="f.cardAccountNumber?.touched && f.cardAccountNumber?.invalid" class="alert alert-danger">
-            <div *ngIf="f.cardAccountNumber.errors?.required">Credit Card Number is required.</div>
-            <div *ngIf="f.cardAccountNumber.errors?.minlength">Credit Card Number should be 12 character.</div>
+        <div *ngIf="f.cardNumber?.touched && f.cardNumber?.invalid" class="alert alert-danger">
+            <div *ngIf="f.cardNumber.errors?.required">Credit Card Number is required.</div>
+            <div *ngIf="f.cardNumber.errors?.minlength">Credit Card Number should be 12 character.</div>
         </div>
         <div class="form-group">
             <label for="accountNumber">Account Number</label>
@@ -292,81 +111,25 @@
             <label for="expirationDate">Expiration Date</label>
             <input type="month" class="form-control" id="expirationDate" formControlName="expirationDate"
                 name="expirationDate"><br>
-            <div *ngIf="f.expirationDate?.touched && f.expirationDate?.invalid" class="alert alert-danger">
-                <div *ngIf="f.expirationDate.errors?.required">Expiration Date is required.</div>
+        </div>
+        <div>
+            <h2>Help Us Cover Costs</h2>
+            <div><label for="coverCosts"><b>Simply leave "Yes!" checked below to ensure that 100% of your intended
+                        donation
+                        is available for our mission.</b></label><br>
+                <input type="radio" name="confirmation" value="Yes" id="yes" formControlName="confirmation"
+                    (change)="confirmation()">Yes! I want $100.00 to go to Community Systems,Inc and I
+                will
+                donate $103.00<br>
+                <input type="radio" name="confirmation" value="No" id="no" formControlName="confirmation"
+                    (change)="confirmation()"> No.I will donate $100.00 and Community Systems,Inc will
+                cover
+                the processing costs.<br>
             </div>
         </div>
-        <div class="form-group">
-            <label for="securityCode">Security Code</label>
-            <input type="text" class="form-control" id="securityCode" formControlName="securityCode"
-                name="securityCode"><br>
-        </div>
-        <div *ngIf="f.securityCode?.touched && f.securityCode?.invalid" class="alert alert-danger">
-            <div *ngIf="f.securityCode.errors?.required">Security Code is required.</div>
-            <div *ngIf="f.securityCode.errors?.minlength">Security Code should be 3 character.</div>
-        </div>
-    </div>
-    <h2>Billing Address</h2>
-    <!-- <div>
-        <input type="checkbox" name="billingAddressIsSame">Same As Above<br>
-    </div> -->
-    <div class="form-group"><label for="billingAddress">Address</label>
-        <input type="text" class="form-control" id="billingAddress" formControlName="billingAddress"><br>
-    </div>
-    <div *ngIf="f.billingAddress?.touched && f.billingAddress?.invalid" class="alert alert-danger">
-        <div *ngIf="f.billingAddress.errors?.required">Billing Address is required.</div>
-        <div *ngIf="f.billingAddress.errors?.minlength">Billing Address should be 30 character.</div>
-    </div>
-    <div class="form-group"><label for="billingCity">City</label>
-        <input type="text" class="form-control" id="billingCity" formControlName="billingCity" name="billingCity"><br>
-    </div>
-    <div *ngIf="f.billingCity?.touched && f.billingCity?.invalid" class="alert alert-danger">
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <br>
 
-        <div *ngIf="f.billingCity.errors?.required">City is required.</div>
-        <div *ngIf="f.billingCity.errors?.minlength">City should be 3 character.</div>
-    </div>
-    <div class="form-group"><label for="billingState">State/Province</label>
-        <input type="text" class="form-control" id="billingState" formControlName="billingState"
-            name="billingState"><br>
-    </div>
-    <div *ngIf="f.billingState?.touched && f.billingState?.invalid" class="alert alert-danger">
-        <div *ngIf="f.billingState.errors?.required">State is required.</div>
-        <div *ngIf="f.billingState.errors?.minlength">State should be 3 character.</div>
-    </div>
-    <div class="form-group"><label for="billingZip">Zip/Postal Code</label>
-        <input type="text" class="form-control" id="billingZip" formControlName="billingZip" name="billingZip"><br>
-    </div>
-    <div *ngIf="f.billingZip?.touched && f.billingZip?.invalid" class="alert alert-danger">
-        <div *ngIf="f.billingZip.errors?.required">Zip is required.</div>
-        <div *ngIf="f.billingZip.errors?.minlength">Zip should have 6 digits.</div>
-    </div>
-    <div class="form-group">
-        <label for="billingEmail">Email</label>
-        <input formControlName="billingEmail" id="billingEmail" type="text" class="form-control" name="billingEmail">
-        <div *ngIf="f.billingEmail?.touched && f.billingEmail?.invalid" class="alert alert-danger">
-            <div *ngIf="f.billingEmail.errors?.required">Email is required.</div>
-            <div *ngIf="f.billingEmail.errors?.billingEmail">Please, enter valid email address.</div>
-        </div>
     </div>
 
-
-
-    <button class="btn btn-primary" type="submit">Submit</button>
-    <br>
-    <div>
-        <h4>Privacy Policy</h4>
-        <p>We take precautions to protect your information. We collect credit card or bank account information, names,
-            addresses, and other data related to your transaction when you make a payment through our site. We use this
-            information to process your payment.</p>
-    </div>
-    <div>
-        <h4>Terms/Conditions</h4>
-        <p>By submitting your payment, you authorize us to charge the account above for the amount specified in the
-            Transaction Amount field. Account information for Recurring Pledges/Monthly Giving is encrypted and stored
-            securely via SafeSave™ for automatic processing of your future payments. Notify us at anytime if you wish to
-            discontinue your pledge.</p>
-    </div>
 </form>
-<footer>
-    <span>&#169;2022 Make A Family.Inc v.2022.07.B</span>
-</footer>

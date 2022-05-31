@@ -1,0 +1,98 @@
+* {
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.community {
+    background-image: url('../../images/colorful.jpg');
+    width: 1200px;
+}
+
+.community_aim_text {
+    padding: 10px;
+}
+
+.community_aim {
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+    justify-content: space-between;
+    margin-left: 200px;
+    margin-top: 10vh;
+    padding: 20px;
+    width: 1000px;
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 10vh;
+    margin-left: 100px;
+    padding: 30px;
+    word-spacing: 18px;
+
+    /*  */
+}
+
+.community_img {
+    border-radius: 10%;
+    float: right;
+    height: 400px;
+    width: 400px;
+}
+
+span {
+    font-size: 80px;
+    margin-left: 100px;
+}
+
+.core_value {
+    display: flex;
+    flex-direction: column;
+    font-size: 19px;
+    height: 160vh;
+    justify-content: space-between;
+    margin-bottom: 15vh;
+    margin-left: 200px;
+    padding: 30px;
+    width: 1000px;
+}
+
+.core_row1,
+.core_row2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.core_row2 {
+    height: 45%;
+}
+
+.core_row1 {
+    height: 50%;
+}
+
+h5 {
+    font-size: 24px;
+}
+
+.respect,
+.innovation,
+.compassion,
+.accountability,
+.perseverance,
+.integrity {
+    border-radius: 12px;
+    border: 3px solid green;
+    box-shadow: 5px 10px 18px #61a38f;
+    justify-content: space-around;
+    margin: 30px;
+    padding: 5%;
+    width: 33.33%;
+}
+
+h3,
+h1 {
+    text-align: center;
+}

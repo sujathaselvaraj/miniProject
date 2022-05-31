@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { inject } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-family-system',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./family-system.component.css']
 })
 export class FamilySystemComponent implements OnInit {
+  constructor() {
 
-  constructor() { }
+  }
 
   ngOnInit(): void {
+
   }
+
 
 }

@@ -2,40 +2,21 @@
     font-family: 'Times New Roman', sans-serif;
 }
 
-.heading,
-.option,
-.dropdown {
+.initial {
+    background-image: url('../images/css-background-animation.gif');
+}
+
+.starting_form {
+    margin-top: -20vh;
+}
+
+.routing {
+    margin-top: 20vh;
+}
+
+.heading {
     height: 9vh;
     width: auto;
-}
-
-.dropdown {
-    background-color: aliceblue;
-}
-
-.nav_links {
-    background-clip: text;
-    background-image: linear-gradient(white, rgb(255, 255, 20));
-    color: transparent;
-    letter-spacing: -2px;
-    text-decoration: none;
-}
-
-.menu {
-    color: wheat;
-}
-
-.dropdownmenu {
-    color: blue;
-    background-color: transparent;
-}
-
-button {
-    border: none;
-    font-size: 19px;
-    margin-top: 2vh;
-    border-spacing: 20px;
-    margin-right: 50px;
 }
 
 .heading {
@@ -46,18 +27,43 @@ button {
 .nav_statement {
     color: white;
     font-size: 23px;
-    margin-left: 30%;
-    padding-top: 1vh;
+    margin-left: 45%;
+    padding-top: 3vh;
     text-decoration: double;
     word-spacing: 1vh;
 }
 
+a {
+    border-spacing: 20px;
+    border: none;
+    font-size: 19px;
+    margin-right: 50px;
+    text-decoration: none;
+}
 
-.option,
-.menu {
-    background-color: rgb(22, 42, 221);
-    background-image: linear-gradient(rgb(3, 42, 216), rgb(111, 0, 255));
-    position: relative;
+.footer_link {
+    margin-left: 450px;
+    width: 500px;
+}
+
+/* .option,
+.navigationlist {
+      height: 6vh;
+  }  */
+.navigation,
+.topnav {
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation {
+    float: left;
+    height: 7vh
+}
+
+.topnav {
+    float: right;
+    height: 7vh
 }
 
 .logo_position {
@@ -66,42 +72,45 @@ button {
     position: absolute;
 }
 
-.dropbtn {
-    padding: 16px;
-    font-size: 16px;
-    border: none;
+.footer_address {
+    color: blue;
+    color: darkred;
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 22px;
+    margin-left: 150px;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+.footer_row1,
+.footer_row2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 1100px;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    text-align: justify;
-    min-width: 150px;
-    box-shadow: 0px 8px 16px 0px rgba(83, 212, 195, 0.2);
-    z-index: 1;
+.apbranch {
+    margin-left: -35px;
+    margin-right: 35px;
 }
 
-.dropdown-content a {
-    color: rgb(64, 31, 153);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+.copyright {
+    color: white;
+    font-size: 19px;
+    margin-left: 35%;
+    margin-top: 18vh;
+    padding: 2vh;
 }
 
-.dropdown-content a:hover {
-    background-color: rgb(226, 167, 238);
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: #5dbedb;
-}
+/* .tnbranch,
+.apbranch,
+.kerbranch,
+.punbranch,
+.mumbranch,
+.delbranch,
+.rajbranch,
+.gujbranch {
+      border: 3px solid voilet;
+  } */

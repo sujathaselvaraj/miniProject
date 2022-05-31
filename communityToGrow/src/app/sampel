@@ -1,0 +1,394 @@
+// function(newDoc,oldDoc,userCtx,secObj){
+// if((newDoc && newDoc.type === "Login") || (oldDoc && oldDoc.type === "Login") || (newDoc && newDoc.type === "Register") || (oldDoc && oldDoc.type === "Register") || (newDoc && newDoc.type === "Patient") || (oldDoc && oldDoc.type === "Patient") || (newDoc && newDoc.type === "Volunteer") || (oldDoc && oldDoc.type === "Volunteer") || (newDoc && newDoc.type === "Doctor") || (oldDoc && oldDoc.type === "Doctor")) {
+// if(newDoc.aadhar === ""){
+// throw({
+// forbidden: 'Aadhar Number not be Empty'});
+// }
+// if(newDoc.Password === ""){
+// throw({
+// forbidden: 'Password not be Empty'});
+// }
+// }
+
+// if((newDoc && newDoc.type === "Register") || (oldDoc && oldDoc.type === "Register") || (newDoc && newDoc.type === "Volunteer") || (oldDoc && oldDoc.type === "Volunteer") || (newDoc && newDoc.type === "Doctor") || (oldDoc && oldDoc.type === "Doctor")){
+// if(newDoc.fullName === ""){
+// throw({
+// forbidden: 'Full Name not be Empty'});
+// }
+// if(newDoc.emailId === ""){
+// throw({
+// forbidden: 'Email Id not be Empty'});
+// }
+// if(newDoc.Confirmpassword === ""){
+// throw({
+// forbidden: 'Confirmpassword not be Empty'});
+// }
+//  if(newDoc.Confirmpassword === newDoc.Password){
+// throw({
+// forbidden: 'Confirmpassword and Password should be same'});
+// }
+// }
+// if((newDoc && newDoc.type === "Volunteer") || (oldDoc && oldDoc.type === "Volunteer") || (newDoc && newDoc.type === "Patient") || (oldDoc && oldDoc.type === "Patient") || (newDoc && newDoc.type === "Doctor") || (oldDoc && oldDoc.type === "Doctor")){
+// if(newDoc.first_name === ""){
+// throw({
+// forbidden: 'First Name not be Empty'});
+// }
+// if(newDoc.last_name === ""){
+// throw({
+// forbidden: 'last Name not be Empty'});
+// }
+// if(newDoc.gender === ""){
+// throw({
+// forbidden: 'Gender not be Empty'});
+// }
+// if(newDoc.mobileNo === ""){
+// throw({
+// forbidden: 'Mobile Number not be Empty'});
+// }
+// if(newDoc.qualification === ""){
+// throw({
+// forbidden: 'Qualification not be Empty'});
+// }
+// if(newDoc.insti_name === ""){
+// throw({
+// forbidden: 'Intitution Name not be Empty'});
+// }
+// if(newDoc.year === ""){
+// throw({
+// forbidden: 'Qualification year not be Empty'});
+// }
+// if(newDoc.cgpa === ""){
+// throw({
+// forbidden: 'Cgpa or Percentage not be Empty'});
+// }
+// if(newDoc.rank === ""){
+// throw({
+// forbidden: 'Rank not be Empty'});
+// }
+// if(newDoc.desig === ""){
+// throw({
+// forbidden:'Designation not be Empty'});
+// }
+// if(newDoc.from_date === ""){
+// throw({
+// forbidden: 'Staring Date not be Empty'});
+// }
+// if(newDoc.to_date === ""){
+// throw({
+// forbidden: 'End Date not be Empty'});
+// }
+// if(newDoc.organisation === ""){
+// throw({
+// forbidden: 'Organisation not be Empty'});
+// }
+// if(newDoc.org_name === ""){
+// throw({
+// forbidden: 'Organisation not be Empty'});
+// }
+// }
+
+// if((newDoc && newDoc.type === "Patient") || (oldDoc && oldDoc.type === "Patient")){
+// if(newDoc.f_name.length <=0){
+// throw({
+// forbidden: 'First Name not be length Empty'});
+// }
+// if(newDoc.l_name === ""){
+// throw({
+// forbidden: 'last Name not be Empty'});
+// }
+// if(newDoc.dob === ""){
+// throw({
+// forbidden: 'Date Of Birth not be Empty'});
+// }
+// if(newDoc.bloodGroup === ""){
+// throw({
+// forbidden: 'Blood Group not be Empty'});
+// }
+// if(newDoc.phone_number === ""){
+// throw({
+// forbidden: 'Phone Number not be Empty'});
+// }
+// if(newDoc.email === ""){
+// throw({
+// forbidden: 'Email not be Empty'});
+// }
+// if(newDoc.disorder === ""){
+// throw({
+// forbidden: 'Patient Disorder not be Empty'
+// });
+// }
+// }}
+
+// function(newDoc,oldDoc,userCtx,secObj){
+//     if((newDoc && newDoc.type === "Login") || (oldDoc && oldDoc.type === "Login")) {
+//     if(newDoc.aadhar === 0){
+//     throw({
+//     forbidden: 'Aadhar Number not be Empty'});
+//     }
+//     if(newDoc.aadhar.length <=16){
+//     throw({
+//     forbidden: 'Aadhar Number should have minimum 16 digits'});
+//     }
+//     if(newDoc.Password === ""){
+//     throw({
+//     forbidden: 'Password not be Empty'});
+//     }
+//     if(newDoc.Pasword.length >=8){
+//     throw({
+//     forbidden: 'Password should have minimum 8 characters'});
+//     }
+//     }
+//     if((newDoc && newDoc.type === "Register") || (oldDoc && oldDoc.type === "Register")){
+//     if(newDoc.fullName === ""){
+//     throw({
+//     forbidden: 'Full Name not be Empty'});
+//     }
+//     if(newDoc.fullName.length >= 3){
+//     throw({
+//     forbidden: 'Full Name should have 3 Characters'});
+//     }
+//     if(newDoc.aadhar === ""){
+//     throw({
+//     forbidden: 'Aadhar Number not be Empty'});
+//     }
+//     if(newDoc.aadhar.length <=16){
+//     throw({
+//     forbidden: 'Aadhar Number should have minimum 16 digits'});
+//     }
+//     if(newDoc.Password.length >=8){
+//     throw({
+//     forbidden: 'Password should have minimum 8 Characters'});
+//     }
+//     if(newDoc.Password === ""){
+//     throw({
+//     forbidden: 'Password not be Empty'});
+//     }
+    
+//     if(newDoc.Confirmpassword === ""){
+//     throw({
+//     forbidden: 'Confirm Password not be Empty'});
+//     }
+//     if(newDoc.Confirmpasword.length >=8){
+//     throw({
+//     forbidden: 'Confirm Password should have minimum 8 characters'});
+//     }
+    
+//     if(newDoc.emailId === ""){
+//     throw({
+//     forbidden: 'Email Id not be Empty'});
+//     }
+    
+//     if(newDoc.Confirmpassword === newDoc.Password){
+//     throw({
+//     forbidden: 'Confirmpassword and Password should be same'});
+//     }
+//     }
+    
+//     if((newDoc && newDoc.type === "Volunteer") || (oldDoc && oldDoc.type === "Volunteer")){
+//     if(newDoc.first_name === ""){
+//     throw({
+//     forbidden: 'First Name not be Empty'});
+//     }
+//     if(newDoc.first_name >= 3){
+//     throw({
+//     forbidden: 'First Name should have minimum 3 Characters'});
+//     }
+//     if(newDoc.last_name === ""){
+//     throw({
+//     forbidden: 'Last Name not be Empty'});
+//     }
+//     if(newDoc.last_name >= 3){
+//     throw({
+//     forbidden: 'Last Name should have minimum 3 Characters'});
+//     }
+//     if(newDoc.gender === ""){
+//     throw({
+//     forbidden: 'Gender not be Empty'});
+//     }
+//     if(newDoc.aadhar === ""){
+//     throw({
+//     forbidden: 'Aadhar Number not be Empty'});
+//     }
+//     if(newDoc.aadhar.length <=16){
+//     throw({
+//     forbidden: 'Aadhar Number should have minimum 16 digits'});
+//     }
+//     if(newDoc.emailId === ""){
+//     throw({
+//     forbidden: 'Email Id not be Empty'});
+//     }
+//     if(newDoc.mobileNo === ""){
+//     throw({
+//     forbidden: 'Mobile Number not be Empty'});
+//     }
+//     if(newDoc.mobileNo.length == 10){
+//     throw({
+//     forbidden: 'Mobile Number should have 10 digits'});
+//     }
+//     if(newDoc.qualification === ""){
+//     throw({
+//     forbidden: 'Qualification not be Empty'});
+//     }
+//     if(newDoc.insti_name === ""){
+//     throw({
+//     forbidden: 'Intitution Name not be Empty'});
+//     }
+//     if(newDoc.year === ""){
+//     throw({
+//     forbidden: 'Qualification year not be Empty'});
+//     }
+//     if(newDoc.cgpa === ""){
+//     throw({
+//     forbidden: 'Cgpa or Percentage not be Empty'});
+//     }
+//     if(newDoc.rank === ""){
+//     throw({
+//     forbidden: 'Rank not be Empty'});
+//     }
+//     if(newDoc.desig === ""){
+//     throw({
+//     forbidden:'Designation not be Empty'});
+//     }
+//     if(newDoc.from_date === ""){
+//     throw({
+//     forbidden: 'Staring Date not be Empty'});
+//     }
+//     if(newDoc.to_date === ""){
+//     throw({
+//     forbidden: 'End Date not be Empty'});
+//     }
+//     if(newDoc.organisation === ""){
+//     throw({
+//     forbidden: 'Organisation not be Empty'});
+//     }
+//     }
+    
+//     if((newDoc && newDoc.type === "Doctor") || (oldDoc && oldDoc.type === "Doctor")){
+//     if(newDoc.first_name === ""){
+//     throw({
+//     forbidden: 'First Name not be Empty'});
+//     }
+//     if(newDoc.first_name >= 3){
+//     throw({
+//     forbidden: 'First Name should have minimum 3 Characters'});
+//     }
+//     if(newDoc.last_name === ""){
+//     throw({
+//     forbidden: 'last Name not be Empty'});
+//     }
+//     if(newDoc.last_name === ""){
+//     throw({
+//     forbidden: 'Last Name not be Empty'});
+//     }
+//     if(newDoc.aadhar === ""){
+//     throw({
+//     forbidden: 'Aadhar Number not be Empty'});
+//     }
+//     if(newDoc.aadhar.length <= 0){
+//     throw({
+//     forbidden: 'Aadhar Number not be Empty length'});
+//     }
+//     if(newDoc.gender === ""){
+//     throw({
+//     forbidden: 'Gender not be Empty'});
+//     }
+//     if(newDoc.mobileNo === ""){
+//     throw({
+//     forbidden: 'Mobile Number not be Empty'});
+//     }
+//     if(newDoc.qualification === ""){
+//     throw({
+//     forbidden: 'Qualification not be Empty'});
+//     }
+//     if(newDoc.insti_name === ""){
+//     throw({
+//     forbidden: 'Intitution Name not be Empty'});
+//     }
+//     if(newDoc.year === ""){
+//     throw({
+//     forbidden: 'Qualification year not be Empty'});
+//     }
+//     if(newDoc.cgpa === ""){
+//     throw({
+//     forbidden: 'Cgpa or Percentage not be Empty'});
+//     }
+//     if(newDoc.rank === ""){
+//     throw({
+//     forbidden: 'Rank not be Empty'});
+//     }
+//     if(newDoc.desig === ""){
+//     throw({
+//     forbidden:'Designation not be Empty'});
+//     }
+//     if(newDoc.from_date === ""){
+//     throw({
+//     forbidden: 'Staring Date not be Empty'});
+//     }
+//     if(newDoc.to_date === ""){
+//     throw({
+//     forbidden: 'End Date not be Empty'});
+//     }
+    
+//     if(newDoc.org_name === ""){
+//     throw({
+//     forbidden: 'Organisation not be Empty'});
+//     }
+//     }
+    
+//     if((newDoc && newDoc.type === "Patient") || (oldDoc && oldDoc.type === "Patient")){
+    
+//     if(newDoc.f_name === ""){
+//     throw({
+//     forbidden: 'First Name not be Empty'});
+//     }
+//     if(newDoc.f_name.length >= 3){
+//     throw({
+//     forbidden: 'First Name should have minimum 3 Character'});
+//     }
+//     if(newDoc.l_name === ""){
+//     throw({
+//     forbidden: 'last Name not be Empty'});
+//     }
+//     if(newDoc.l_name.length >= 3){
+//     throw({
+//     forbidden: 'Last Name should have minimum 3 Character'});
+//     }
+//     if(newDoc.dob === ""){
+//     throw({
+//     forbidden: 'Date Of Birth not be Empty'});
+//     }
+//     if(newDoc.age === ""){
+//     throw({
+//     forbidden: 'Age not be Empty'});
+//     }
+//     if(newDoc.bloodGroup === ""){
+//     throw({
+//     forbidden: 'Blood Group not be Empty'});
+//     }
+//     if(newDoc.aadhar === ""){
+//     throw({
+//     forbidden: 'Aadhar Number not be Empty'});
+//     }
+//     if(newDoc.aadhar.length <=16){
+//     throw({
+//     forbidden: 'Aadhar Number should have minimum 16 digits'});
+//     }
+//     if(newDoc.phone_number === ""){
+//     throw({
+//     forbidden: 'Phone Number not be Empty'});
+//     }
+//     if(newDoc.phone_number == 10){
+//     throw({
+//     forbidden: 'Phone Number should have 10 digits'});
+//     }
+//     if(newDoc.email === ""){
+//     throw({
+//     forbidden: 'Email not be Empty'});
+//     }
+//     if(newDoc.disorder === ""){
+//     throw({
+//     forbidden: 'Patient Disorder not be Empty'
+//     });
+//     }
+//     }
+// }

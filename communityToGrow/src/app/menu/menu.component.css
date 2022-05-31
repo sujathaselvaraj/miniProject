@@ -1,0 +1,74 @@
+* {
+    font-family: 'Times New Roman', sans-serif;
+}
+
+.heading,
+.option,
+.navigation {
+    height: 9vh;
+    width: auto;
+}
+
+.nav_links {
+    background-clip: text;
+    background-image: linear-gradient(white, rgb(255, 255, 20));
+    color: transparent;
+    letter-spacing: -2px;
+    text-decoration: none;
+}
+
+.menu {
+    color: wheat;
+}
+
+.navigationmenu {
+    background-color: transparent;
+    color: blue;
+}
+
+a {
+    border-spacing: 20px;
+    border: none;
+    font-size: 19px;
+    margin-right: 50px;
+    text-decoration: none;
+}
+
+.heading {
+    background-image: linear-gradient(rgb(18, 162, 230), rgb(44, 82, 250));
+}
+
+.nav_statement {
+    color: white;
+    font-size: 23px;
+    margin-left: 45%;
+    padding-top: 3vh;
+    text-decoration: double;
+    word-spacing: 1vh;
+}
+
+.option,
+.menu {
+    background-color: rgb(22, 42, 221);
+    background-image: linear-gradient(rgb(3, 42, 216), rgb(111, 0, 255));
+    position: relative;
+}
+
+.logo_position {
+    margin-left: 20px;
+    margin-top: -31vh;
+    position: absolute;
+}
+
+.navigationlist {
+    margin-top: 3vh;
+}
+
+.topnav {
+    padding-top: 3vh;
+}
+
+.navigation {
+    display: inline-block;
+    position: relative;
+}
