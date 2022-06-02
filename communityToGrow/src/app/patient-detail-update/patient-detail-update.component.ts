@@ -71,26 +71,29 @@ export class PatientDetailUpdateComponent implements OnInit {
 
 
     })
-    this.startingfetch();
+    this.locationfetch();
+    this.volunteerfetch();
   }
-  startingfetch() {
+  locationfetch() {
     const queryParams = {
       "type": "Location"
-    }
-
-    const queryParam = {
-      "type": "Volunteer"
     }
     this.angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
       console.log(res)
       this.locationList = res.docs
       console.log("Location Details", this.locationList)
-    }),
-      this.angulardbsvc.fetchDataUsingFind('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((res: any) => {
-        console.log(res)
-        this.volunteerList = res.docs;
-        console.log("volunteer Details", this.volunteerList)
-      })
+    })
+  }
+  volunteerfetch() {
+    const queryParam = {
+      "type": "Volunteer"
+    }
+
+    this.angulardbsvc.fetchDataUsingFind('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((resp: any) => {
+      console.log(resp)
+      this.volunteerList = resp.docs;
+      console.log("volunteer Details", this.volunteerList)
+    })
   }
   // function to assign value in radio button
   changeGender() {
