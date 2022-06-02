@@ -20,8 +20,6 @@ import { MenuComponent } from './menu/menu.component';
 import { ContactComponent } from './contact/contact.component';
 import { BuildCommunityComponent } from './build-community/build-community.component';
 import { StayConnectedComponent } from './stay-connected/stay-connected.component';
-import { PaymentdetilsComponent } from './paymentdetils/paymentdetils.component';
-import { ConvertionPipe } from './convertion.pipe';
 import { VolunteerComponent } from './volunteer/volunteer.component';
 import { LocationComponent } from './location/location.component';
 import { HttpCallInterceptor } from './interceptor';
@@ -37,7 +35,6 @@ const routes: Routes = [
   { path: 'signUp', component: SignupformComponent },
   { path: 'buildcommunity', component: BuildCommunityComponent },
   { path: 'stayConnected', component: StayConnectedComponent },
-  { path: 'payment', component: PaymentdetilsComponent },
   { path: 'patient', component: PatientDetailUpdateComponent },
   { path: 'doctor', component: DoctorListUpdateComponent },
   { path: 'volunteer', component: VolunteerComponent },
@@ -60,8 +57,6 @@ const routes: Routes = [
     ContactComponent,
     BuildCommunityComponent,
     StayConnectedComponent,
-    PaymentdetilsComponent,
-    ConvertionPipe,
     VolunteerComponent,
     LocationComponent,
     VolunteerlistComponent,
