@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 import { DaoserviceService } from '../daoservice.service';
 import { ToastrService } from 'ngx-toastr';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-doctor-list-update',
   templateUrl: './doctor-list-update.component.html',
@@ -39,9 +39,7 @@ export class DoctorListUpdateComponent implements OnInit {
 
   }
   constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, private http: HttpClient, private toastr: ToastrService) {
-    const queryParams = {
-      "type": "Location"
-    }
+
     // Getting parent Id from Local Storage
     this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
     this.userId = this.userData;
@@ -62,12 +60,18 @@ export class DoctorListUpdateComponent implements OnInit {
       org_name: [this.doctorRecord.job.org_name],
       Login: [this.id]
 
-    }), angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
+    })
+    this.initialfetch();
+  }
+  initialfetch() {
+    const queryParams = {
+      "type": "Location"
+    }
+    this.angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
       console.log(res)
       this.locationList = res.docs
       console.log("Location Details", this.locationList)
     })
-
   }
   // radio button value assigning
   genderSelection() {
@@ -154,7 +158,7 @@ export class DoctorListUpdateComponent implements OnInit {
     catch (err: any) {
       this.toastr.error("Form Failed to submit", err.name);
 
-    };
+    }
   }
 }
 
