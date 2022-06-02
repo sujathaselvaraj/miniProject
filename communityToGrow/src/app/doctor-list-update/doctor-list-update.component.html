@@ -6,8 +6,8 @@
                         <div>
                                 <div>
                                         <label>First Name:</label>
-                                        <input type="text" name="first_name" placeholder="Enter first name"
-                                                class="form-control" id="first_name" formControlName="first_name"><br>
+                                        <input type="text" name="first_name" class="form-control" id="first_name"
+                                                formControlName="first_name">
                                 </div>
                                 <div *ngIf="f.first_name?.touched && f.first_name?.invalid" class="alert alert-danger">
                                         <div *ngIf="f.first_name.errors?.required">First Name is required.</div>
@@ -16,9 +16,8 @@
                                 </div>
                                 <div>
                                         <label>Last Name:</label>
-                                        <input type="text" name="last_name" placeholder="Enter last name"
-                                                class="form-control" id="last_name" formControlName="last_name"
-                                                name="last_name"><br>
+                                        <input type="text" name="last_name" class="form-control" id="last_name"
+                                                formControlName="last_name" name="last_name">
                                 </div>
                                 <div *ngIf="f.last_name?.touched && f.last_name?.invalid" class="alert alert-danger">
                                         <div *ngIf="f.last_name.errors?.required">Last Name is required.</div>
@@ -34,11 +33,25 @@
                                 <div>
                                         <label>Email</label>
                                         <input id="emailId" type="text" formControlName="emailId" class="form-control">
+                                        <div *ngIf="f.emailId?.invalid && f.emailId?.touched">
+                                                <div *ngIf="f.emailId.errors?.required" class="alert alert-danger">
+                                                        Email is required</div>
+                                                <div *ngIf="f.emailId.errors?.invalid" class="alert alert-danger">Please
+                                                        provide
+                                                        a valid email address</div>
+                                        </div>
 
                                 </div>
                                 <div class="form-group">
                                         <label>Aadhar</label>
                                         <input id="aadhar" type="text" formControlName="aadhar" class="form-control">
+                                </div>
+                                <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
+                                        <div *ngIf="f.aadhar.errors?.required">Aadhar Number is required.</div>
+                                        <div *ngIf="f.aadhar.errors?.minlength">Aadhar should have minimum 12 Digits.
+                                        </div>
+                                        <div *ngIf="f.aadhar.errors?.maxlength">Aadhar should have maximum 12 Digits.
+                                        </div>
                                 </div><br>
                                 <div>
                                         <label for="mobileNo">Mobile No</label>
@@ -46,60 +59,65 @@
                                                 name="mobileNo"><br>
                                 </div>
                                 <div *ngIf="f.mobileNo?.touched && f.mobileNo?.invalid" class="alert alert-danger">
-                                        <div *ngIf="f.mobileNo.errors?.required">Mobile No is required.</div>
-                                        <div *ngIf="f.mobileNo.errors?.minlength">Mobile No should have 10 Digits.
+                                        <div *ngIf="f.mobileNo.errors?.required">Mobile Number is required.</div>
+                                        <div *ngIf="f.mobileNo.errors?.minlength">Mobile Number should have minimum 10
+                                                Digits.
+                                        </div>
+                                        <div *ngIf="f.mobileNo.errors?.maxlength">Mobile Number should have maximum 10
+                                                Digits.
                                         </div>
                                 </div>
 
                                 <h2>Choose the location of our Organisation to you want be a part.</h2>
-                                <label for="location">location:</label>
                                 <select formControlName="location" class="form-control">
                                         <option disabled>Select location</option>
                                         <option>Choose location</option>
                                         <option *ngFor="let web of locationList" value="{{web._id}}">{{web.location}}
                                         </option>
                                 </select>
-                                <div *ngIf="f.location?.touched && f.location?.invalid" class="alert alert-danger">
-                                        <div *ngIf="f.location.errors?.required">Name is required.</div>
+                                <div *ngIf="f.location?.touched" class="alert alert-danger">
+                                        <div *ngIf="f.location.errors?.required">Location is required.</div>
                                 </div>
 
 
 
                                 <div>
-                                        <h2>Educational Qualifications:</h2>
+                                        <h2>Education</h2>
                                         <label for="qualification">Qualification</label>
-                                        <input type="text" name="qualification" placeholder="Enter Qualification"
-                                                class="form-control" id="qualification" formControlName="qualification"
-                                                name="qualification"><br>
+                                        <input type="text" name="qualification" class="form-control" id="qualification"
+                                                formControlName="qualification" name="qualification"><br>
                                         <div *ngIf="f.qualification?.touched && f.qualification?.invalid"
                                                 class="alert alert-danger">
-                                                <div *ngIf="f.qualification.errors?.required">Entering Qualification is
+                                                <div *ngIf="f.qualification.errors?.required">Qualification is
                                                         required.
                                                 </div>
-                                                <div *ngIf="f.qualification.errors?.minlength">Qualification should be 3
+                                                <div *ngIf="f.qualification.errors?.minlength">Qualification should have
+                                                        minimum 2
                                                         character.
                                                 </div>
                                         </div>
                                         <label for="institutionName">Institution Name</label>
-                                        <input type="text" name="insti_name" placeholder="Enter Institution name"
-                                                class="form-control" id="insti_name" formControlName="insti_name"
-                                                name="insti_name"><br>
+                                        <input type="text" name="insti_name" class="form-control" id="insti_name"
+                                                formControlName="insti_name" name="insti_name"><br>
                                         <div *ngIf="f.insti_name?.touched && f.insti_name?.invalid"
                                                 class="alert alert-danger">
                                                 <div *ngIf="f.insti_name.errors?.required">Institution Name is required.
                                                 </div>
-                                                <div *ngIf="f.insti_name.errors?.minlength">Institution Name should be 3
+                                                <div *ngIf="f.insti_name.errors?.minlength">Institution Name should have
+                                                        minimum 3
                                                         character.
                                                 </div>
                                         </div>
                                 </div>
                                 <h2>Job</h2>
-                                <label for="desig">Institution Name</label>
-                                <input type="text" name="desig" placeholder="Enter Institution name"
-                                        class="form-control" id="desig" formControlName="desig" name="desig"><br>
+                                <label for="desig">Designation</label>
+                                <input type="text" name="desig" class="form-control" id="desig" formControlName="desig"
+                                        name="desig"><br>
                                 <div *ngIf="f.desig?.touched && f.desig?.invalid" class="alert alert-danger">
-                                        <div *ngIf="f.desig.errors?.required">Institution Name is required.
+                                        <div *ngIf="f.desig.errors?.required">Designation is required.
                                         </div>
+                                        <div *ngIf="f.desig.errors?.minlength">Designation should have minimum 3
+                                                character.</div>
 
                                 </div>
 
@@ -110,6 +128,10 @@
                                 <div *ngIf="f.org_name?.touched && f.org_name?.invalid" class="alert alert-danger">
                                         <div *ngIf="f.org_name.errors?.required">Organisation Name is required.
                                         </div>
+                                        <div *ngIf="f.org_name.errors?.minlength">Organisation Name should have minimum
+                                                3
+                                                character.</div>
+
                                 </div>
 
                         </div>
@@ -121,12 +143,12 @@
                 </form>
                 <table align="center">
                         <tr>
-                                <td>First Name</td>
-                                <td>Last Name</td>
-                                <td>Gender</td>
-                                <td>Type</td>
-                                <td>Mobile Number</td>
-                                <td>Mail Id</td>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Gender</th>
+                                <th>Type</th>
+                                <th>Mobile Number</th>
+                                <th>Mail Id</th>
                         </tr>
                         <tr *ngFor="let obj of doctordetails">
                                 <td>{{obj.first_name}}</td>
@@ -135,7 +157,6 @@
                                 <td>{{obj.type}}</td>
                                 <td>{{obj.mobileNo}}</td>
                                 <td>{{obj.emailId}}</td>
-                                <!-- <td>{{obj.zip}}</td> -->
                         </tr>
                 </table>
 

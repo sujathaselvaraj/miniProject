@@ -1,12 +1,10 @@
-<nav class="heading">
+<nav class="heading" aria-label="topNav">
   <p class="nav_statement">Never Give Up</p>
 </nav>
 <div class="initial">
   <div>
     <app-menu></app-menu>
   </div>
-  <app-volunteerlist></app-volunteerlist>
-  <app-location></app-location>
   <div class="routing">
     <router-outlet></router-outlet>
   </div>
@@ -62,7 +60,7 @@
 </div>
 <hr>
 <div class="footer_link">
-  <nav class="option">
+  <nav class="option" aria-label="option_nav">
     <div class="topnav">
       <a class="menu" href="stayConnected">Stay Connected</a>
       <a class="menu" href="donate">Donate</a>
@@ -70,7 +68,7 @@
       <a class="menu" href="signUp">Register</a>
     </div>
   </nav>
-  <nav class="navigationlist">
+  <nav class="navigationlist" aria-label="navigationList">
     <div class="navigation">
       <a class="navigationmenu" href="who_we_are">Who We Are</a>
       <a class="navigationmenu" href="buildcommunity">Build Community</a>

@@ -57,8 +57,9 @@ export class DaoserviceService {
     let object = {
       selector: {
         "type": "Patient"
-      },
-      fields: ["f_name", "l_name", "gender", "type", "phone_number", "email", "disorder"]
+      }
+      // ,
+      // fields: ["f_name", "l_name", "gender", "type", "phone_number", "email", "disorder", "listofvolunteer"]
     };
     return this.http.post(url, object, { headers: { Authorization: basicAuth } })
   }
@@ -98,7 +99,12 @@ export class DaoserviceService {
     };
     return this.http.post(url, dataObject, { headers: { Authorization: basicAuth } })
   }
-
+  getAll(type: Array<string>) {
+    console.log(type);
+    const url = `${this.endpt}project_db/_all_docs?include_docs=true&keys=["` + type.join('","') + `"]`
+    const basicAuth = 'Basic ' + btoa(this.username + ':' + this.password);
+    return this.http.get(url, { headers: { Authorization: basicAuth } });
+  }
   view() {
     console.log(this.id, "parentid")
     const url = `${this.endpt}project_db/_design/project_view/_view/doctor-view?include_docs=true&keys=["Doctor560144b284334dea51da07c80bb4669c"]`;

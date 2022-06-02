@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 import { DaoserviceService } from '../daoservice.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-donation-form',
@@ -28,7 +30,7 @@ export class DonationFormComponent implements OnInit {
     }
   };
 
-  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService, public angulardbsvc: DaoserviceService, private http: HttpClient) {
     this.donationform = this.fb.group({
       fund: [this.donationDetail.fund],
       fundOther: [this.donationDetail.fundOther],
@@ -101,6 +103,8 @@ export class DonationFormComponent implements OnInit {
       console.log(data)
       console.log("Success");
       this.donationform.reset();
+      this.toastr.success("Form Submitted Successfully");
+
     });
   }
 }

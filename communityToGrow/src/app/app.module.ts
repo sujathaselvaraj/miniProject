@@ -20,7 +20,6 @@ import { MenuComponent } from './menu/menu.component';
 import { ContactComponent } from './contact/contact.component';
 import { BuildCommunityComponent } from './build-community/build-community.component';
 import { StayConnectedComponent } from './stay-connected/stay-connected.component';
-import { AddressComponent } from './address/address.component';
 import { PaymentdetilsComponent } from './paymentdetils/paymentdetils.component';
 import { ConvertionPipe } from './convertion.pipe';
 import { VolunteerComponent } from './volunteer/volunteer.component';
@@ -44,6 +43,7 @@ const routes: Routes = [
   { path: 'volunteer', component: VolunteerComponent },
 
 
+
 ]
 @NgModule({
   declarations: [
@@ -60,7 +60,6 @@ const routes: Routes = [
     ContactComponent,
     BuildCommunityComponent,
     StayConnectedComponent,
-    AddressComponent,
     PaymentdetilsComponent,
     ConvertionPipe,
     VolunteerComponent,

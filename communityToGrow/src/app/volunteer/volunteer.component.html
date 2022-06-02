@@ -6,8 +6,8 @@
             <div>
                 <div>
                     <label>First Name:</label>
-                    <input type="text" name="first_name" placeholder="Enter first name" class="form-control"
-                        id="first_name" formControlName="first_name" name="first_name"><br>
+                    <input type="text" name="first_name" class="form-control" id="first_name"
+                        formControlName="first_name" name="first_name"><br>
                 </div>
                 <div *ngIf="f.first_name?.touched && f.first_name?.invalid" class="alert alert-danger">
                     <div *ngIf="f.first_name.errors?.required">First Name is required.</div>
@@ -16,8 +16,8 @@
                 </div>
                 <div>
                     <label>Last Name:</label>
-                    <input type="text" name="last_name" placeholder="Enter last name" class="form-control"
-                        id="last_name" formControlName="last_name" name="last_name"><br>
+                    <input type="text" name="last_name" class="form-control" id="last_name" formControlName="last_name"
+                        name="last_name"><br>
                 </div>
                 <div *ngIf="f.last_name?.touched && f.last_name?.invalid" class="alert alert-danger">
                     <div *ngIf="f.last_name.errors?.required">Last Name is required.</div>
@@ -32,8 +32,14 @@
                 </div>
                 <div>
                     <label>Email</label>
-                    <input id="emailId" type="text" formControlName="emailId" class="form-control">
-
+                    <input id="emailId" type="email" formControlName="emailId" class="form-control"><br>
+                    <div *ngIf="f.emailId?.invalid && f.emailId?.touched">
+                        <div *ngIf="f.emailId.errors?.required" class="alert alert-danger">
+                            Email is required</div>
+                        <div *ngIf="f.emailId.errors?.invalid" class="alert alert-danger">Please
+                            provide
+                            a valid email address</div>
+                    </div>
                 </div>
                 <div>
                     <label for="mobileNo">Mobile No</label>
@@ -41,32 +47,41 @@
                         name="mobileNo"><br>
                 </div>
                 <div *ngIf="f.mobileNo?.touched && f.mobileNo?.invalid" class="alert alert-danger">
-                    <div *ngIf="f.mobileNo.errors?.required">Mobile No is required.</div>
-                    <div *ngIf="f.mobileNo.errors?.minlength">Mobile No should be 10 character.
+                    <div *ngIf="f.mobileNo.errors?.required">Mobile Number is required.</div>
+                    <div *ngIf="f.mobileNo.errors?.minlength">Mobile Number should have minimum 10 Digits.</div>
+                    <div *ngIf="f.mobileNo.errors?.maxlength">Mobile Number should have maximum 10 Digits.
                     </div>
                 </div>
-                <h2>Choose the location of our Organisation to you want be a part.</h2>
+                <div>
+                    <h2>Choose the location of our Organisation to you want be a part.</h2>
 
-                <!-- <div class="form-group">
-                    <label for="location">location:</label>
                     <select formControlName="location" class="form-control">
                         <option disabled>Select location</option>
                         <option>Choose location</option>
-                        <option *ngFor="let web of locationList">{{web.location}}</option>
-                    </select>
+                        <option *ngFor="let web of locationList" value={{web._id}}>{{web.location}}</option>
+                    </select><br>
                     <div *ngIf="f.location?.touched && f.location?.invalid" class="alert alert-danger">
-                        <div *ngIf="f.location.errors?.required">Name is required.</div>
+                        <div *ngIf="f.location.errors?.required">Location is required.</div>
                     </div>
-                </div> -->
+                </div>
+
                 <div class="form-group">
                     <label>Aadhar</label>
-                    <input id="aadhar" type="text" formControlName="aadhar" class="form-control">
-
+                    <input id="aadhar" type="text" formControlName="aadhar" class="form-control"><br>
+                    <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
+                        <div *ngIf="f.aadhar.errors?.required">Aadhar Number is required.</div>
+                        <div *ngIf="f.aadhar.errors?.minlength">Aadhar should have minimum 12 Digits.
+                        </div>
+                        <div *ngIf="f.aadhar.errors?.maxlength">Aadhar should have maximum 12 Digits.
+                        </div>
+                    </div>
                 </div><br>
                 <label>Job:</label>
-                <input type="text" name="Job" class="form-control" id="Job" formControlName="Job" name="Job" /><br>
-                <div *ngIf="f.Job?.touched && f.Job?.invalid" class="alert alert-danger">
-                    <div *ngIf="f.Job.errors?.required">Job detail is required.
+                <input type="text" name="job" class="form-control" id="job" formControlName="job" /><br>
+                <div *ngIf="f.job?.touched && f.job?.invalid" class="alert alert-danger">
+                    <div *ngIf="f.job.errors?.required">Job detail is required.
+                    </div>
+                    <div *ngIf="f.job.errors?.minlength">Job should have minimum 2 Character.
                     </div>
                 </div><br>
 
@@ -79,12 +94,12 @@
         </form>
         <table border="3" align="center">
             <tr>
-                <td>First Name</td>
-                <td>Last Name</td>
-                <td>Gender</td>
-                <td>Type</td>
-                <td>Mobile Number</td>
-                <td>Mail Id</td>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Type</th>
+                <th>Mobile Number</th>
+                <th>Mail Id</th>
             </tr>
             <tr *ngFor="let one of volunteerRecord">
                 <td>{{one.first_name}}</td>
@@ -93,7 +108,6 @@
                 <td>{{one.type}}</td>
                 <td>{{one.mobileNo}}</td>
                 <td>{{one.emailId}}</td>
-                <!-- <td>{{obj.zip}}</td> -->
             </tr>
         </table>
 

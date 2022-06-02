@@ -5,6 +5,8 @@ import { DaoserviceService } from '../daoservice.service';
 import { NodeapiService } from '../nodeapi.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-signupform',
@@ -24,7 +26,7 @@ export class SignupformComponent implements OnInit {
 
   };
 
-  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public nodesvc: NodeapiService, private http: HttpClient, private router: Router) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService, public angulardbsvc: DaoserviceService, public nodesvc: NodeapiService, private http: HttpClient, private router: Router) {
 
     this.checkout = this.fb.group({
       fullName: [this.userRecord.fullname],
@@ -51,7 +53,7 @@ export class SignupformComponent implements OnInit {
           ]
         ],
         email: ['', [Validators.required, Validators.email]],
-        type: ['Register'],
+        type: ['Login'],
         Password: [
           '',
           [
@@ -77,6 +79,8 @@ export class SignupformComponent implements OnInit {
     })
     this.submitted = true;
     if (this.checkout.valid) {
+      this.toastr.success("Form Submitted Successfully");
+
       this.router.navigate(['/who_we_are']);
 
       return;

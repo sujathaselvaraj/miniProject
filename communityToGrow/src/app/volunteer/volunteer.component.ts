@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 import { DaoserviceService } from '../daoservice.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-volunteer',
   templateUrl: './volunteer.component.html',
   styleUrls: ['./volunteer.component.css']
 })
 export class VolunteerComponent implements OnInit {
+  locationList: any = [''];
 
 
   userData: any;
@@ -24,16 +27,19 @@ export class VolunteerComponent implements OnInit {
     mobileNo: '',
     type: '',
     Login: '',
+    location: '',
     job: '',
     volunteerList: ''
   }
-  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService, public angulardbsvc: DaoserviceService, private http: HttpClient) {
+    const queryParams = {
+      "type": "Location"
+    }
     // Getting parent Id from Local Storage
     this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
     this.userId = this.userData;
     this.id = this.userId._id;
     console.log("Parent Id", this.id)
-
     this.volunteerform = this.fb.group({
       first_name: [this.volunteerdetails.first_name],
       last_name: [this.volunteerdetails.last_name],
@@ -41,12 +47,18 @@ export class VolunteerComponent implements OnInit {
       aadhar: [this.volunteerdetails.aadhar],
       emailId: [this.volunteerdetails.emailId],
       mobileNo: [this.volunteerdetails.emailId],
+      location: [this.locationList._id],
       type: [this.volunteerdetails.type],
       job: [this.volunteerdetails.job],
       Login: [this.userId]
-
-    })
+    }),
+      angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
+        console.log(res)
+        this.locationList = res.docs
+        console.log("Location Details", this.locationList)
+      })
   }
+
   // radio button value assigning
   genderSelection() {
     return this.volunteerform.value.gender;
@@ -56,36 +68,38 @@ export class VolunteerComponent implements OnInit {
       first_name: [
         '', [
           Validators.required,
-          Validators.minLength(6),
+          Validators.minLength(3),
         ]
       ],
       last_name: [
         '',
         [
           Validators.required,
-          Validators.minLength(6),
+          Validators.minLength(3),
         ]
       ],
-      gender: ['', Validators.required], aadhar: [
+      gender: ['', Validators.required],
+      aadhar: [
         '',
         [
           Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(20)
+          Validators.minLength(12),
+          Validators.maxLength(12)
         ]
       ],
+      location: ['', [Validators.required]],
+
       emailId: ['', [Validators.required, Validators.email]],
       mobileNo: [
         '',
         [
           Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(11)
+          Validators.minLength(9)
         ]
       ],
       type: ['Volunteer'],
 
-      job: ['', [Validators.required]],
+      job: ['', [Validators.required, Validators.minLength(2)]],
       Login: [this.userId]
 
     });
@@ -99,17 +113,22 @@ export class VolunteerComponent implements OnInit {
       console.log(data)
       console.log("Success");
       this.volunteerform.reset();
+      this.toastr.success("Form Submitted Successfully");
+
     });
   }
   // function call to display data
   volunteer() {
-    this.angulardbsvc.volunteerDetails("project_db").subscribe((datas: any) => {
-      console.log("Volunteer Details", datas)
-      this.volunteerdetails = datas.docs;
-      this.volunteerRecord = this.volunteerdetails;
-    });
-
+    try {
+      this.angulardbsvc.volunteerDetails("project_db").subscribe((datas: any) => {
+        console.log("Volunteer Details", datas)
+        this.volunteerdetails = datas.docs;
+        this.volunteerRecord = this.volunteerdetails;
+      });
+    }
+    catch (err: any) {
+      this.toastr.error("Form Failed to Display", err.name);
+    }
   }
-
 }
 

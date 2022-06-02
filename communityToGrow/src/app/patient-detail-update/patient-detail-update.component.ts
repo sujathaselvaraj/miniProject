@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 import { DaoserviceService } from '../daoservice.service';
+import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
-
+import * as lodash from 'lodash'
 @Component({
   selector: 'app-patient-detail-update',
   templateUrl: './patient-detail-update.component.html',
@@ -10,10 +11,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PatientDetailUpdateComponent implements OnInit {
   volunteerList: any = [''];
-  volunteerRecord: any = {
-    volunteer: ''
-  }
-
+  // volunteerRecord: any = {
+  //   volunteer: ''
+  // }
+  locationList: any = [''];
+  volunteerName: any = [''];
   bloodGroup: any = ['A+ve', 'A1+ve', 'A1B+ve', 'B+ve', 'O+ve', 'AB+ve', 'A-ve', 'A1-ve', 'A1B-ve', 'B-ve', 'O-ve', 'AB-ve']
 
   patientForm: FormGroup;
@@ -26,10 +28,11 @@ export class PatientDetailUpdateComponent implements OnInit {
     gender: '',
     bloodgroup: '',
     aadhar: '',
+    location: '',
     phone_number: '',
     email: '',
     disorder: '',
-    volunteer: '',
+    listofvolunteer: '',
     helper_name: '',
     type: '',
     Login: ''
@@ -37,11 +40,14 @@ export class PatientDetailUpdateComponent implements OnInit {
   userData: any;
   userId: any;
   id: any;
+  alldata: any;
+  lookupIdArray: any = [];
 
-
-  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public http: HttpClient) {
+  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public http: HttpClient, private toastr: ToastrService) {
+    const queryParams = {
+      "type": "Location"
+    }
     //getting the parent id from localStorage
-
     this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
     this.userId = this.userData
     this.id = this.userId._id;
@@ -49,55 +55,60 @@ export class PatientDetailUpdateComponent implements OnInit {
     const queryParam = {
       "type": "Volunteer"
     }
-    angulardbsvc.fetchDataUsing('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((res: any) => {
-      console.log(res)
-      this.volunteerList = res.docs;
-      console.log("volunteer Details", this.volunteerList)
-    })
     this.patientForm = this.fb.group({
       f_name: [this.details.f_name],
       l_name: [this.details.l_name],
       dob: [this.details.dob],
       age: [this.details.age],
       gender: [this.details.gender],
-      bloodgroup: [this.details.bloodGroup],
+      location: [this.locationList._id],
+      bloodgroup: [this.bloodGroup.value],
       aadhar: [this.details.aadhar],
       phone_number: [this.details.phone_number],
       email: [this.details.email],
       disorder: [this.details.disorder],
-      volunteer: [this.volunteerRecord._id],
+      listofvolunteer: [this.volunteerList._id],
 
       // helper_name: [this.details.helper_name],
       type: [this.details.disorder],
-      Login: [this.id]
+      Login: [this.id],
+      volunteerName: [this.volunteerList.first_name]
 
-    })
+
+    }),
+      angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
+        console.log(res)
+        this.locationList = res.docs
+        console.log("Location Details", this.locationList)
+      }),
+      angulardbsvc.fetchDataUsing('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((res: any) => {
+        console.log(res)
+        this.volunteerList = res.docs;
+        console.log("volunteer Details", this.volunteerList)
+      })
   }
+
   // function to assign value in radio button
   changeGender() {
     return this.details.gender;
   }
-  // function to assign value in radio button
-  // bloodgroup() {
-  //   return this.details.bloodGroup;
-  // }
-
 
   ngOnInit(): void {
 
     this.patientForm = this.fb.group({
-      f_name: ['', [Validators.required]],
+      f_name: ['', [Validators.required,
+      Validators.minLength(3)]],
       l_name: ['', [Validators.required]],
       dob: ['', [Validators.required]],
       age: ['', [Validators.required]],
+      location: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       bloodgroup: ['', [Validators.required]],
       aadhar: ['', [Validators.required]],
       phone_number: ['', [Validators.required]],
       email: ['', [Validators.required]],
       disorder: ['', [Validators.required]],
-      volunteer: [''],
-      helper_name: ['Not yet get Help'],
+      listofvolunteer: [''],
       type: ['Patient'],
       Login: this.id
 
@@ -111,12 +122,18 @@ export class PatientDetailUpdateComponent implements OnInit {
   submit() {
     console.log("User Id", this.id)
     console.log(this.patientForm.value);
+    try {
+      this.angulardbsvc.postDetails(this.patientForm.value, "project_db").subscribe((datas) => {
+        console.log("Success", datas);
+        this.patientForm.reset();
+        this.toastr.success("Form Submitted Successfully");
 
-    this.angulardbsvc.postDetails(this.patientForm.value, "project_db").subscribe((datas) => {
-      console.log(datas)
-      console.log("Success", datas);
-      console.log(this.patientForm.value.bloodgroup)
-    });
+      });
+    }
+    catch (err: any) {
+      this.toastr.error("Form Failed to Submit", err.name);
+
+    }
   }
   // function call to get data which has type Patient
   patient() {
@@ -125,8 +142,22 @@ export class PatientDetailUpdateComponent implements OnInit {
       console.log("Patient Details", datas)
       this.details = datas.docs;
       this.patientRecord = this.details;
+      this.details = datas['rows'];
+      console.log(this.details)
+      this.lookupIdArray = lodash.uniq(this.patientRecord.map((el: any) => el['listofvolunteer']))
+      this.angulardbsvc.getAll(this.lookupIdArray).subscribe((res: any) => {
+        const volunteerlookup = res.rows.map((el: { doc: any; }) => el.doc)
+        this.patientRecord.forEach((element: any) => {
+          const volunteername = volunteerlookup.filter((el: any) => el['_id'] === element['listofvolunteer'])[0]
+          element['Volunteer'] = volunteername['first_name']
+        });
+        console.log(res)
+      })
+    }, rej => {
+      // alert("No Records Found" + rej);
+      this.toastr.error("Form Failed to Found", rej);
+      console.log(rej)
     });
-
   }
 }
 

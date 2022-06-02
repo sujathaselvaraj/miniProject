@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
       aadhar: [''],
       Password: ['', [Validators.minLength(8)]],
-      type: ['Login']
+      type: ['Entry']
     });
   }
   get aadhar() {
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     return this.loginform.get('Password')!;
   }
   login(Formvalue: any) {
-    console.log(Formvalue.aadhar);
+    // console.log(Formvalue.aadhar);
     this.api.test_get(Formvalue.aadhar).subscribe((data) => {
       console.log("data returned from server", data);
       const loginData = { response: JSON.stringify(data.docs[0]) }
@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
       }
       if (data.docs[0].aadhar === Formvalue.aadhar) {
         if (data.docs[0].Password === Formvalue.Password) {
+
           localStorage.setItem('usrData', JSON.stringify(data.docs[0]))
           this.router.navigate(['/who_we_are'], {
             queryParams: loginData

@@ -3,14 +3,22 @@
         <h2><br />Patients Details Form</h2>
 
         <div>
-            <label>First Name
-                <input type="text" name="f_name" placeholder="Enter first name" class="form-control" id="f_name"
-                    formControlName="f_name" name="f_name"><br></label>
+            <label>First Name</label>
+            <input type="text" name="f_name" class="form-control" id="f_name" formControlName="f_name">
         </div>
+        <!-- <div *ngIf="f.f_name?.touched && f.f_name?.invalid" class="alert alert-danger">
+            <div *ngIf="f.f_name.errors?.required">First Name is required.</div>
+            <div *ngIf="f.f_name.errors?.minlength">First Name should be 3 character.
+            </div>
+        </div> -->
 
         <label>Last Name:</label><br>
-        <input type="text" name="l_name" placeholder="Enter Last name" cl="form-control" id="l_name"
-            formControlName="l_name" name="l_name"><br>
+        <input type="text" name="l_name" class="form-control" id="l_name" formControlName="l_name" name="l_name">
+        <!-- <div *ngIf="f.l_name?.touched && f.l_name?.invalid" class="alert alert-danger">
+            <div *ngIf="f.l_name.errors?.required">Last Name is required.</div>
+            <div *ngIf="f.l_name.errors?.minlength">Last Name should be 3 character.
+            </div>
+        </div><br> -->
         <h3><br />Patients Info</h3>
         <p>
             <label>Date of birth:
@@ -32,6 +40,17 @@
             </label>
         </p>
         <div>
+            <label for="location">location:</label>
+            <select formControlName="location" class="form-control">
+                <option disabled>Select location</option>
+                <option>Choose location</option>
+                <option *ngFor="let web of locationList" value={{web._id}}>{{web.location}}</option>
+            </select>
+            <!-- <div *ngIf="f.location?.touched && f.location?.invalid" class="alert alert-danger">
+                <div *ngIf="f.location.errors?.required">Name is required.</div>
+            </div> -->
+        </div>
+        <div>
             <label for="bloodgroup">Blood Group:</label>
             <select formControlName="bloodgroup" class="form-control">
                 <option disabled>Select BloodGroup</option>
@@ -46,43 +65,33 @@
         </div><br>
 
         <p>
-            <label>Phone Number:
-                <input type="tel" name="phone_number" class="form-control" id="phone_number"
-                    formControlName="phone_number">
-            </label>
+            <label>Phone Number:</label>
+            <input type="tel" name="phone_number" class="form-control" id="phone_number" formControlName="phone_number">
+
         </p>
 
         <p>
             <label>Email:
-                <input type="email" class="form-control" id="email" formControlName="email" name="email">
             </label>
+            <input type="email" class="form-control" id="email" formControlName="email" name="email">
         </p>
         <div>
             <label for="disability">
                 Disorder:
-                <input type="text" class="form-control" id="disorder" formControlName="disorder" name="disorder">
             </label>
+
+            <input type="text" class="form-control" id="disorder" formControlName="disorder" name="disorder">
         </div><br>
         <div>
-            <label for="Hepler Name">
-                Helper Name:
-                <input type="text" class="form-control" id="helper_name" formControlName="helper_name"
-                    name="helper_name">
-            </label>
+
         </div><br>
-        <label for="volunteer">volunteer:</label>
-        <select formControlName="volunteer" class="form-control">
+        <label for="listofvolunteer">volunteer:</label>
+        <select formControlName="listofvolunteer" class="form-control">
             <option disabled>Select volunteer</option>
             <option>Choose volunteer</option>
             <option *ngFor="let web of volunteerList" value="{{web['_id']}}">{{web.first_name}}</option>
         </select><br>
-        <!-- <div>
-            <label for="Hepler Name">
-                Helper Aadhar Number:
-                <input type="text" class="form-control" id="helper_aadhar_number" formControlName="helper_aadhar_number"
-                    name="helper_aadhar_number">
-            </label>
-        </div><br> -->
+
 
         <div>
             <button class="btn btn-primary" type="submit">Submit</button>&nbsp;&nbsp;
@@ -99,22 +108,17 @@
             <th>Mobile Number</th>
             <th>Mail Id</th>
             <th>Disorder</th>
-            <th>Helper Name</th>
-            <th>Helper Aadhar Number</th>
+            <th>Volunteer List</th>
         </tr>
-        <tr>
-
-            <div *ngFor="let patient of patientRecord">
-                <td>{{patient.f_name}}</td>
-                <td>{{patient.l_name}}</td>
-                <td>{{patient.gender}}</td>
-                <td>{{patient.type}}</td>
-                <td>{{patient.phone_number}}</td>
-                <td>{{patient.email}}</td>
-                <td>{{patient.disorder}}</td>
-                <td>{{patient.helper_name}}</td>
-                <td>{{patient.helper_aadhar_number}}</td>
-            </div>
+        <tr *ngFor="let patient of patientRecord">
+            <td>{{patient.f_name}}</td>
+            <td>{{patient.l_name}}</td>
+            <td>{{patient.gender}}</td>
+            <td>{{patient.type}}</td>
+            <td>{{patient.phone_number}}</td>
+            <td>{{patient.email}}</td>
+            <td>{{patient.disorder}}</td>
+            <td>{{patient.Volunteer}}</td>
         </tr>
     </table>
 </div>

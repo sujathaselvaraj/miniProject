@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 import { DaoserviceService } from '../daoservice.service';
+import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-doctor-list-update',
@@ -13,8 +14,6 @@ export class DoctorListUpdateComponent implements OnInit {
   userData: any;
   userId: any;
   id: any;
-  // locationRecords:any=[];
-  // locationDetails:any=[]
 
 
 
@@ -39,7 +38,7 @@ export class DoctorListUpdateComponent implements OnInit {
     },
 
   }
-  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, private http: HttpClient) {
+  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, private http: HttpClient, private toastr: ToastrService) {
     const queryParams = {
       "type": "Location"
     }
@@ -97,8 +96,8 @@ export class DoctorListUpdateComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(20)
+          Validators.minLength(12),
+          Validators.maxLength(12)
         ]
       ],
       mobileNo: [
@@ -106,22 +105,22 @@ export class DoctorListUpdateComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(10),
-          Validators.maxLength(11)
+          Validators.maxLength(10)
         ]
       ],
       type: ['Doctor'],
-      location: [''],
-      qualification: ['', Validators.required, Validators.minLength(2)],
+      location: ['', [Validators.required]],
+      qualification: ['', [Validators.required, Validators.minLength(2)]],
       insti_name: [
         '',
         [
-          Validators.required
+          Validators.required, Validators.minLength(3)
         ]
       ],
 
-      desig: ['', Validators.required],
+      desig: ['', [Validators.required, Validators.minLength(2)]],
 
-      org_name: ['', Validators.required],
+      org_name: ['', [Validators.required]],
       Login: this.id
 
     });
@@ -131,29 +130,33 @@ export class DoctorListUpdateComponent implements OnInit {
   }
   //calling the function that in service  to post the data
   doctorDetailSubmission() {
-    this.angulardbsvc.postDetails(this.doctorform.value, "project_db").subscribe((data) => {
-      console.log(data)
-      console.log("Success");
-      this.doctorform.reset();
-    });
+    try {
+      this.angulardbsvc.postDetails(this.doctorform.value, "project_db").subscribe((data) => {
+        console.log(data)
+        console.log("Success");
+        this.doctorform.reset();
+        this.toastr.success("Form Submitted Successfully");
+
+      });
+    }
+    catch (err: any) {
+      this.toastr.error("Form Failed to submit", err.name);
+
+    }
   }
-  // fetchLocation(){
-  //   this.angulardbsvc.fetchDataUsingFind("Location")
-  // }
-  // function call to get the data from couch
-  // doctor() {
-  //   this.angulardbsvc.doctorDetails("project_db").subscribe((datas: any) => {
-  //     console.log("Patient Details", datas)
-  //     this.doctorRecord = datas.docs;
-  //     this.doctordetails = this.doctorRecord;
-  //   });
-  // }
+
   doctor() {
-    this.angulardbsvc.view().subscribe((datas: any) => {
-      console.log("Doctor View", datas)
-      this.doctorRecord = datas.rows;
-      this.doctordetails = this.doctorRecord.map((el: any) => el.doc);
-    });
+    try {
+      this.angulardbsvc.view().subscribe((datas: any) => {
+        console.log("Doctor View", datas)
+        this.doctorRecord = datas.rows;
+        this.doctordetails = this.doctorRecord.map((el: any) => el.doc);
+      });
+    }
+    catch (err: any) {
+      this.toastr.error("Form Failed to submit", err.name);
+
+    };
   }
 }
 

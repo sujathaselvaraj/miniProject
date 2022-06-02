@@ -9,12 +9,12 @@ body {
 }
 
 form {
-    width: 500px;
-    margin-left: 400px;
+    width: 480px;
+    margin-left: 420px;
     line-height: 30px;
     text-justify: auto;
     font-size: 18px;
-    background-image: url('./images/colorful.jpg');
+    background-image: url('./images/starsgif.gif');
     padding: 50px;
     border-radius: 12px;
 
