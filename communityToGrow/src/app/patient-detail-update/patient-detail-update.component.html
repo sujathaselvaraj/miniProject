@@ -6,19 +6,8 @@
             <label>First Name</label>
             <input type="text" name="f_name" class="form-control" id="f_name" formControlName="f_name">
         </div>
-        <!-- <div *ngIf="f.f_name?.touched && f.f_name?.invalid" class="alert alert-danger">
-            <div *ngIf="f.f_name.errors?.required">First Name is required.</div>
-            <div *ngIf="f.f_name.errors?.minlength">First Name should be 3 character.
-            </div>
-        </div> -->
-
         <label>Last Name:</label><br>
         <input type="text" name="l_name" class="form-control" id="l_name" formControlName="l_name" name="l_name">
-        <!-- <div *ngIf="f.l_name?.touched && f.l_name?.invalid" class="alert alert-danger">
-            <div *ngIf="f.l_name.errors?.required">Last Name is required.</div>
-            <div *ngIf="f.l_name.errors?.minlength">Last Name should be 3 character.
-            </div>
-        </div><br> -->
         <h3><br />Patients Info</h3>
         <p>
             <label>Date of birth:
@@ -46,9 +35,6 @@
                 <option>Choose location</option>
                 <option *ngFor="let web of locationList" value={{web._id}}>{{web.location}}</option>
             </select>
-            <!-- <div *ngIf="f.location?.touched && f.location?.invalid" class="alert alert-danger">
-                <div *ngIf="f.location.errors?.required">Name is required.</div>
-            </div> -->
         </div>
         <div>
             <label for="bloodgroup">Blood Group:</label>

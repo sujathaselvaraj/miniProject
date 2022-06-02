@@ -154,7 +154,6 @@ export class PatientDetailUpdateComponent implements OnInit {
         console.log(res)
       })
     }, rej => {
-      // alert("No Records Found" + rej);
       this.toastr.error("Form Failed to Found", rej);
       console.log(rej)
     });
