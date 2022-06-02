@@ -44,17 +44,12 @@ export class PatientDetailUpdateComponent implements OnInit {
   lookupIdArray: any = [];
 
   constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public http: HttpClient, private toastr: ToastrService) {
-    const queryParams = {
-      "type": "Location"
-    }
     //getting the parent id from localStorage
     this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
     this.userId = this.userData
     this.id = this.userId._id;
     console.log(this.id)
-    const queryParam = {
-      "type": "Volunteer"
-    }
+
     this.patientForm = this.fb.group({
       f_name: [this.details.f_name],
       l_name: [this.details.l_name],
@@ -75,19 +70,28 @@ export class PatientDetailUpdateComponent implements OnInit {
       volunteerName: [this.volunteerList.first_name]
 
 
+    })
+    this.startingfetch();
+  }
+  startingfetch() {
+    const queryParams = {
+      "type": "Location"
+    }
+
+    const queryParam = {
+      "type": "Volunteer"
+    }
+    this.angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
+      console.log(res)
+      this.locationList = res.docs
+      console.log("Location Details", this.locationList)
     }),
-      angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
-        console.log(res)
-        this.locationList = res.docs
-        console.log("Location Details", this.locationList)
-      }),
-      angulardbsvc.fetchDataUsingFind('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((res: any) => {
+      this.angulardbsvc.fetchDataUsingFind('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((res: any) => {
         console.log(res)
         this.volunteerList = res.docs;
         console.log("volunteer Details", this.volunteerList)
       })
   }
-
   // function to assign value in radio button
   changeGender() {
     return this.details.gender;

@@ -32,9 +32,7 @@ export class VolunteerComponent implements OnInit {
     volunteerList: ''
   }
   constructor(private fb: FormBuilder, private toastr: ToastrService, public angulardbsvc: DaoserviceService, private http: HttpClient) {
-    const queryParams = {
-      "type": "Location"
-    }
+
     // Getting parent Id from Local Storage
     this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
     this.userId = this.userData;
@@ -51,12 +49,19 @@ export class VolunteerComponent implements OnInit {
       type: [this.volunteerdetails.type],
       job: [this.volunteerdetails.job],
       Login: [this.userId]
-    }),
-      angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
-        console.log(res)
-        this.locationList = res.docs
-        console.log("Location Details", this.locationList)
-      })
+    })
+    this.initialfetch()
+
+  }
+  initialfetch() {
+    const queryParams = {
+      "type": "Location"
+    }
+    this.angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
+      console.log(res)
+      this.locationList = res.docs
+      console.log("Location Details", this.locationList)
+    })
   }
 
   // radio button value assigning
