@@ -48,7 +48,7 @@ export class LocationComponent implements OnInit {
   submit() {
 
     console.log(this.locationForm.value);
-    this.angulardbsvc.postDetails(this.locationForm.value, "project_db").subscribe((datas: any) => {
+    this.angulardbsvc.postDetails(this.locationForm.value).subscribe((datas: any) => {
       console.log(datas)
       console.log("Success", datas);
 

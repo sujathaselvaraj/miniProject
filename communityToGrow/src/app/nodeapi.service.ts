@@ -31,7 +31,7 @@ export class NodeapiService {
     console.log("Node Working🤩", FormData);
     return this.http.post<any>('http://localhost:8000/postdata/', FormData)
   }
-  login(datas: any) {
+  login(_datas: any) {
     const url = this.endpt + 'project_db/_find';
     let loginData = {
       selector: {

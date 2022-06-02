@@ -72,3 +72,9 @@ a {
     display: inline-block;
     position: relative;
 }
+
+.nav_button,
+.topnav {
+    float: right;
+
+}

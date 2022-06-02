@@ -19,7 +19,7 @@ export class VolunteerlistComponent implements OnInit {
     const queryParams = {
       "type": "Volunteer"
     }
-    angulardbsvc.fetchDataUsing('project_db', queryParams, ['type', 'first_name', '_id']).subscribe((res: any) => {
+    angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'first_name', '_id']).subscribe((res: any) => {
       console.log(res)
       this.volunteerList = res.docs;
       console.log("volunteer Details", this.volunteerList)
@@ -45,7 +45,7 @@ export class VolunteerlistComponent implements OnInit {
   submit() {
 
     console.log(this.volunteerForm.value);
-    this.angulardbsvc.postDetails(this.volunteerForm.value, "project_db").subscribe((datas: any) => {
+    this.angulardbsvc.postDetails(this.volunteerForm.value).subscribe((datas: any) => {
       console.log(datas)
       console.log("Success", datas);
 

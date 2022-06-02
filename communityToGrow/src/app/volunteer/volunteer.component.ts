@@ -109,7 +109,7 @@ export class VolunteerComponent implements OnInit {
   }
   // function call to post data
   submit() {
-    this.angulardbsvc.postDetails(this.volunteerform.value, "project_db").subscribe((data) => {
+    this.angulardbsvc.postDetails(this.volunteerform.value).subscribe((data) => {
       console.log(data)
       console.log("Success");
       this.volunteerform.reset();
@@ -120,7 +120,7 @@ export class VolunteerComponent implements OnInit {
   // function call to display data
   volunteer() {
     try {
-      this.angulardbsvc.volunteerDetails("project_db").subscribe((datas: any) => {
+      this.angulardbsvc.details("Volunteer").subscribe((datas: any) => {
         console.log("Volunteer Details", datas)
         this.volunteerdetails = datas.docs;
         this.volunteerRecord = this.volunteerdetails;

@@ -42,7 +42,7 @@ export class PaymentdetilsComponent implements OnInit {
   }
   submit() {
     console.log(this.bankdetail.value)
-    this.angulardbsvc.postDetails(this.bankdetail.value, "project_db").subscribe((data) => {
+    this.angulardbsvc.postDetails(this.bankdetail.value).subscribe((data) => {
       console.log(data)
       console.log("Success");
       this.bankdetail.reset();

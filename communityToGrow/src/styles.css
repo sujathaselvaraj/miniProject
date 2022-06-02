@@ -8,6 +8,10 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+caption {
+    display: none;
+}
+
 form {
     width: 480px;
     margin-left: 420px;

@@ -46,10 +46,6 @@ a {
     width: 500px;
 }
 
-/* .option,
-.navigationlist {
-      height: 6vh;
-  }  */
 .navigation,
 .topnav {
     display: flex;
@@ -103,14 +99,3 @@ a {
     margin-top: 18vh;
     padding: 2vh;
 }
-
-/* .tnbranch,
-.apbranch,
-.kerbranch,
-.punbranch,
-.mumbranch,
-.delbranch,
-.rajbranch,
-.gujbranch {
-      border: 3px solid voilet;
-  } */

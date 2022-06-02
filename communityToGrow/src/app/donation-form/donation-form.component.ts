@@ -99,7 +99,7 @@ export class DonationFormComponent implements OnInit {
   }
   submit() {
     console.log(this.donationform.value)
-    this.angulardbsvc.postDetails(this.donationform.value, "project_db").subscribe((data) => {
+    this.angulardbsvc.postDetails(this.donationform.value).subscribe((data) => {
       console.log(data)
       console.log("Success");
       this.donationform.reset();

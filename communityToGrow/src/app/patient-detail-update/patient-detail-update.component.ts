@@ -81,7 +81,7 @@ export class PatientDetailUpdateComponent implements OnInit {
         this.locationList = res.docs
         console.log("Location Details", this.locationList)
       }),
-      angulardbsvc.fetchDataUsing('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((res: any) => {
+      angulardbsvc.fetchDataUsingFind('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((res: any) => {
         console.log(res)
         this.volunteerList = res.docs;
         console.log("volunteer Details", this.volunteerList)
@@ -123,7 +123,7 @@ export class PatientDetailUpdateComponent implements OnInit {
     console.log("User Id", this.id)
     console.log(this.patientForm.value);
     try {
-      this.angulardbsvc.postDetails(this.patientForm.value, "project_db").subscribe((datas) => {
+      this.angulardbsvc.postDetails(this.patientForm.value).subscribe((datas) => {
         console.log("Success", datas);
         this.patientForm.reset();
         this.toastr.success("Form Submitted Successfully");
@@ -138,7 +138,7 @@ export class PatientDetailUpdateComponent implements OnInit {
   // function call to get data which has type Patient
   patient() {
 
-    this.angulardbsvc.patientDetails("project_db").subscribe((datas: any) => {
+    this.angulardbsvc.details("Patient").subscribe((datas: any) => {
       console.log("Patient Details", datas)
       this.details = datas.docs;
       this.patientRecord = this.details;

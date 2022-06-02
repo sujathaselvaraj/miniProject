@@ -62,13 +62,11 @@ export class DoctorListUpdateComponent implements OnInit {
       org_name: [this.doctorRecord.job.org_name],
       Login: [this.id]
 
-    }),
-
-      angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
-        console.log(res)
-        this.locationList = res.docs
-        console.log("Location Details", this.locationList)
-      })
+    }), angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
+      console.log(res)
+      this.locationList = res.docs
+      console.log("Location Details", this.locationList)
+    })
 
   }
   // radio button value assigning
@@ -131,7 +129,7 @@ export class DoctorListUpdateComponent implements OnInit {
   //calling the function that in service  to post the data
   doctorDetailSubmission() {
     try {
-      this.angulardbsvc.postDetails(this.doctorform.value, "project_db").subscribe((data) => {
+      this.angulardbsvc.postDetails(this.doctorform.value).subscribe((data) => {
         console.log(data)
         console.log("Success");
         this.doctorform.reset();
