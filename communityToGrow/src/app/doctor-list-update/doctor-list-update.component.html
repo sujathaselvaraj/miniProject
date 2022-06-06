@@ -1,186 +1,183 @@
-<div class="main">
-        <div class="doctorContainer">
-                <form [formGroup]="doctorform" (ngSubmit)="doctorDetailSubmission()" *ngIf="isShown">
-                        <h2>Doctor Detail
-                        </h2>
+<div class="doctorContainer">
+        <form [formGroup]="doctorform" (ngSubmit)="doctorDetailSubmission()" *ngIf="isShown">
+                <h2>Doctor Detail
+                </h2>
+                <div>
                         <div>
-                                <div>
-                                        <label>First Name:</label>
-                                        <input type="text" name="first_name" class="form-control" id="first_name"
-                                                formControlName="first_name">
+                                <label>First Name:</label>
+                                <input type="text" name="first_name" class="form-control" id="first_name"
+                                        formControlName="first_name">
+                        </div>
+                        <div *ngIf="f.first_name?.touched && f.first_name?.invalid" class="alert alert-danger">
+                                <div *ngIf="f.first_name.errors?.required">First Name is required.</div>
+                                <div *ngIf="f.first_name.errors?.minlength">First Name should be 3
+                                        character.
                                 </div>
-                                <div *ngIf="f.first_name?.touched && f.first_name?.invalid" class="alert alert-danger">
-                                        <div *ngIf="f.first_name.errors?.required">First Name is required.</div>
-                                        <div *ngIf="f.first_name.errors?.minlength">First Name should be 3
-                                                character.
-                                        </div>
+                        </div>
+                        <div>
+                                <label>Last Name:</label>
+                                <input type="text" name="last_name" class="form-control" id="last_name"
+                                        formControlName="last_name" name="last_name">
+                        </div>
+                        <div *ngIf="f.last_name?.touched && f.last_name?.invalid" class="alert alert-danger">
+                                <div *ngIf="f.last_name.errors?.required">Last Name is required.</div>
+                                <div *ngIf="f.last_name.errors?.minlength">Last Name should be 3
+                                        character.
                                 </div>
-                                <div>
-                                        <label>Last Name:</label>
-                                        <input type="text" name="last_name" class="form-control" id="last_name"
-                                                formControlName="last_name" name="last_name">
-                                </div>
-                                <div *ngIf="f.last_name?.touched && f.last_name?.invalid" class="alert alert-danger">
-                                        <div *ngIf="f.last_name.errors?.required">Last Name is required.</div>
-                                        <div *ngIf="f.last_name.errors?.minlength">Last Name should be 3
-                                                character.
-                                        </div>
-                                </div>
-                                <div><label for="gender">Gender</label><br>
-                                        <input type="radio" name="gender" value="male" id="male"
-                                                formControlName="gender" (change)="genderSelection()"> Male<br>
-                                        <input type="radio" name="gender" value="female" id="female"
-                                                formControlName="gender" (change)="genderSelection()">
-                                        Female<br>
-                                </div>
-                                <div>
-                                        <label>Email</label>
-                                        <input id="emailId" type="text" formControlName="emailId" class="form-control">
-                                        <div *ngIf="f.emailId?.invalid && f.emailId?.touched">
-                                                <div *ngIf="f.emailId.errors?.required" class="alert alert-danger">
-                                                        Email is required</div>
-                                                <div *ngIf="f.emailId.errors?.invalid" class="alert alert-danger">Please
-                                                        provide
-                                                        a valid email address</div>
-                                        </div>
-
-                                </div>
-                                <div class="form-group">
-                                        <label>Aadhar</label>
-                                        <input id="aadhar" type="text" formControlName="aadhar" class="form-control">
-                                </div>
-                                <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
-                                        <div *ngIf="f.aadhar.errors?.required">Aadhar Number is required.</div>
-                                        <div *ngIf="f.aadhar.errors?.minlength">Aadhar should have minimum 12
-                                                Digits.
-                                        </div>
-                                        <div *ngIf="f.aadhar.errors?.maxlength">Aadhar should have maximum 12
-                                                Digits.
-                                        </div>
-                                </div><br>
-                                <div>
-                                        <label for="mobileNo">Mobile No</label>
-                                        <input type="text" class="form-control" id="mobileNo" formControlName="mobileNo"
-                                                name="mobileNo"><br>
-                                </div>
-                                <div *ngIf="f.mobileNo?.touched && f.mobileNo?.invalid" class="alert alert-danger">
-                                        <div *ngIf="f.mobileNo.errors?.required">Mobile Number is required.
-                                        </div>
-                                        <div *ngIf="f.mobileNo.errors?.minlength">Mobile Number should have
-                                                minimum 10
-                                                Digits.
-                                        </div>
-                                        <div *ngIf="f.mobileNo.errors?.maxlength">Mobile Number should have
-                                                maximum 10
-                                                Digits.
-                                        </div>
-                                </div>
-
-                                <h2>Choose the location of our Organisation to you want be a part.</h2>
-                                <select formControlName="location" class="form-control">
-                                        <option disabled>Select location</option>
-                                        <option>Choose location</option>
-                                        <option *ngFor="let web of locationList" value="{{web._id}}">
-                                                {{web.location}}
-                                        </option>
-                                </select>
-                                <div *ngIf="f.location?.touched" class="alert alert-danger">
-                                        <div *ngIf="f.location.errors?.required">Location is required.</div>
-                                </div>
-
-
-
-                                <div>
-                                        <h2>Education</h2>
-                                        <label for="qualification">Qualification</label>
-                                        <input type="text" name="qualification" class="form-control" id="qualification"
-                                                formControlName="qualification" name="qualification"><br>
-                                        <div *ngIf="f.qualification?.touched && f.qualification?.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.qualification.errors?.required">Qualification is
-                                                        required.
-                                                </div>
-                                                <div *ngIf="f.qualification.errors?.minlength">Qualification
-                                                        should have
-                                                        minimum 2
-                                                        character.
-                                                </div>
-                                        </div>
-                                        <label for="institutionName">Institution Name</label>
-                                        <input type="text" name="insti_name" class="form-control" id="insti_name"
-                                                formControlName="insti_name" name="insti_name"><br>
-                                        <div *ngIf="f.insti_name?.touched && f.insti_name?.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.insti_name.errors?.required">Institution Name is
-                                                        required.
-                                                </div>
-                                                <div *ngIf="f.insti_name.errors?.minlength">Institution Name
-                                                        should have
-                                                        minimum 3
-                                                        character.
-                                                </div>
-                                        </div>
-                                </div>
-                                <h2>Job</h2>
-                                <label for="desig">Designation</label>
-                                <input type="text" name="desig" class="form-control" id="desig" formControlName="desig"
-                                        name="desig"><br>
-                                <div *ngIf="f.desig?.touched && f.desig?.invalid" class="alert alert-danger">
-                                        <div *ngIf="f.desig.errors?.required">Designation is required.
-                                        </div>
-                                        <div *ngIf="f.desig.errors?.minlength">Designation should have minimum 3
-                                                character.</div>
-
-                                </div>
-
-
-                                <label>Organisation Name:</label>
-                                <input type="text" name="org_name" class="form-control" id="org_name"
-                                        formControlName="org_name" name="org_name"><br>
-                                <div *ngIf="f.org_name?.touched && f.org_name?.invalid" class="alert alert-danger">
-                                        <div *ngIf="f.org_name.errors?.required">Organisation Name is required.
-                                        </div>
-                                        <div *ngIf="f.org_name.errors?.minlength">Organisation Name should have
-                                                minimum
-                                                3
-                                                character.</div>
-
+                        </div>
+                        <div><label for="gender">Gender</label><br>
+                                <input type="radio" name="gender" value="male" id="male" formControlName="gender"
+                                        (change)="genderSelection()"> Male<br>
+                                <input type="radio" name="gender" value="female" id="female" formControlName="gender"
+                                        (change)="genderSelection()">
+                                Female<br>
+                        </div>
+                        <div>
+                                <label>Email</label>
+                                <input id="emailId" type="text" formControlName="emailId" class="form-control">
+                                <div *ngIf="f.emailId?.invalid && f.emailId?.touched">
+                                        <div *ngIf="f.emailId.errors?.required" class="alert alert-danger">
+                                                Email is required</div>
+                                        <div *ngIf="f.emailId.errors?.invalid" class="alert alert-danger">Please
+                                                provide
+                                                a valid email address</div>
                                 </div>
 
                         </div>
-                        <div> <button class="btn btn-primary" type="submit">Submit</button>&nbsp;&nbsp;
-                                <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">List of Doctor
-                                        in an
-                                        Organisation</button>
+                        <div class="form-group">
+                                <label>Aadhar</label>
+                                <input id="aadhar" type="text" formControlName="aadhar" class="form-control">
+                        </div>
+                        <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
+                                <div *ngIf="f.aadhar.errors?.required">Aadhar Number is required.</div>
+                                <div *ngIf="f.aadhar.errors?.minlength">Aadhar should have minimum 12
+                                        Digits.
+                                </div>
+                                <div *ngIf="f.aadhar.errors?.maxlength">Aadhar should have maximum 12
+                                        Digits.
+                                </div>
+                        </div><br>
+                        <div>
+                                <label for="mobileNo">Mobile No</label>
+                                <input type="text" class="form-control" id="mobileNo" formControlName="mobileNo"
+                                        name="mobileNo"><br>
+                        </div>
+                        <div *ngIf="f.mobileNo?.touched && f.mobileNo?.invalid" class="alert alert-danger">
+                                <div *ngIf="f.mobileNo.errors?.required">Mobile Number is required.
+                                </div>
+                                <div *ngIf="f.mobileNo.errors?.minlength">Mobile Number should have
+                                        minimum 10
+                                        Digits.
+                                </div>
+                                <div *ngIf="f.mobileNo.errors?.maxlength">Mobile Number should have
+                                        maximum 10
+                                        Digits.
+                                </div>
                         </div>
 
-                </form>
-                <div *ngIf="isHide">
-                        <table>
-                                <caption>Doctor List</caption>
-                                <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Gender</th>
-                                        <th>Type</th>
-                                        <th>Mobile Number</th>
-                                        <th>Mail Id</th>
-                                </tr>
-                                <tr *ngFor="let obj of doctordetails">
-                                        <td>{{obj.first_name}}</td>
-                                        <td>{{obj.last_name}}</td>
-                                        <td>{{obj.gender}}</td>
-                                        <td>{{obj.type}}</td>
-                                        <td>{{obj.mobileNo}}</td>
-                                        <td>{{obj.emailId}}</td>
-                                </tr>
-                        </table>
-                        <button class="btn btn-primary" type="checkbox" (click)="toggleShow()" id="redirecting">To Join
-                                in Our
-                                Organisation</button>
+                        <h2>Choose the location of our Organisation to you want be a part.</h2>
+                        <select formControlName="location" class="form-control">
+                                <option disabled>Select location</option>
+                                <option>Choose location</option>
+                                <option *ngFor="let web of locationList" value="{{web._id}}">
+                                        {{web.location}}
+                                </option>
+                        </select>
+                        <div *ngIf="f.location?.touched" class="alert alert-danger">
+                                <div *ngIf="f.location.errors?.required">Location is required.</div>
+                        </div>
+
+
+
+                        <div>
+                                <h2>Education</h2>
+                                <label for="qualification">Qualification</label>
+                                <input type="text" name="qualification" class="form-control" id="qualification"
+                                        formControlName="qualification" name="qualification"><br>
+                                <div *ngIf="f.qualification?.touched && f.qualification?.invalid"
+                                        class="alert alert-danger">
+                                        <div *ngIf="f.qualification.errors?.required">Qualification is
+                                                required.
+                                        </div>
+                                        <div *ngIf="f.qualification.errors?.minlength">Qualification
+                                                should have
+                                                minimum 2
+                                                character.
+                                        </div>
+                                </div>
+                                <label for="institutionName">Institution Name</label>
+                                <input type="text" name="insti_name" class="form-control" id="insti_name"
+                                        formControlName="insti_name" name="insti_name"><br>
+                                <div *ngIf="f.insti_name?.touched && f.insti_name?.invalid" class="alert alert-danger">
+                                        <div *ngIf="f.insti_name.errors?.required">Institution Name is
+                                                required.
+                                        </div>
+                                        <div *ngIf="f.insti_name.errors?.minlength">Institution Name
+                                                should have
+                                                minimum 3
+                                                character.
+                                        </div>
+                                </div>
+                        </div>
+                        <h2>Job</h2>
+                        <label for="desig">Designation</label>
+                        <input type="text" name="desig" class="form-control" id="desig" formControlName="desig"
+                                name="desig"><br>
+                        <div *ngIf="f.desig?.touched && f.desig?.invalid" class="alert alert-danger">
+                                <div *ngIf="f.desig.errors?.required">Designation is required.
+                                </div>
+                                <div *ngIf="f.desig.errors?.minlength">Designation should have minimum 3
+                                        character.</div>
+
+                        </div>
+
+
+                        <label>Organisation Name:</label>
+                        <input type="text" name="org_name" class="form-control" id="org_name" formControlName="org_name"
+                                name="org_name"><br>
+                        <div *ngIf="f.org_name?.touched && f.org_name?.invalid" class="alert alert-danger">
+                                <div *ngIf="f.org_name.errors?.required">Organisation Name is required.
+                                </div>
+                                <div *ngIf="f.org_name.errors?.minlength">Organisation Name should have
+                                        minimum
+                                        3
+                                        character.</div>
+
+                        </div>
 
                 </div>
+                <div> <button class="btn btn-primary" type="submit">Submit</button>&nbsp;&nbsp;
+                        <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">List of Doctor
+                                in an
+                                Organisation</button>
+                </div>
 
+        </form>
+        <div *ngIf="isHide">
+                <table>
+                        <caption>Doctor List</caption>
+                        <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Gender</th>
+                                <th>Type</th>
+                                <th>Mobile Number</th>
+                                <th>Mail Id</th>
+                        </tr>
+                        <tr *ngFor="let obj of doctordetails">
+                                <td>{{obj.first_name}}</td>
+                                <td>{{obj.last_name}}</td>
+                                <td>{{obj.gender}}</td>
+                                <td>{{obj.type}}</td>
+                                <td>{{obj.mobileNo}}</td>
+                                <td>{{obj.emailId}}</td>
+                        </tr>
+                </table>
+                <button class="btn btn-primary" type="checkbox" (click)="toggleShow()" id="redirecting">To Join
+                        in Our
+                        Organisation</button>
 
         </div>
+
+
 </div>

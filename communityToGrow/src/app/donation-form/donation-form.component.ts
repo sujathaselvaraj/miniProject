@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, AbstractControl, FormBuilder } from '@angular/forms';
 import { DaoserviceService } from '../daoservice.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
 

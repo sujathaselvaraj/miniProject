@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.get('/getdata/:id',(req,res)=>{
       console.log("aadhar",req.params.id);
 
-      var object = {
+      const object = {
         selector:{
           "aadhar":req.params.id,
         }
@@ -29,7 +29,7 @@ app.get('/getdata/:id',(req,res)=>{
     })
 app.post('/postdata',function (req,res) {
 
-  var objectnew= {
+  const objectnew= {
     fullName:req.body.fullname,
     aadhar:req.body.aadhar,
     emailId:req.body.email,

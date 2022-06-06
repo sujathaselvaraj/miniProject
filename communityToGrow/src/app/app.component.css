@@ -17,9 +17,6 @@
 .heading {
     height: 9vh;
     width: auto;
-}
-
-.heading {
     background-color: rgb(22, 158, 221);
     background-image: linear-gradient(rgb(18, 162, 230), rgb(44, 82, 250));
 }

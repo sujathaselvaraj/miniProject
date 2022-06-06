@@ -39,7 +39,7 @@
 }
 
 .missionImg {
-    margin-left: 100px;
+    margin-left: 130px;
     margin-top: 10vh;
 }
 
@@ -116,9 +116,6 @@ span:hover {
     margin-left: -30px;
 }
 
-.missionImg {
-    margin-left: 130px;
-}
 
 .registerForm {
     height: 100vh;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router'
 
 
@@ -8,11 +8,4 @@ import { Router } from '@angular/router'
   templateUrl: './success.component.html',
   styleUrls: ['./success.component.css']
 })
-export class SuccessComponent implements OnInit {
-
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class SuccessComponent { }

@@ -1,9 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { NodeapiService } from '../nodeapi.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -20,7 +19,7 @@ export class LoginComponent implements OnInit {
   };
 
   loginform: FormGroup;
-  constructor(private fb: FormBuilder, private api: NodeapiService, private toastr: ToastrService, private router: Router, public activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private api: NodeapiService, private toastr: ToastrService, private router: Router) {
 
     this.loginform = this.fb.group({
       aadhar: [this.loginrecord.aadhar],
