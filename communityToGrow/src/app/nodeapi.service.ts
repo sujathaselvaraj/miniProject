@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -23,7 +23,7 @@ export class NodeapiService {
       'Authorization': this.basicAuth
     })
   };
-  postDetails(doc: object, db: String): Observable<{}> {
+  postDetails(doc: object, db: string): Observable<{}> {
     const url = this.endpt + db;
     return this.http.post(url, doc, this.httpOptions)
   }
@@ -31,20 +31,6 @@ export class NodeapiService {
     console.log("Node Working🤩", FormData);
     return this.http.post<any>('http://localhost:8000/postdata/', FormData)
   }
-  login(_datas: any) {
-    const url = this.endpt + 'project_db/_find';
-    let loginData = {
-      selector: {
-        username: this.username,
-        password: this.password,
-      }
-    },
-      fields: ["username", "password"]
-    return this.http.post(url, loginData)
-  }
-
-
-
 
   test_get(id: any) {
     return this.http.get<any>('http://localhost:8000/getdata/' + id)

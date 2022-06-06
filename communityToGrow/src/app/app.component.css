@@ -3,7 +3,7 @@
 }
 
 .initial {
-    background-image: url('../images/css-background-animation.gif');
+    background-image: url('../images/softblue.jpg');
 }
 
 .starting_form {
@@ -11,7 +11,7 @@
 }
 
 .routing {
-    margin-top: 20vh;
+    margin-top: 30vh;
 }
 
 .heading {
@@ -69,14 +69,14 @@ a {
 }
 
 .footer_address {
-    color: blue;
-    color: darkred;
+    color: rgb(0, 25, 139);
     display: flex;
     flex-direction: column;
     font-size: 17px;
     font-style: italic;
     line-height: 22px;
     margin-left: 150px;
+    padding-top: 10vh;
 }
 
 .footer_row1,
@@ -85,6 +85,11 @@ a {
     flex-direction: row;
     justify-content: space-evenly;
     width: 1100px;
+}
+
+.footer {
+    background-image: url('../images/backgruound.jpg');
+    margin-top: -7vh;
 }
 
 .apbranch {

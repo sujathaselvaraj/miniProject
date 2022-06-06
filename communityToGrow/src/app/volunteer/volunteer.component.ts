@@ -12,7 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 export class VolunteerComponent implements OnInit {
   locationList: any = [''];
 
-
+  isShown: boolean = true;
+  isHide: boolean = false;
   userData: any;
   userId: any;
   id: any;
@@ -28,7 +29,6 @@ export class VolunteerComponent implements OnInit {
     type: '',
     Login: '',
     location: '',
-    job: '',
     volunteerList: ''
   }
   constructor(private fb: FormBuilder, private toastr: ToastrService, public angulardbsvc: DaoserviceService, private http: HttpClient) {
@@ -47,10 +47,12 @@ export class VolunteerComponent implements OnInit {
       mobileNo: [this.volunteerdetails.emailId],
       location: [this.locationList._id],
       type: [this.volunteerdetails.type],
-      job: [this.volunteerdetails.job],
       Login: [this.userId]
     })
-    this.initialfetch()
+    this.initialfetch();
+    if (this.isHide == false) {
+      this.volunteer()
+    }
 
   }
   initialfetch() {
@@ -62,6 +64,12 @@ export class VolunteerComponent implements OnInit {
       this.locationList = res.docs
       console.log("Location Details", this.locationList)
     })
+  }
+  toggleShow() {
+
+    this.isShown = !this.isShown;
+    this.isHide = !this.isHide;
+
   }
 
   // radio button value assigning
@@ -104,7 +112,6 @@ export class VolunteerComponent implements OnInit {
       ],
       type: ['Volunteer'],
 
-      job: ['', [Validators.required, Validators.minLength(2)]],
       Login: [this.userId]
 
     });

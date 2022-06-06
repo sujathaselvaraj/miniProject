@@ -1,6 +1,6 @@
 <div class="main">
     <div class="volunteerContainer">
-        <form [formGroup]="volunteerform" (ngSubmit)="submit()">
+        <form [formGroup]="volunteerform" (ngSubmit)="submit()" *ngIf="isShown">
             <h2>Volunteer Detail
             </h2>
             <div>
@@ -87,31 +87,34 @@
 
             </div>
             <div> <button class="btn btn-primary" type="submit">Submit</button>&nbsp;&nbsp;
-                <button class="btn btn-primary" type="button" (click)="volunteer()">Volunteer List in Our
+                <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">Volunteer List in Our
                     Organisation</button>
             </div><br>
 
         </form>
-        <table>
-            <caption>Volunteer List in Our Organisation</caption>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Gender</th>
-                <th>Type</th>
-                <th>Mobile Number</th>
-                <th>Mail Id</th>
-            </tr>
-            <tr *ngFor="let one of volunteerRecord">
-                <td>{{one.first_name}}</td>
-                <td>{{one.last_name}}</td>
-                <td>{{one.gender}}</td>
-                <td>{{one.type}}</td>
-                <td>{{one.mobileNo}}</td>
-                <td>{{one.emailId}}</td>
-            </tr>
-        </table>
+        <div *ngIf="isHide">
 
-
+            <table>
+                <caption>Volunteer List in Our Organisation</caption>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Type</th>
+                    <th>Mobile Number</th>
+                    <th>Mail Id</th>
+                </tr>
+                <tr *ngFor="let one of volunteerRecord">
+                    <td>{{one.first_name}}</td>
+                    <td>{{one.last_name}}</td>
+                    <td>{{one.gender}}</td>
+                    <td>{{one.type}}</td>
+                    <td>{{one.mobileNo}}</td>
+                    <td>{{one.emailId}}</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary" type="checkbox" (click)="toggleShow()" id="redirecting">To Join in Our
+                Organisation</button>
+        </div>
     </div>
 </div>

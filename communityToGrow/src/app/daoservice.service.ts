@@ -24,10 +24,7 @@ export class DaoserviceService {
   };
 
   constructor(private http: HttpClient) {
-    this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
-    this.userId = this.userData;
-    this.id = this.userId._id;
-    console.log("working")
+
   }
   // function to post the data in couchdb
 
@@ -70,7 +67,7 @@ export class DaoserviceService {
     return this.http.get(geturl, this.httpOptions);
   }
   view() {
-    console.log(this.id, "parentid")
+
     const geturl = `${this.endpt}project_db/_design/project_view/_view/doctor-view?include_docs=true&keys=["Doctor560144b284334dea51da07c80bb4669c"]`;
     return this.http.get(geturl, this.httpOptions);
 

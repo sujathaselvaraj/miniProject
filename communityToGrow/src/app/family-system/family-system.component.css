@@ -9,10 +9,10 @@
     border-radius: 12px;
     border: 3px solid blueviolet;
     font-size: 19px;
-    height: 460vh;
+    height: 510vh;
     line-height: 40px;
     margin-left: 200px;
-    margin-top: 200px;
+    margin-top: 120px;
     padding: 50px;
     width: 1000px;
 }
@@ -51,6 +51,10 @@
     width: 50%;
 }
 
+.links {
+    margin-top: 20vh;
+}
+
 .successStoryImage,
 .missionImages {
     width: 50%;
@@ -82,8 +86,6 @@ h1 {
 .mak_details {
     margin-top: 15vh;
     padding: 40px;
-
-    /*  */
 }
 
 .helpingImg:hover {
@@ -123,12 +125,12 @@ span:hover {
 }
 
 .registerForm,
-.form {
+.links {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-left: -35px;
-    margin-top: 3vh;
+    /* margin-top: 3vh; */
     width: 1000px;
 }
 

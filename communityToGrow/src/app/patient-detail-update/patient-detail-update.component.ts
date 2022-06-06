@@ -11,13 +11,12 @@ import * as lodash from 'lodash'
 })
 export class PatientDetailUpdateComponent implements OnInit {
   volunteerList: any = [''];
-  // volunteerRecord: any = {
-  //   volunteer: ''
-  // }
+
   locationList: any = [''];
   volunteerName: any = [''];
   bloodGroup: any = ['A+ve', 'A1+ve', 'A1B+ve', 'B+ve', 'O+ve', 'AB+ve', 'A-ve', 'A1-ve', 'A1B-ve', 'B-ve', 'O-ve', 'AB-ve']
-
+  isShown: boolean = true;
+  isHide: boolean = false;
   patientForm: FormGroup;
   patientRecord: any = [];
   details: any = {
@@ -63,8 +62,6 @@ export class PatientDetailUpdateComponent implements OnInit {
       email: [this.details.email],
       disorder: [this.details.disorder],
       listofvolunteer: [this.volunteerList._id],
-
-      // helper_name: [this.details.helper_name],
       type: [this.details.disorder],
       Login: [this.id],
       volunteerName: [this.volunteerList.first_name]
@@ -73,6 +70,15 @@ export class PatientDetailUpdateComponent implements OnInit {
     })
     this.locationfetch();
     this.volunteerfetch();
+    if (this.isHide == false) {
+      this.patient();
+    }
+  }
+  toggleShow() {
+
+    this.isShown = !this.isShown;
+    this.isHide = !this.isHide;
+
   }
   locationfetch() {
     const queryParams = {
@@ -103,19 +109,18 @@ export class PatientDetailUpdateComponent implements OnInit {
   ngOnInit(): void {
 
     this.patientForm = this.fb.group({
-      f_name: ['', [Validators.required,
-      Validators.minLength(3)]],
-      l_name: ['', [Validators.required]],
+      f_name: ['', [Validators.required, Validators.minLength(3)]],
+      l_name: ['', [Validators.required, Validators.minLength(3)]],
       dob: ['', [Validators.required]],
       age: ['', [Validators.required]],
       location: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       bloodgroup: ['', [Validators.required]],
-      aadhar: ['', [Validators.required]],
-      phone_number: ['', [Validators.required]],
+      aadhar: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
+      phone_number: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
       email: ['', [Validators.required]],
-      disorder: ['', [Validators.required]],
-      listofvolunteer: [''],
+      disorder: ['', [Validators.required, Validators.minLength(3)]],
+      listofvolunteer: ['', [Validators.required]],
       type: ['Patient'],
       Login: this.id
 
@@ -123,7 +128,7 @@ export class PatientDetailUpdateComponent implements OnInit {
   }
 
   get f(): { [key: string]: AbstractControl } {
-    return this.details.controls;
+    return this.patientForm.controls;
   }
   // function call to post data in couch db
   submit() {

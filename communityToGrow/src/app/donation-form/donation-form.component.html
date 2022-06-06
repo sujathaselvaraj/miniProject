@@ -7,14 +7,17 @@
         <input type="radio" name="fund" value="50" id="50" formControlName="fund" (change)="changeFund()"> $50<br>
         <input type="radio" name="fund" value="25" id="25" formControlName="fund" (change)="changeFund()"> $25<br>
         <input type="radio" name="fund" value="other" formControlName="fund" (change)="otherFund()"> Other
-    </div>
-    <div><input type="text" name="fundOther" formControlName="fundOther"><br></div>
+    </div><br>
+
+    <div><input type="text" name="fundOther" formControlName="fundOther"></div><br>
     <div><label for="typeOfDonation">Type of Donation</label><br>
         <input type="radio" name="donationType" value="One Time Donation" id="one" formControlName="donationType"
             (change)="changeDonationType()"> One Time Donation<br>
         <input type="radio" name="donationType" value="Recuring Donation" id="more" formControlName="donationType"
-            (change)="changeDonationType()"> Recuring Donation<br>
-    </div>
+            (change)="changeDonationType()"> Recuring Donation
+    </div><br>
+
+
     <div><label for="frequency">Frequency</label><br>
         <input type="radio" value="weekly" name="frequency" id="weekly" formControlName="frequency"
             (change)="changeFrequency()">
@@ -23,113 +26,89 @@
             (change)="changeFrequency()">Monthly<br>
         <input type="radio" value="yearly" name="frequency" id="yearly" formControlName="frequency"
             (change)="changeFrequency()">
-        Yearly<br>
+        Yearly
 
-    </div>
+    </div><br>
 
-    <div class="form-group">
-        <label for="instruction">Special Instructions</label>
-        <textarea formControlName="instructions" name="instructions" id="instructions" cols="5" rows="3" type="text"
-            class="form-control">
-            </textarea>
-        <div *ngIf="f.instructions?.touched && f.instructions?.invalid" class="alert alert-danger">
-            <div *ngIf="f.instructions.errors?.minlength">Instructions should be contain minimum 20 character.</div>
-            <div *ngIf="f.instructions.errors?.required">Instructions is required.</div>
-        </div>
-    </div>
-    <div><input type="checkbox" (click)="display()">I would like to dedicate this donation<br></div>
 
-    <div class="dedicateDonation">
-        <div><label for="typeOfTribute">Type Of Tribute</label>
-            <input type="radio" value="In Memory Of" name="typeOfTribute" id="typeOfTribute"
-                formControlName="typeOfTribute" (change)="typeofTribute()">
-            In Memory Of<br>
-            <input type="radio" value="In Honour Of" name="typeOfTribute" id="typeOfTribute"
-                formControlName="typeOfTribute" (change)="typeofTribute()">In Honour Of<br>
-        </div>
-        <div><label for="tributeName">Tribute Name</label>
-            <input type="text" class="form-control" id="tribute" formControlName="tribute" name="tribute"><br>
-        </div>
+    <div><label for="typeOfTribute">Type Of Tribute</label><br>
+        <input type="radio" value="In Memory Of" name="typeOfTribute" id="typeOfTribute" formControlName="typeOfTribute"
+            (change)="typeofTribute()">
+        In Memory Of<br>
+        <input type="radio" value="In Honour Of" name="typeOfTribute" id="typeOfTribute" formControlName="typeOfTribute"
+            (change)="typeofTribute()">In Honour Of
+    </div><br>
+
+
+
+    <div><label for="tributeName">Tribute Name</label>
+        <input type="text" class="form-control" id="tribute" formControlName="tribute" name="tribute"><br>
         <div *ngIf="f.tribute?.touched && f.tribute?.invalid" class="alert alert-danger">
             <div *ngIf="f.tribute.errors?.required">Tribute Name is required.</div>
             <div *ngIf="f.tribute.errors?.minlength">Tribute Name should be 3 character.</div>
         </div>
-        <div><label for="notification">
-            </label>
-            <div class="form-group">
-                <label for="fname">First Name</label>
-                <input type="text" class="form-control" id="fname" formControlName="fname" name="fname"><br>
-            </div>
-            <div *ngIf="f.fname?.touched && f.fname?.invalid" class="alert alert-danger">
-                <div *ngIf="f.fname.errors?.required">First Name is required.</div>
-                <div *ngIf="f.fname.errors?.minlength">First Name should be 3 character.</div>
-            </div>
-            <div class="form-group">
-                <label for="lname">Last Name</label>
-                <input type="text" class="form-control" id="lname" formControlName="lname" name="lname"><br>
-            </div>
-            <div *ngIf="f.lname?.touched && f.lname?.invalid" class="alert alert-danger">
-                <div *ngIf="f.lname.errors?.required">Last Name is required.</div>
-                <div *ngIf="f.lname.errors?.minlength">Last Name should be 3 character.</div>
-            </div>
-            <div><label for="gender">Gender</label><br>
-                <input type="radio" name="gender" value="male" id="male" formControlName="gender"
-                    (change)="genderSelection()"> Male<br>
-                <input type="radio" name="gender" value="female" id="female" formControlName="gender"
-                    (change)="genderSelection()"> Female<br>
-            </div>
+    </div>
+
+    <div><label for="fname">First Name</label>
+        <input type="text" class="form-control" id="fname" formControlName="fname" name="fname"><br>
+
+        <div *ngIf="f.fname?.touched && f.fname?.invalid" class="alert alert-danger">
+            <div *ngIf="f.fname.errors?.required">First Name is required.</div>
+            <div *ngIf="f.fname.errors?.minlength">First Name should be 3 character.</div>
         </div>
-        <div class="paymentdetails">Payment Details</div>
-        <div class="form-group">
-            <label for="cardholdername">Card Holder Name</label>
-            <input type="text" class="form-control" id="cardholdername" formControlName="cardholdername"
-                name="cardholdername"><br>
+    </div>
+
+    <div><label for="lname">Last Name</label>
+        <input type="text" class="form-control" id="lname" formControlName="lname" name="lname"><br>
+        <div *ngIf="f.lname?.touched && f.lname?.invalid" class="alert alert-danger">
+            <div *ngIf="f.lname.errors?.required">Last Name is required.</div>
+            <div *ngIf="f.lname.errors?.minlength">Last Name should be 3 character.</div>
         </div>
+    </div>
+    <div><label for="gender">Gender</label><br>
+        <input type="radio" name="gender" value="male" id="male" formControlName="gender" (change)="genderSelection()">
+        Male<br>
+        <input type="radio" name="gender" value="female" id="female" formControlName="gender"
+            (change)="genderSelection()"> Female<br>
+    </div>
+
+
+    <div class="paymentdetails">
+        <h2>Payment Details</h2>
+        <label for="cardholdername">Card Holder Name</label>
+        <input type="text" class="form-control" id="cardholdername" formControlName="cardholdername"
+            name="cardholdername"><br>
         <div *ngIf="f.cardholdername?.touched && f.cardholdername?.invalid" class="alert alert-danger">
             <div *ngIf="f.cardholdername.errors?.required">Credit Card Name is required.</div>
-            <div *ngIf="f.cardholdername.errors?.minlength">Credit Card Name should be 3 character.</div>
+            <div *ngIf="f.cardholdername.errors?.minlength">Credit Card Name should be 3 character.
+            </div>
         </div>
-        <div id="cardImage"><img src="../../images/cards_v_mc_dscvr.jpg" alt="Card Images" id="cardimg"></div>
-        <div class="form-group">
-            <label for="cardNumber">Card Number</label>
-            <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber" name="cardNumber"><br>
-        </div>
+    </div>
+    <div id="cardImage"><img src="../../images/cards_v_mc_dscvr.jpg" alt="Card Images" id="cardimg">
+    </div>
+    <div>
+        <label for="cardNumber">Card Number</label>
+        <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber" name="cardNumber"><br>
         <div *ngIf="f.cardNumber?.touched && f.cardNumber?.invalid" class="alert alert-danger">
             <div *ngIf="f.cardNumber.errors?.required">Credit Card Number is required.</div>
             <div *ngIf="f.cardNumber.errors?.minlength">Credit Card Number should be 12 character.</div>
         </div>
-        <div class="form-group">
-            <label for="accountNumber">Account Number</label>
-            <input type="text" class="form-control" id="accountNumber" formControlName="accountNumber"
-                name="accountNumber"><br>
-        </div>
+    </div>
+    <div>
+        <label for="accountNumber">Account Number</label>
+        <input type="text" class="form-control" id="accountNumber" formControlName="accountNumber"
+            name="accountNumber"><br>
         <div *ngIf="f.accountNumber?.touched && f.accountNumber?.invalid" class="alert alert-danger">
             <div *ngIf="f.accountNumber.errors?.required">Account Number is required.</div>
             <div *ngIf="f.accountNumber.errors?.minlength">Account Number should be 12 character.</div>
         </div>
-        <div class="form-group">
-            <label for="expirationDate">Expiration Date</label>
-            <input type="month" class="form-control" id="expirationDate" formControlName="expirationDate"
-                name="expirationDate"><br>
-        </div>
-        <div>
-            <h2>Help Us Cover Costs</h2>
-            <div><label for="coverCosts"><strong>Simply leave "Yes!" checked below to ensure that 100% of your intended
-                        donation
-                        is available for our mission.</strong></label><br>
-                <input type="radio" name="confirmation" value="Yes" id="yes" formControlName="confirmation"
-                    (change)="confirmation()">Yes! I want $100.00 to go to Community Systems,Inc and I
-                will
-                donate $103.00<br>
-                <input type="radio" name="confirmation" value="No" id="no" formControlName="confirmation"
-                    (change)="confirmation()"> No.I will donate $100.00 and Community Systems,Inc will
-                cover
-                the processing costs.<br>
-            </div>
-        </div>
+    </div>
+    <div>
+        <label for="expirationDate">Expiration Date</label>
+        <input type="month" class="form-control" id="expirationDate" formControlName="expirationDate"
+            name="expirationDate"><br>
         <button class="btn btn-primary" type="submit">Submit</button>
         <br>
-
     </div>
 
 </form>

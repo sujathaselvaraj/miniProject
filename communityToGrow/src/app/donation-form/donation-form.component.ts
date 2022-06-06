@@ -27,7 +27,8 @@ export class DonationFormComponent implements OnInit {
       cardNumber: '',
       accountNumber: '',
       expirationDate: ''
-    }
+    },
+    type: ''
   };
 
   constructor(private fb: FormBuilder, private toastr: ToastrService, public angulardbsvc: DaoserviceService, private http: HttpClient) {
@@ -44,7 +45,8 @@ export class DonationFormComponent implements OnInit {
       cardholdername: [this.donationDetail.paymentRecord.cardholdername],
       cardNumber: [this.donationDetail.paymentRecord.cardNumber],
       accountNumber: [this.donationDetail.paymentRecord.accountNumber],
-      expirationDate: [this.donationDetail.paymentRecord.expirationDate]
+      expirationDate: [this.donationDetail.paymentRecord.expirationDate],
+      type: []
     });
   }
 
@@ -80,16 +82,16 @@ export class DonationFormComponent implements OnInit {
       fund: [''],
       fundOther: [''],
       frequency: [''],
-      instructions: ['', [Validators.required, Validators.minLength(3)]],
       typeOfTribute: [''],
-      tribute: [''],
+      tribute: ['', [Validators.required, Validators.minLength(3)]],
       fname: ['', [Validators.required, Validators.minLength(3)]],
       lname: ['', [Validators.required, Validators.minLength(3)]],
       gender: [''],
       cardholdername: ['', [Validators.required, Validators.minLength(3)]],
       cardNumber: ['', [Validators.required, Validators.minLength(16)]],
       accountNumber: ['', [Validators.required, Validators.minLength(12)]],
-      expirationDate: ['']
+      expirationDate: [''],
+      type: ['Donation']
     })
   }
 
@@ -98,13 +100,19 @@ export class DonationFormComponent implements OnInit {
     return this.donationform.controls;
   }
   submit() {
-    console.log(this.donationform.value)
-    this.angulardbsvc.postDetails(this.donationform.value).subscribe((data) => {
-      console.log(data)
-      console.log("Success");
-      this.donationform.reset();
-      this.toastr.success("Form Submitted Successfully");
+    try {
+      console.log(this.donationform.value)
+      this.angulardbsvc.postDetails(this.donationform.value).subscribe((data) => {
+        console.log(data)
+        console.log("Success");
+        this.donationform.reset();
+        this.toastr.success("Form Submitted Successfully");
 
-    });
+      });
+    }
+    catch (err: any) {
+      this.toastr.error("Form Failed to submit", err.name)
+    }
   }
+
 }

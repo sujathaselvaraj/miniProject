@@ -1,17 +1,30 @@
 <div class="patientForm">
-    <form [formGroup]="patientForm" (ngSubmit)="submit()">
+    <form [formGroup]="patientForm" (ngSubmit)="submit()" *ngIf="isShown">
         <h2><br />Patients Details Form</h2>
 
         <div>
             <label>First Name</label>
             <input type="text" name="f_name" class="form-control" id="f_name" formControlName="f_name">
+            <div *ngIf="f.f_name?.touched && f.f_name?.invalid" class="alert alert-danger">
+                <div *ngIf="f.f_name.errors?.required">First Name is required.</div>
+                <div *ngIf="f.f_name.errors?.minlength">First Name should be 3 character.
+                </div>
+            </div>
         </div>
         <label>Last Name:</label><br>
         <input type="text" name="l_name" class="form-control" id="l_name" formControlName="l_name" name="l_name">
+        <div *ngIf="f.l_name?.touched && f.l_name?.invalid" class="alert alert-danger">
+            <div *ngIf="f.l_name.errors?.required">Last Name is required.</div>
+            <div *ngIf="f.l_name.errors?.minlength">Last Name should be 3 character.
+            </div>
+        </div>
         <h3><br />Patients Info</h3>
         <p>
             <label>Date of birth:
-                <input type="date" name="dob" class="form-control" id="dob" formControlName="dob" name="dob">
+                <input type="date" name="gender" class="form-control" id="dob" formControlName="dob" name="dob">
+                <div *ngIf="f.dob?.touched && f.dob?.invalid" class="alert alert-danger">
+                    <div *ngIf="f.dob.errors?.required">Date Of Birth is required.</div>
+                </div>
             </label>
         </p>
         <div>
@@ -21,13 +34,19 @@
             <p><input type="radio" name="gender" formControlName="gender" (change)="changeGender()"
                     value="female">Female
             </p>
+            <div *ngIf="f.gender?.touched && f.gender?.invalid" class="alert alert-danger">
+                <div *ngIf="f.gender.errors?.required">Gender is required.</div>
+            </div>
         </div>
 
-        <p>
-            <label>Age:
-                <input type="tel" name="age" class="form-control" id="age" formControlName="age" name="age">
-            </label>
-        </p>
+        <div>
+            <label>Age:</label>
+            <input type="tel" name="age" class="form-control" id="age" formControlName="age" name="age">
+        </div>
+        <div *ngIf="f.age?.touched && f.age?.invalid" class="alert alert-danger">
+            <div *ngIf="f.age.errors?.required">Age is required.</div>
+        </div>
+
         <div>
             <label for="location">location:</label>
             <select formControlName="location" class="form-control">
@@ -35,6 +54,9 @@
                 <option>Choose location</option>
                 <option *ngFor="let web of locationList" value={{web._id}}>{{web.location}}</option>
             </select>
+            <div *ngIf="f.location?.touched && f.location?.invalid" class="alert alert-danger">
+                <div *ngIf="f.location.errors?.required">Location is required.</div>
+            </div>
         </div>
         <div>
             <label for="bloodgroup">Blood Group:</label>
@@ -44,10 +66,20 @@
                 <option *ngFor="let group of bloodGroup">{{group}}</option>
 
             </select>
+            <div *ngIf="f.bloodgroup?.touched && f.bloodgroup?.invalid" class="alert alert-danger">
+                <div *ngIf="f.bloodgroup.errors?.required">Bloodgroup is required.</div>
+            </div>
         </div>
         <div class="form-group">
             <label>Aadhar</label>
             <input id="aadhar" type="text" formControlName="aadhar" class="form-control" name="aadhar">
+        </div>
+        <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
+            <div *ngIf="f.aadhar.errors?.required">Adhar is required.</div>
+            <div *ngIf="f.aadhar.errors?.minlength">Aadhar should have minimum 12 digits
+            </div>
+            <div *ngIf="f.aadhar.errors?.maxlength">Aadhar should have maximum 12 digits
+            </div>
         </div><br>
 
         <p>
@@ -55,18 +87,36 @@
             <input type="tel" name="phone_number" class="form-control" id="phone_number" formControlName="phone_number">
 
         </p>
+        <div *ngIf="f.phone_number?.touched && f.phone_number?.invalid" class="alert alert-danger">
+            <div *ngIf="f.phone_number.errors?.required">Phone Number is required.</div>
+            <div *ngIf="f.phone_number.errors?.minlength">Phone Number should have minimum 12 digits
+            </div>
+            <div *ngIf="f.phone_number.errors?.maxlength">Phone Number should have maximum 12 digits
+            </div>
+        </div>
 
         <p>
             <label>Email:
             </label>
             <input type="email" class="form-control" id="email" formControlName="email" name="email">
         </p>
+        <div *ngIf="f.email?.touched && f.email?.invalid" class="alert alert-danger">
+            <div *ngIf="f.email.errors?.required">Email is required.</div>
+            <div *ngIf="f.email.errors?.valid">Enter a valid mail id
+            </div>
+        </div>
+
         <div>
             <label for="disability">
                 Disorder:
             </label>
 
             <input type="text" class="form-control" id="disorder" formControlName="disorder" name="disorder">
+        </div>
+        <div *ngIf="f.disorder?.touched && f.disorder?.invalid" class="alert alert-danger">
+            <div *ngIf="f.disorder.errors?.required">Disorder is required.</div>
+            <div *ngIf="f.disorder.errors?.minlength">Disorder has minimum 3 character
+            </div>
         </div><br>
         <div>
 
@@ -76,36 +126,47 @@
             <option disabled>Select volunteer</option>
             <option>Choose volunteer</option>
             <option *ngFor="let web of volunteerList" value="{{web['_id']}}">{{web.first_name}}</option>
-        </select><br>
+        </select>
+        <div *ngIf="f.listofvolunteer?.touched && f.listofvolunteer?.invalid" class="alert alert-danger">
+            <div *ngIf="f.listofvolunteer.errors?.required">List of volunteer is required.</div>
+            <div *ngIf="f.listofvolunteer.errors?.minlength">List of volunteer has minimum 3 character
+            </div>
+        </div><br>
 
 
         <div>
             <button class="btn btn-primary" type="submit">Submit</button>&nbsp;&nbsp;
-            <button class="btn btn-primary" type="button" (click)="patient()">Patient List in Our Organisation</button>
+            <button class="btn btn-primary" type="checkbox" (click)="toggleShow()">Patient List in Our
+                Organisation</button>
         </div>
 
     </form>
-    <table>
-        <caption>Patient List in Organisation</caption>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
-            <th>Type</th>
-            <th>Mobile Number</th>
-            <th>Mail Id</th>
-            <th>Disorder</th>
-            <th>Volunteer List</th>
-        </tr>
-        <tr *ngFor="let patient of patientRecord">
-            <td>{{patient.f_name}}</td>
-            <td>{{patient.l_name}}</td>
-            <td>{{patient.gender}}</td>
-            <td>{{patient.type}}</td>
-            <td>{{patient.phone_number}}</td>
-            <td>{{patient.email}}</td>
-            <td>{{patient.disorder}}</td>
-            <td>{{patient.Volunteer}}</td>
-        </tr>
-    </table>
+    <div *ngIf="isHide">
+        <table>
+            <caption>Patient List in Organisation</caption>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Type</th>
+                <th>Mobile Number</th>
+                <th>Mail Id</th>
+                <th>Disorder</th>
+                <th>Volunteer List</th>
+            </tr>
+            <tr *ngFor="let patient of patientRecord">
+                <td>{{patient.f_name}}</td>
+                <td>{{patient.l_name}}</td>
+                <td>{{patient.gender}}</td>
+                <td>{{patient.type}}</td>
+                <td>{{patient.phone_number}}</td>
+                <td>{{patient.email}}</td>
+                <td>{{patient.disorder}}</td>
+                <td>{{patient.Volunteer}}</td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" type="checkbox" (click)="toggleShow()" id="redirecting">To Join in Our
+            Organisation</button>
+
+    </div>
 </div>

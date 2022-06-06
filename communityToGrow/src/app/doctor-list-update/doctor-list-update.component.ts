@@ -14,7 +14,8 @@ export class DoctorListUpdateComponent implements OnInit {
   userData: any;
   userId: any;
   id: any;
-
+  isShown: boolean = true;
+  isHide: boolean = false;
 
 
   doctorform: FormGroup;
@@ -62,6 +63,9 @@ export class DoctorListUpdateComponent implements OnInit {
 
     })
     this.initialfetch();
+    if (this.isHide == false) {
+      this.doctor()
+    }
   }
   initialfetch() {
     const queryParams = {
@@ -72,6 +76,12 @@ export class DoctorListUpdateComponent implements OnInit {
       this.locationList = res.docs
       console.log("Location Details", this.locationList)
     })
+  }
+  toggleShow() {
+
+    this.isShown = !this.isShown;
+    this.isHide = !this.isHide;
+
   }
   // radio button value assigning
   genderSelection() {

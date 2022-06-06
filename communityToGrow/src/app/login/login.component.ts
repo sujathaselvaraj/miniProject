@@ -13,9 +13,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  previousDataObject: any;
-
-
   loginrecord: any = {
     aadhar: '',
     Password: '',
@@ -24,11 +21,7 @@ export class LoginComponent implements OnInit {
 
   loginform: FormGroup;
   constructor(private fb: FormBuilder, private api: NodeapiService, private toastr: ToastrService, private router: Router, public activatedRoute: ActivatedRoute) {
-    this.activatedRoute.queryParams.subscribe(res => {
-      console.log("User Data", res)
-      this.previousDataObject = res
 
-    })
     this.loginform = this.fb.group({
       aadhar: [this.loginrecord.aadhar],
       Password: [this.loginrecord.Password],
@@ -40,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.loginform = this.fb.group({
 
       aadhar: [''],
-      Password: ['', [Validators.minLength(8)]],
+      Password: ['',],
       type: ['Entry']
     });
   }
@@ -51,20 +44,19 @@ export class LoginComponent implements OnInit {
     return this.loginform.get('Password')!;
   }
   login(Formvalue: any) {
-    // console.log(Formvalue.aadhar);
     this.api.test_get(Formvalue.aadhar).subscribe((data) => {
       console.log("data returned from server", data);
-      const loginData = { response: JSON.stringify(data.docs[0]) }
-      // if (data.docs[0].aadhar != Formvalue.aadhar) {
-      //   this.toastr.error("Please Register")
-      // }
+      const loginData = { data: JSON.stringify(data.docs[0]) }
+      localStorage.setItem('usrData', JSON.stringify(data.docs[0]))
+
       if (data.docs.length <= 0) {
         this.toastr.error("Please Register");
+        this.router.navigate(['/signUp']);
+
       }
       if (data.docs[0].aadhar === Formvalue.aadhar) {
         if (data.docs[0].Password === Formvalue.Password) {
 
-          localStorage.setItem('usrData', JSON.stringify(data.docs[0]))
           this.router.navigate(['/who_we_are'], {
             queryParams: loginData
           });
@@ -80,13 +72,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/signUp']);
 
       }
-
-
-      // if (data.docs[0].aadhar !== Formvalue.aadhar) {
-      //   this.router.navigate(['/signUp']);
-
-      //   alert("Please Register");
-      // }
     })
 
   }

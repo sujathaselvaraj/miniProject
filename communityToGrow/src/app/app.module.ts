@@ -15,7 +15,6 @@ import { NodeapiService } from './nodeapi.service';
 import { SuccessComponent } from './success/success.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupformComponent } from './signupform/signupform.component';
-import { RouterModule, Routes } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { ContactComponent } from './contact/contact.component';
 import { BuildCommunityComponent } from './build-community/build-community.component';
@@ -26,22 +25,7 @@ import { HttpCallInterceptor } from './interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { VolunteerlistComponent } from './volunteerlist/volunteerlist.component';
-const routes: Routes = [
-  { path: 'oursuccess', component: SuccessComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'donate', component: DonationFormComponent },
-  { path: '', component: LoginComponent },
-  { path: 'who_we_are', component: FamilySystemComponent },
-  { path: 'signUp', component: SignupformComponent },
-  { path: 'buildcommunity', component: BuildCommunityComponent },
-  { path: 'stayConnected', component: StayConnectedComponent },
-  { path: 'patient', component: PatientDetailUpdateComponent },
-  { path: 'doctor', component: DoctorListUpdateComponent },
-  { path: 'volunteer', component: VolunteerComponent },
 
-
-
-]
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +52,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
