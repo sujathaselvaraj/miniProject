@@ -1,5 +1,5 @@
 <div class="doctorContainer">
-        <form [formGroup]="doctorform" (ngSubmit)="doctorDetailSubmission()" *ngIf="isShown">
+        <form [formGroup]="doctorform" *ngIf="isShown">
                 <h2>Doctor Detail
                 </h2>
                 <div>
@@ -146,7 +146,8 @@
                         </div>
 
                 </div>
-                <div> <button class="btn btn-primary" type="submit">Submit</button>&nbsp;&nbsp;
+                <div> <button class="btn btn-primary" type="button"
+                                (click)="doctorDetailSubmission()">Submit</button>&nbsp;&nbsp;
                         <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">List of Doctor
                                 in an
                                 Organisation</button>

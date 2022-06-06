@@ -22,7 +22,6 @@ export class PatientDetailUpdateComponent implements OnInit {
   details: any = {
     f_name: '',
     l_name: '',
-    dob: '',
     age: '',
     gender: '',
     bloodgroup: '',
@@ -52,7 +51,6 @@ export class PatientDetailUpdateComponent implements OnInit {
     this.patientForm = this.fb.group({
       f_name: [this.details.f_name],
       l_name: [this.details.l_name],
-      dob: [this.details.dob],
       age: [this.details.age],
       gender: [this.details.gender],
       location: [this.locationList._id],
@@ -111,7 +109,6 @@ export class PatientDetailUpdateComponent implements OnInit {
     this.patientForm = this.fb.group({
       f_name: ['', [Validators.required, Validators.minLength(3)]],
       l_name: ['', [Validators.required, Validators.minLength(3)]],
-      dob: ['', [Validators.required]],
       age: ['', [Validators.required]],
       location: ['', [Validators.required]],
       gender: ['', [Validators.required]],

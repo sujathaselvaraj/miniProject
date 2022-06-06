@@ -1,5 +1,5 @@
 <div class="patientForm">
-    <form [formGroup]="patientForm" (ngSubmit)="submit()" *ngIf="isShown">
+    <form [formGroup]="patientForm" *ngIf="isShown">
         <h2>Patients Details Form</h2>
 
         <div>
@@ -18,17 +18,8 @@
             <div *ngIf="f.l_name.errors?.minlength">Last Name should be 3 character.
             </div>
         </div>
-        <h3><br />Patients Info</h3>
-        <p>
-            <label>Date of birth:
-                <input type="date" name="gender" class="form-control" id="dob" formControlName="dob" name="dob">
-                <div *ngIf="f.dob?.touched && f.dob?.invalid" class="alert alert-danger">
-                    <div *ngIf="f.dob.errors?.required">Date Of Birth is required.</div>
-                </div>
-            </label>
-        </p>
         <div>
-            <h5>Gender:</h5>
+            <label>Gender:</label>
             <p><input type="radio" name="gender" formControlName="gender" (change)="changeGender()" value="male">Male
             </p>
             <p><input type="radio" name="gender" formControlName="gender" (change)="changeGender()"
@@ -135,7 +126,7 @@
 
 
         <div>
-            <button class="btn btn-primary" type="submit">Submit</button>&nbsp;&nbsp;
+            <button class="btn btn-primary" type="button" (click)="submit()">Submit</button>&nbsp;&nbsp;
             <button class="btn btn-primary" type="checkbox" (click)="toggleShow()">Patient List in Our
                 Organisation</button>
         </div>
