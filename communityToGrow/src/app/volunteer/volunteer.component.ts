@@ -102,7 +102,7 @@ export class VolunteerComponent implements OnInit {
           Validators.maxLength(12)
         ]
       ],
-      location: ['', [Validators.required]],
+      location: [''],
 
       emailId: ['', [Validators.required, Validators.email]],
       mobileNo: [

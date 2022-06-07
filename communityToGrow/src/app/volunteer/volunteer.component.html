@@ -60,9 +60,7 @@
                         <option>Choose location</option>
                         <option *ngFor="let web of locationList" value={{web._id}}>{{web.location}}</option>
                     </select><br>
-                    <div *ngIf="f.location?.touched && f.location?.invalid" class="alert alert-danger">
-                        <div *ngIf="f.location.errors?.required">Location is required.</div>
-                    </div>
+
                 </div>
 
                 <div class="form-group">

@@ -40,7 +40,7 @@ export class DaoserviceService {
     return this.http.get(geturl, this.httpOptions);
   }
   // function to get the data from couchDb which has type Volunteer
-  details(findType: any) {
+  alldata(findType: any) {
 
     const geturl = this.url + '/_find';
     let object = {

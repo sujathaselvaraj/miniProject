@@ -65,15 +65,16 @@ export class PatientDetailUpdateComponent implements OnInit {
     })
     this.locationfetch();
     this.volunteerfetch();
-    if (this.isHide == false) {
-      this.patient();
+    if (this.isHide) {
+      this.patientdetails();
     }
   }
   toggleShow() {
 
     this.isShown = !this.isShown;
     this.isHide = !this.isHide;
-
+    this.patientdetails()
+    console.log(this.patientForm)
   }
   locationfetch() {
     const queryParams = {
@@ -108,14 +109,14 @@ export class PatientDetailUpdateComponent implements OnInit {
       f_name: ['', [Validators.required, Validators.minLength(3)]],
       l_name: ['', [Validators.required, Validators.minLength(3)]],
       age: ['', [Validators.required]],
-      location: ['', [Validators.required]],
+      location: [''],
       gender: ['', [Validators.required]],
       bloodgroup: ['', [Validators.required]],
       aadhar: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
       phone_number: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
       email: ['', [Validators.required]],
       disorder: ['', [Validators.required, Validators.minLength(3)]],
-      listofvolunteer: ['', [Validators.required]],
+      listofvolunteer: [''],
       type: ['Patient'],
       Login: this.id
 
@@ -146,9 +147,9 @@ export class PatientDetailUpdateComponent implements OnInit {
     }
   }
   // function call to get data which has type Patient
-  patient() {
+  patientdetails() {
 
-    this.angulardbsvc.details("Patient").subscribe((datas: any) => {
+    this.angulardbsvc.alldata("Patient").subscribe((datas: any) => {
       console.log("Patient Details", datas)
       this.details = datas.docs;
       this.patientRecord = this.details;

@@ -39,6 +39,7 @@ export class DoctorListUpdateComponent implements OnInit {
     },
 
   }
+  doctorallRecord: any;
   constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, private http: HttpClient, private toastr: ToastrService) {
 
     // Getting parent Id from Local Storage
@@ -63,7 +64,7 @@ export class DoctorListUpdateComponent implements OnInit {
 
     })
     this.initialfetch();
-    if (this.isHide == false) {
+    if (this.isHide) {
       this.doctorview()
     }
   }
@@ -81,7 +82,7 @@ export class DoctorListUpdateComponent implements OnInit {
 
     this.isShown = !this.isShown;
     this.isHide = !this.isHide;
-
+    this.doctorview()
   }
   // radio button value assigning
   genderSelection() {
@@ -121,7 +122,7 @@ export class DoctorListUpdateComponent implements OnInit {
         ]
       ],
       type: ['Doctor'],
-      location: ['', [Validators.required]],
+      location: [''],
       qualification: ['', [Validators.required, Validators.minLength(2)]],
       insti_name: [
         '',
@@ -156,12 +157,18 @@ export class DoctorListUpdateComponent implements OnInit {
       });
 
   }
+  doctordata() {
+    this.angulardbsvc.alldata("Doctor").subscribe((datas: any) => {
+      this.doctorallRecord = datas.docs;
+      console.log("Patient Details", this.doctorallRecord)
+    });
+  }
 
   doctorview() {
     this.angulardbsvc.viewDocumentFetch('Doctor').subscribe((datas: any) => {
       this.doctorRecord = datas.rows;
       this.doctordetails = this.doctorRecord.map((el: any) => el.doc);
-
+      console.log(this.doctorRecord, "view");
     },
       err => {
         this.toastr.error("Form Failed to view", err);

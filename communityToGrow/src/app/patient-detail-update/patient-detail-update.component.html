@@ -1,5 +1,5 @@
 <div class="patientForm">
-    <form [formGroup]="patientForm" *ngIf="isShown">
+    <form [formGroup]="patientForm" [hidden]="!isShown">
         <h2>Patients Details Form</h2>
 
         <div>
@@ -45,9 +45,6 @@
                 <option>Choose location</option>
                 <option *ngFor="let web of locationList" value={{web._id}}>{{web.location}}</option>
             </select>
-            <div *ngIf="f.location?.touched && f.location?.invalid" class="alert alert-danger">
-                <div *ngIf="f.location.errors?.required">Location is required.</div>
-            </div>
         </div>
         <div>
             <label for="bloodgroup">Blood Group:</label>
@@ -118,11 +115,7 @@
             <option>Choose volunteer</option>
             <option *ngFor="let web of volunteerList" value="{{web['_id']}}">{{web.first_name}}</option>
         </select>
-        <div *ngIf="f.listofvolunteer?.touched && f.listofvolunteer?.invalid" class="alert alert-danger">
-            <div *ngIf="f.listofvolunteer.errors?.required">List of volunteer is required.</div>
-            <div *ngIf="f.listofvolunteer.errors?.minlength">List of volunteer has minimum 3 character
-            </div>
-        </div><br>
+        <br>
 
 
         <div>
@@ -132,7 +125,8 @@
         </div>
 
     </form>
-    <div *ngIf="isHide">
+
+    <div [hidden]="!isHide">
         <table>
             <caption>Patient List in Organisation</caption>
             <tr>

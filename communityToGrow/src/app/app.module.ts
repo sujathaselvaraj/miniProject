@@ -61,6 +61,6 @@ import { VolunteerlistComponent } from './volunteerlist/volunteerlist.component'
     useClass: HttpCallInterceptor,
     multi: true
   }],
-  bootstrap: [AppComponent, LoginComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
