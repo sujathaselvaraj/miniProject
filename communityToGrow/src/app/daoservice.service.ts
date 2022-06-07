@@ -25,6 +25,7 @@ export class DaoserviceService {
 
   constructor(private http: HttpClient) {
 
+
   }
   // function to post the data in couchdb
 
@@ -66,9 +67,23 @@ export class DaoserviceService {
     const geturl = `${this.endpt}project_db/_all_docs?include_docs=true&keys=["` + type.join('","') + `"]`
     return this.http.get(geturl, this.httpOptions);
   }
-  view() {
+  // viewDoctor() {
 
-    const geturl = `${this.endpt}project_db/_design/project_view/_view/doctor-view?include_docs=true&keys=["Doctor560144b284334dea51da07c80bb4669c"]`;
+  //   const geturl = `${this.endpt}project_db/_design/project_view/_view/doctor-view?include_docs=true&keys=["Doctor` + this.id + `"]`;
+  //   return this.http.get(geturl, this.httpOptions);
+
+  // }
+  // viewVolunteer() {
+  //   const geturl = `${this.endpt}project_db/_design/project_view/_view/doctor-view?include_docs=true&keys=["Volunteer` + this.id + `"]`;
+  //   return this.http.get(geturl, this.httpOptions);
+
+  // }
+  viewDocumentFetch(type: string) {
+    this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
+    this.userId = this.userData
+    this.id = this.userId._id;
+    console.log(this.id)
+    const geturl = `${this.endpt}project_db/_design/project_view/_view/doctor-view?include_docs=true&keys=["${type + this.id}"]`;
     return this.http.get(geturl, this.httpOptions);
 
   }

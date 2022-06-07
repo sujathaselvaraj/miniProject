@@ -64,7 +64,7 @@ export class DoctorListUpdateComponent implements OnInit {
     })
     this.initialfetch();
     if (this.isHide == false) {
-      this.doctor()
+      this.doctorview()
     }
   }
   initialfetch() {
@@ -142,33 +142,31 @@ export class DoctorListUpdateComponent implements OnInit {
   }
   //calling the function that in service  to post the data
   doctorDetailSubmission() {
-    try {
-      this.angulardbsvc.postDetails(this.doctorform.value).subscribe((data) => {
-        console.log(data)
-        console.log("Success");
-        this.doctorform.reset();
+    this.angulardbsvc.postDetails(this.doctorform.value).subscribe((data) => {
+      console.log(data)
+      console.log("Success");
+      this.doctorform.reset();
+    },
+      err => {
+        this.toastr.error("Form Failed to submit", err);
+      },
+      () => {
         this.toastr.success("Form Submitted Successfully");
 
       });
-    }
-    catch (err: any) {
-      this.toastr.error("Form Failed to submit", err.name);
 
-    }
   }
 
-  doctor() {
-    try {
-      this.angulardbsvc.view().subscribe((datas: any) => {
-        console.log("Doctor View", datas)
-        this.doctorRecord = datas.rows;
-        this.doctordetails = this.doctorRecord.map((el: any) => el.doc);
-      });
-    }
-    catch (err: any) {
-      this.toastr.error("Form Failed to submit", err.name);
+  doctorview() {
+    this.angulardbsvc.viewDocumentFetch('Doctor').subscribe((datas: any) => {
+      this.doctorRecord = datas.rows;
+      this.doctordetails = this.doctorRecord.map((el: any) => el.doc);
 
-    }
+    },
+      err => {
+        this.toastr.error("Form Failed to view", err);
+
+      });
   }
 }
 

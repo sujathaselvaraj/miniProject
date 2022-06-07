@@ -12,6 +12,7 @@ import { StayConnectedComponent } from './stay-connected/stay-connected.componen
 import { SuccessComponent } from './success/success.component';
 import { VolunteerComponent } from './volunteer/volunteer.component';
 
+
 const routes: Routes = [{ path: 'oursuccess', component: SuccessComponent },
 { path: 'contact', component: ContactComponent },
 { path: 'donate', component: DonationFormComponent },

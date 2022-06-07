@@ -100,19 +100,17 @@ export class DonationFormComponent implements OnInit {
     return this.donationform.controls;
   }
   submit() {
-    try {
-      console.log(this.donationform.value)
-      this.angulardbsvc.postDetails(this.donationform.value).subscribe((data) => {
-        console.log(data)
-        console.log("Success");
-        this.donationform.reset();
-        this.toastr.success("Form Submitted Successfully");
+    console.log(this.donationform.value)
+    this.angulardbsvc.postDetails(this.donationform.value).subscribe((data) => {
+      console.log(data)
+      console.log("Success");
+      this.donationform.reset();
+      this.toastr.success("Form Submitted Successfully");
+    },
+      err => {
+        this.toastr.error("Form Failed to submit", err)
 
       });
-    }
-    catch (err: any) {
-      this.toastr.error("Form Failed to submit", err.name)
-    }
   }
 
 }

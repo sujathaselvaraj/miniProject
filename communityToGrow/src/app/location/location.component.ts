@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { DaoserviceService } from '../daoservice.service';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
@@ -18,7 +20,7 @@ export class LocationComponent implements OnInit {
 
   }
 
-  constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public http: HttpClient) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService, public angulardbsvc: DaoserviceService, public http: HttpClient) {
     const queryParams = {
       "type": "Location"
     }
@@ -48,10 +50,12 @@ export class LocationComponent implements OnInit {
   submit() {
 
     console.log(this.locationForm.value);
-    this.angulardbsvc.postDetails(this.locationForm.value).subscribe((datas: any) => {
-      console.log(datas)
-      console.log("Success", datas);
+    this.angulardbsvc.postDetails(this.locationForm.value).subscribe((_datas: any) => {
+      this.toastr.success("Form Submitted Successfully");
+    },
+      err => {
+        this.toastr.error("Form Failed to Submit", err);
 
-    });
+      });
   }
 }

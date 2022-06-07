@@ -1,5 +1,6 @@
 .contact {
     width: 1200px;
+    color: white;
 }
 
 .contact_aim,
@@ -11,7 +12,6 @@
     flex-direction: row;
     justify-content: space-between;
     margin-left: 150px;
-    /* background-color: aquamarine; */
 }
 
 .contact_aim {
@@ -118,7 +118,7 @@ h5 {
     padding: 3%;
     height: 95%;
     margin-top: 3vh;
-    border: 3px solid green;
+    border: 3px solid rgb(248, 182, 228);
     border-radius: 12px;
     justify-content: space-around;
     margin-left: 25px;

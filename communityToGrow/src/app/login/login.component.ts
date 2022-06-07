@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   loginrecord: any = {
     aadhar: '',
     Password: '',
-    type: ''
   };
 
   loginform: FormGroup;
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit {
     this.loginform = this.fb.group({
       aadhar: [this.loginrecord.aadhar],
       Password: [this.loginrecord.Password],
-      type: []
     })
   }
 
@@ -33,7 +31,6 @@ export class LoginComponent implements OnInit {
 
       aadhar: [''],
       Password: ['',],
-      type: ['Entry']
     });
   }
   get aadhar() {
@@ -71,7 +68,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/signUp']);
 
       }
-    })
+    },
+      err => {
+        this.toastr.error("Failed to Login", err);
+      });
 
   }
 }

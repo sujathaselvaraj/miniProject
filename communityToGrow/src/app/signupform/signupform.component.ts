@@ -34,7 +34,7 @@ export class SignupformComponent implements OnInit {
       emailId: [this.userRecord.emailId],
       Password: [this.userRecord.Password],
       Confirmpassword: [this.userRecord.Confirmpassword],
-      type: [],
+      type: 'Login',
 
 
     });
@@ -73,15 +73,17 @@ export class SignupformComponent implements OnInit {
     return this.checkout.controls;
   }
   onSubmit(Formvalue: any): void {
-    console.log("from form", Formvalue);
     this.nodesvc.storedata(Formvalue).subscribe((data: any) => {
       console.log("data returned from server", data);
-    })
+    },
+      err => {
+        this.toastr.error("Data Failed to return from Server", err)
+      })
     this.submitted = true;
     if (this.checkout.valid) {
       this.toastr.success("Form Submitted Successfully");
 
-      this.router.navigate(['/who_we_are']);
+      this.router.navigate(['/']);
 
       return;
     }

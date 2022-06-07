@@ -29,6 +29,7 @@ export class VolunteerComponent implements OnInit {
     type: '',
     Login: '',
     location: '',
+    job: '',
     volunteerList: ''
   }
   constructor(private fb: FormBuilder, private toastr: ToastrService, public angulardbsvc: DaoserviceService, private http: HttpClient) {
@@ -47,11 +48,12 @@ export class VolunteerComponent implements OnInit {
       mobileNo: [this.volunteerdetails.emailId],
       location: [this.locationList._id],
       type: [this.volunteerdetails.type],
-      Login: [this.userId]
+      job: [this.volunteerdetails.job],
+      Login: [this.id]
     })
     this.initialfetch();
     if (this.isHide == false) {
-      this.volunteer()
+      this.volunteerview()
     }
 
   }
@@ -111,8 +113,15 @@ export class VolunteerComponent implements OnInit {
         ]
       ],
       type: ['Volunteer'],
+      job: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+        ]
+      ],
 
-      Login: [this.userId]
+      Login: [this.id]
 
     });
   }
@@ -122,25 +131,41 @@ export class VolunteerComponent implements OnInit {
   // function call to post data
   submit() {
     this.angulardbsvc.postDetails(this.volunteerform.value).subscribe((data) => {
-      console.log(data)
-      console.log("Success");
-      this.volunteerform.reset();
+      console.log(data);
       this.toastr.success("Form Submitted Successfully");
+      this.volunteerform.reset();
 
-    });
+    },
+      err => {
+        this.toastr.error("Form Failed to Display", err);
+
+      });
   }
   // function call to display data
-  volunteer() {
-    try {
-      this.angulardbsvc.details("Volunteer").subscribe((datas: any) => {
-        console.log("Volunteer Details", datas)
-        this.volunteerdetails = datas.docs;
-        this.volunteerRecord = this.volunteerdetails;
-      });
-    }
-    catch (err: any) {
-      this.toastr.error("Form Failed to Display", err.name);
-    }
+  // volunteerview() {
+  //   this.angulardbsvc.details("Volunteer").subscribe((datas: any) => {
+  //     this.toastr.success("Form Viewed Successfully", datas);
+
+  //     this.volunteerdetails = datas.docs;
+  //     this.volunteerRecord = this.volunteerdetails;
+
+  //   },
+  //     err => {
+  //       this.toastr.error("Form Failed to Display", err);
+  //     }
+  //   );
+  // }
+  volunteerview() {
+    this.angulardbsvc.viewDocumentFetch("Volunteer").subscribe((datas: any) => {
+      console.log("Volunteer View", datas)
+      this.volunteerdetails = datas.rows;
+      this.volunteerRecord = this.volunteerdetails.map((el: any) => el.doc);
+      console.log(this.volunteerRecord);
+    }, err => {
+      this.toastr.error("Form Failed to Display", err);
+
+    });
+
   }
 }
 

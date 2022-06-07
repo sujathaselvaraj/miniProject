@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -23,10 +22,7 @@ export class NodeapiService {
       'Authorization': this.basicAuth
     })
   };
-  postDetails(doc: object, db: string): Observable<{}> {
-    const url = this.endpt + db;
-    return this.http.post(url, doc, this.httpOptions)
-  }
+
   storedata(FormData: any) {
     console.log("Node Working🤩", FormData);
     return this.http.post<any>('http://localhost:8000/postdata/', FormData)

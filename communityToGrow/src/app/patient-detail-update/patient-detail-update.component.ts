@@ -43,10 +43,7 @@ export class PatientDetailUpdateComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public http: HttpClient, private toastr: ToastrService) {
     //getting the parent id from localStorage
-    this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
-    this.userId = this.userData
-    this.id = this.userId._id;
-    console.log(this.id)
+
 
     this.patientForm = this.fb.group({
       f_name: [this.details.f_name],
@@ -104,6 +101,7 @@ export class PatientDetailUpdateComponent implements OnInit {
     return this.details.gender;
   }
 
+
   ngOnInit(): void {
 
     this.patientForm = this.fb.group({
@@ -122,6 +120,10 @@ export class PatientDetailUpdateComponent implements OnInit {
       Login: this.id
 
     });
+    this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
+    this.userId = this.userData
+    this.id = this.userId._id;
+    console.log(this.id)
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -129,7 +131,6 @@ export class PatientDetailUpdateComponent implements OnInit {
   }
   // function call to post data in couch db
   submit() {
-    console.log("User Id", this.id)
     console.log(this.patientForm.value);
     try {
       this.angulardbsvc.postDetails(this.patientForm.value).subscribe((datas) => {
@@ -152,7 +153,7 @@ export class PatientDetailUpdateComponent implements OnInit {
       this.details = datas.docs;
       this.patientRecord = this.details;
       this.details = datas['rows'];
-      console.log(this.details)
+
       this.lookupIdArray = lodash.uniq(this.patientRecord.map((el: any) => el['listofvolunteer']))
       this.angulardbsvc.getAll(this.lookupIdArray).subscribe((res: any) => {
         const volunteerlookup = res.rows.map((el: { doc: any; }) => el.doc)
@@ -162,10 +163,10 @@ export class PatientDetailUpdateComponent implements OnInit {
         });
         console.log(res)
       })
-    }, rej => {
-      this.toastr.error("Form Failed to Found", rej);
-      console.log(rej)
-    });
+    },
+      err => {
+        this.toastr.error("Form Failed to Found", err);
+      });
   }
 }
 
