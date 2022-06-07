@@ -141,20 +141,7 @@ export class VolunteerComponent implements OnInit {
 
       });
   }
-  // function call to display data
-  // volunteerview() {
-  //   this.angulardbsvc.details("Volunteer").subscribe((datas: any) => {
-  //     this.toastr.success("Form Viewed Successfully", datas);
 
-  //     this.volunteerdetails = datas.docs;
-  //     this.volunteerRecord = this.volunteerdetails;
-
-  //   },
-  //     err => {
-  //       this.toastr.error("Form Failed to Display", err);
-  //     }
-  //   );
-  // }
   volunteerview() {
     this.angulardbsvc.viewDocumentFetch("Volunteer").subscribe((datas: any) => {
       console.log("Volunteer View", datas)
