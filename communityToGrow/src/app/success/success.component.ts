@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DaoserviceService } from '../daoservice.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
   templateUrl: './success.component.html',
   styleUrls: ['./success.component.css']
 })
-export class SuccessComponent { }
+export class SuccessComponent {
+  constructor(public angulardbsvc: DaoserviceService, public toastr: ToastrService) { }
+  logoutClick() {
+    this.angulardbsvc.logout();
+    this.toastr.success("Logouted Successfully")
+  }
+}

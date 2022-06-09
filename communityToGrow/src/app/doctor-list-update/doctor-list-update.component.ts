@@ -16,6 +16,7 @@ export class DoctorListUpdateComponent implements OnInit {
   id: any;
   isShown: boolean = true;
   isHide: boolean = false;
+  isShow: boolean = false;
 
 
   doctorform: FormGroup;
@@ -64,8 +65,11 @@ export class DoctorListUpdateComponent implements OnInit {
 
     })
     this.initialfetch();
-    if (this.isHide) {
-      this.doctorview()
+    if (!this.isHide) {
+      this.doctordata();
+    };
+    if (!this.isShow) {
+      this.doctorview();
     }
   }
   initialfetch() {
@@ -78,10 +82,19 @@ export class DoctorListUpdateComponent implements OnInit {
       console.log("Location Details", this.locationList)
     })
   }
+  toggleShown() {
+    this.doctorDetailSubmission();
+  }
+
+  toggleHide() {
+    this.isShown = !this.isShown;
+    this.isHide = !this.isHide;
+    this.doctordata();
+  }
   toggleShow() {
 
     this.isShown = !this.isShown;
-    this.isHide = !this.isHide;
+    this.isShow = !this.isShow;
     this.doctorview()
   }
   // radio button value assigning
@@ -144,23 +157,24 @@ export class DoctorListUpdateComponent implements OnInit {
   //calling the function that in service  to post the data
   doctorDetailSubmission() {
     this.angulardbsvc.postDetails(this.doctorform.value).subscribe((data) => {
-      console.log(data)
-      console.log("Success");
+      console.log(data);
+      this.toastr.success("Form Submitted successfully")
       this.doctorform.reset();
     },
       err => {
-        this.toastr.error("Form Failed to submit", err);
-      },
-      () => {
-        this.toastr.success("Form Submitted Successfully");
-
+        this.toastr.error("Form Failed to submit");
+        console.log(err);
       });
 
+  }
+  logoutClick() {
+    this.angulardbsvc.logout();
+    this.toastr.success("Logouted Successfully")
   }
   doctordata() {
     this.angulardbsvc.alldata("Doctor").subscribe((datas: any) => {
       this.doctorallRecord = datas.docs;
-      console.log("Patient Details", this.doctorallRecord)
+      console.log("Doctor Details", this.doctorallRecord)
     });
   }
 

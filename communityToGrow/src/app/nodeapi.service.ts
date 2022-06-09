@@ -25,7 +25,7 @@ export class NodeapiService {
 
   storedata(FormData: any) {
     console.log("Node Working🤩", FormData);
-    return this.http.post<any>('http://localhost:8000/postdata/', FormData)
+    return this.http.post<any>('http://localhost:8000/postdata/', FormData);
   }
 
   test_get(id: any) {

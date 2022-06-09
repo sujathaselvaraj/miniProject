@@ -1,8 +1,9 @@
+<button class="btn btn-primary" type="button" (click)="logoutClick()" id="logoutbutton">Logout</button>
 <div class="main">
     <div class="volunteerContainer">
         <form [formGroup]="volunteerform" *ngIf="isShown">
-            <h2>Volunteer Detail
-            </h2>
+            <h1>Volunteer Detail
+            </h1>
             <div>
                 <div>
                     <label>First Name:</label>
@@ -29,7 +30,7 @@
                         (change)="genderSelection()"> Male<br>
                     <input type="radio" name="gender" value="female" id="female" formControlName="gender"
                         (change)="genderSelection()"> Female<br>
-                </div>
+                </div><br>
                 <div>
                     <label>Email</label>
                     <input id="emailId" type="email" formControlName="emailId" class="form-control"><br>
@@ -53,7 +54,7 @@
                     </div>
                 </div>
                 <div>
-                    <h2>Choose the location of our Organisation to you want be a part.</h2>
+                    <h3>Choose the location of our Organisation to you want be a part.</h3>
 
                     <select formControlName="location" class="form-control">
                         <option disabled>Select location</option>
@@ -63,17 +64,15 @@
 
                 </div>
 
-                <div class="form-group">
-                    <label>Aadhar</label>
-                    <input id="aadhar" type="text" formControlName="aadhar" class="form-control"><br>
-                    <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
-                        <div *ngIf="f.aadhar.errors?.required">Aadhar Number is required.</div>
-                        <div *ngIf="f.aadhar.errors?.minlength">Aadhar should have minimum 12 Digits.
-                        </div>
-                        <div *ngIf="f.aadhar.errors?.maxlength">Aadhar should have maximum 12 Digits.
-                        </div>
+                <label>Aadhar</label>
+                <input id="aadhar" type="text" formControlName="aadhar" class="form-control"><br>
+                <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
+                    <div *ngIf="f.aadhar.errors?.required">Aadhar Number is required.</div>
+                    <div *ngIf="f.aadhar.errors?.minlength">Aadhar should have minimum 12 Digits.
                     </div>
-                </div><br>
+                    <div *ngIf="f.aadhar.errors?.maxlength">Aadhar should have maximum 12 Digits.
+                    </div>
+                </div>
                 <label>Job:</label>
                 <input type="text" name="job" class="form-control" id="job" formControlName="job" /><br>
                 <div *ngIf="f.job?.touched && f.job?.invalid" class="alert alert-danger">
@@ -84,16 +83,44 @@
                 </div><br>
 
             </div>
-            <div> <button class="btn btn-primary" type="button" (click)="submit()">Submit</button>&nbsp;&nbsp;
-                <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">Volunteer List in Our
-                    Organisation</button>
+            <div><button class="btn btn-primary" (click)="toggleShown()" type="checkbox">Submit
+                </button>
+                <button class="btn btn-primary" (click)="toggleHide()" type="checkbox">Doctor List in MAK
+                </button>
+                <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">Doctor List Added by You
+                </button>
             </div><br>
 
         </form>
         <div *ngIf="isHide">
-
+            <h2>Volunteer List in Our Organisation</h2>
             <table>
                 <caption>Volunteer List in Our Organisation</caption>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Type</th>
+                    <th>Mobile Number</th>
+                    <th>Mail Id</th>
+                </tr>
+                <tr *ngFor="let one of volunteerallRecord">
+                    <td>{{one.first_name}}</td>
+                    <td>{{one.last_name}}</td>
+                    <td>{{one.gender}}</td>
+                    <td>{{one.type}}</td>
+                    <td>{{one.mobileNo}}</td>
+                    <td>{{one.emailId}}</td>
+                </tr>
+            </table>
+            <a class="btn btn-primary" href="volunteer" id="redirecting">To Join
+                in Our
+                Organisation</a>
+        </div>
+        <div *ngIf="isShow">
+            <h2>Volunteer List in an Organisation</h2>
+            <table>
+                <caption>Volunteer List in an Organisation</caption>
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -111,8 +138,9 @@
                     <td>{{one.emailId}}</td>
                 </tr>
             </table>
-            <button class="btn btn-primary" type="checkbox" (click)="toggleShow()" id="redirecting">To Join in Our
-                Organisation</button>
+            <a class="btn btn-primary" href="volunteer" id="redirecting">To Join
+                in Our
+                Organisation</a>
         </div>
     </div>
 </div>

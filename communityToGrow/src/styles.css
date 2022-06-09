@@ -45,3 +45,8 @@ th {
     padding: 14px;
     color: rgb(15, 15, 92);
 }
+
+#logoutbutton {
+    margin-top: -30vh;
+    margin-left: 90%;
+}

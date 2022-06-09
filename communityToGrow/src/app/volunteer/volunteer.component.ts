@@ -14,6 +14,8 @@ export class VolunteerComponent implements OnInit {
 
   isShown: boolean = true;
   isHide: boolean = false;
+  isShow: boolean = false;
+
   userData: any;
   userId: any;
   id: any;
@@ -32,6 +34,7 @@ export class VolunteerComponent implements OnInit {
     job: '',
     volunteerList: ''
   }
+  volunteerallRecord: any;
   constructor(private fb: FormBuilder, private toastr: ToastrService, public angulardbsvc: DaoserviceService, private http: HttpClient) {
 
     // Getting parent Id from Local Storage
@@ -52,8 +55,11 @@ export class VolunteerComponent implements OnInit {
       Login: [this.id]
     })
     this.initialfetch();
-    if (this.isHide == false) {
-      this.volunteerview()
+    if (!this.isHide) {
+      this.volunteerdata();
+    };
+    if (!this.isShow) {
+      this.volunteerview();
     }
 
   }
@@ -67,11 +73,24 @@ export class VolunteerComponent implements OnInit {
       console.log("Location Details", this.locationList)
     })
   }
+  logoutClick() {
+    this.angulardbsvc.logout();
+    this.toastr.success("Logouted Successfully")
+  }
+  toggleShown() {
+    this.volunteerDetailSubmission();
+  }
+
+  toggleHide() {
+    this.isShown = !this.isShown;
+    this.isHide = !this.isHide;
+    this.volunteerdata();
+  }
   toggleShow() {
 
     this.isShown = !this.isShown;
-    this.isHide = !this.isHide;
-
+    this.isShow = !this.isShow;
+    this.volunteerview()
   }
 
   // radio button value assigning
@@ -129,17 +148,27 @@ export class VolunteerComponent implements OnInit {
     return this.volunteerform.controls;
   }
   // function call to post data
-  submit() {
+  volunteerDetailSubmission() {
     this.angulardbsvc.postDetails(this.volunteerform.value).subscribe((data) => {
       console.log(data);
-      this.toastr.success("Form Submitted Successfully");
       this.volunteerform.reset();
+      this.toastr.success("Form Submitted Succesfully")
 
     },
       err => {
-        this.toastr.error("Form Failed to Display", err);
+        this.toastr.error("Form Failed to Display");
+        console.log(err);
 
       });
+  }
+  volunteerdata() {
+    this.angulardbsvc.alldata("Volunteer").subscribe((datas: any) => {
+      this.volunteerallRecord = datas.docs;
+      console.log("Volunteer Details", this.volunteerallRecord)
+    }, err => {
+      this.toastr.error("Failed to Display all details of Volunteer");
+      console.log(err);
+    });
   }
 
   volunteerview() {
@@ -149,8 +178,8 @@ export class VolunteerComponent implements OnInit {
       this.volunteerRecord = this.volunteerdetails.map((el: any) => el.doc);
       console.log(this.volunteerRecord);
     }, err => {
-      this.toastr.error("Form Failed to Display", err);
-
+      this.toastr.error("Failed to Display volunteer List of our Organisation");
+      console.log(err);
     });
 
   }

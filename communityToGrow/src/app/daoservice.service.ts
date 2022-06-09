@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class DaoserviceService {
     })
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
 
 
   }
@@ -76,6 +77,10 @@ export class DaoserviceService {
     const geturl = `${this.endpt}project_db/_design/project_view/_view/doctor-view?include_docs=true&keys=["${type + this.id}"]`;
     return this.http.get(geturl, this.httpOptions);
 
+  }
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/'])
   }
 }
 

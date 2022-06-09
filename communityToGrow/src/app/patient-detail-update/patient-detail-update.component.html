@@ -1,6 +1,7 @@
+<button class="btn btn-primary" type="button" (click)="logoutClick()" id="logoutbutton">Logout</button>
 <div class="patientForm">
-    <form [formGroup]="patientForm" [hidden]="!isShown">
-        <h2>Patients Details Form</h2>
+    <form [formGroup]="patientForm" *ngIf="isShown">
+        <h1>Patients Details Form</h1>
 
         <div>
             <label>First Name</label>
@@ -20,11 +21,11 @@
         </div>
         <div>
             <label>Gender:</label>
-            <p><input type="radio" name="gender" formControlName="gender" (change)="changeGender()" value="male">Male
-            </p>
-            <p><input type="radio" name="gender" formControlName="gender" (change)="changeGender()"
+            <div><input type="radio" name="gender" formControlName="gender" (change)="changeGender()" value="male">Male
+            </div>
+            <div><input type="radio" name="gender" formControlName="gender" (change)="changeGender()"
                     value="female">Female
-            </p>
+            </div>
             <div *ngIf="f.gender?.touched && f.gender?.invalid" class="alert alert-danger">
                 <div *ngIf="f.gender.errors?.required">Gender is required.</div>
             </div>
@@ -36,7 +37,7 @@
         </div>
         <div *ngIf="f.age?.touched && f.age?.invalid" class="alert alert-danger">
             <div *ngIf="f.age.errors?.required">Age is required.</div>
-        </div>
+        </div><br>
 
         <div>
             <label for="location">location:</label>
@@ -45,7 +46,7 @@
                 <option>Choose location</option>
                 <option *ngFor="let web of locationList" value={{web._id}}>{{web.location}}</option>
             </select>
-        </div>
+        </div><br>
         <div>
             <label for="bloodgroup">Blood Group:</label>
             <select formControlName="bloodgroup" class="form-control">
@@ -57,9 +58,8 @@
             <div *ngIf="f.bloodgroup?.touched && f.bloodgroup?.invalid" class="alert alert-danger">
                 <div *ngIf="f.bloodgroup.errors?.required">Bloodgroup is required.</div>
             </div>
-        </div>
-        <div class="form-group">
-            <label>Aadhar</label>
+        </div><br>
+        <div><label>Aadhar</label>
             <input id="aadhar" type="text" formControlName="aadhar" class="form-control" name="aadhar">
         </div>
         <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
@@ -70,11 +70,11 @@
             </div>
         </div><br>
 
-        <p>
+        <div>
             <label>Phone Number:</label>
             <input type="tel" name="phone_number" class="form-control" id="phone_number" formControlName="phone_number">
 
-        </p>
+        </div>
         <div *ngIf="f.phone_number?.touched && f.phone_number?.invalid" class="alert alert-danger">
             <div *ngIf="f.phone_number.errors?.required">Phone Number is required.</div>
             <div *ngIf="f.phone_number.errors?.minlength">Phone Number should have minimum 12 digits
@@ -83,11 +83,11 @@
             </div>
         </div>
 
-        <p>
+        <div>
             <label>Email:
             </label>
             <input type="email" class="form-control" id="email" formControlName="email" name="email">
-        </p>
+        </div>
         <div *ngIf="f.email?.touched && f.email?.invalid" class="alert alert-danger">
             <div *ngIf="f.email.errors?.required">Email is required.</div>
             <div *ngIf="f.email.errors?.valid">Enter a valid mail id
@@ -106,9 +106,6 @@
             <div *ngIf="f.disorder.errors?.minlength">Disorder has minimum 3 character
             </div>
         </div><br>
-        <div>
-
-        </div><br>
         <label for="listofvolunteer">volunteer:</label>
         <select formControlName="listofvolunteer" class="form-control">
             <option disabled>Select volunteer</option>
@@ -118,17 +115,19 @@
         <br>
 
 
-        <div>
-            <button class="btn btn-primary" type="button" (click)="submit()">Submit</button>&nbsp;&nbsp;
-            <button class="btn btn-primary" type="checkbox" (click)="toggleShow()">Patient List in Our
-                Organisation</button>
+        <div><button class="btn btn-primary" (click)="toggleShown()" type="checkbox">Submit
+            </button>
+            <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">Patient List in MAK
+            </button>
+            <button class="btn btn-primary" (click)="toggleHide()" type="checkbox">Patient List Added by You
+            </button>
         </div>
 
     </form>
-
-    <div [hidden]="!isHide">
+    <div *ngIf="isHide">
+        <h2>Patient List in one Organisation</h2>
         <table>
-            <caption>Patient List in Organisation</caption>
+            <caption>Patient List in one Organisation</caption>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
@@ -150,8 +149,39 @@
                 <td>{{patient.Volunteer}}</td>
             </tr>
         </table>
-        <button class="btn btn-primary" type="checkbox" (click)="toggleShow()" id="redirecting">To Join in Our
-            Organisation</button>
+        <a class="btn btn-primary" href="patient" id="redirecting">To Join
+            in Our
+            Organisation</a>
+    </div>
 
+
+    <div *ngIf="isShow">
+        <h2>Patient List in MAK Organisation</h2>
+        <table>
+            <caption>Patient List in MAk Organisation</caption>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Type</th>
+                <th>Mobile Number</th>
+                <th>Mail Id</th>
+                <th>Disorder</th>
+                <th>Volunteer List</th>
+            </tr>
+            <tr *ngFor="let patient of patientallRecord">
+                <td>{{patient.f_name}}</td>
+                <td>{{patient.l_name}}</td>
+                <td>{{patient.gender}}</td>
+                <td>{{patient.type}}</td>
+                <td>{{patient.phone_number}}</td>
+                <td>{{patient.email}}</td>
+                <td>{{patient.disorder}}</td>
+                <td>{{patient.Volunteer}}</td>
+            </tr>
+        </table>
+        <a class="btn btn-primary" href="patient" id="redirecting">To Join
+            in Our
+            Organisation</a>
     </div>
 </div>

@@ -15,10 +15,14 @@ export class PatientDetailUpdateComponent implements OnInit {
   locationList: any = [''];
   volunteerName: any = [''];
   bloodGroup: any = ['A+ve', 'A1+ve', 'A1B+ve', 'B+ve', 'O+ve', 'AB+ve', 'A-ve', 'A1-ve', 'A1B-ve', 'B-ve', 'O-ve', 'AB-ve']
+
   isShown: boolean = true;
   isHide: boolean = false;
+  isShow: boolean = false;
+
+
   patientForm: FormGroup;
-  patientRecord: any = [];
+  patientallRecord: any = [];
   details: any = {
     f_name: '',
     l_name: '',
@@ -40,6 +44,8 @@ export class PatientDetailUpdateComponent implements OnInit {
   id: any;
   alldata: any;
   lookupIdArray: any = [];
+  patientRecord: any;
+  patientdetail: any;
 
   constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public http: HttpClient, private toastr: ToastrService) {
     //getting the parent id from localStorage
@@ -65,16 +71,27 @@ export class PatientDetailUpdateComponent implements OnInit {
     })
     this.locationfetch();
     this.volunteerfetch();
-    if (this.isHide) {
-      this.patientdetails();
+    if (!this.isHide) {
+      this.patientdata();
+    };
+    if (!this.isShow) {
+      this.patientview();
     }
+  }
+  toggleShown() {
+    this.patientDetailSubmission();
+  }
+
+  toggleHide() {
+    this.isShown = !this.isShown;
+    this.isHide = !this.isHide;
+    this.patientdata();
   }
   toggleShow() {
 
     this.isShown = !this.isShown;
-    this.isHide = !this.isHide;
-    this.patientdetails()
-    console.log(this.patientForm)
+    this.isShow = !this.isShow;
+    this.patientview()
   }
   locationfetch() {
     const queryParams = {
@@ -85,6 +102,10 @@ export class PatientDetailUpdateComponent implements OnInit {
       this.locationList = res.docs
       console.log("Location Details", this.locationList)
     })
+  }
+  logoutClick() {
+    this.angulardbsvc.logout();
+    this.toastr.success("Logouted Successfully")
   }
   volunteerfetch() {
     const queryParam = {
@@ -131,29 +152,26 @@ export class PatientDetailUpdateComponent implements OnInit {
     return this.patientForm.controls;
   }
   // function call to post data in couch db
-  submit() {
+  patientDetailSubmission() {
     console.log(this.patientForm.value);
-    try {
-      this.angulardbsvc.postDetails(this.patientForm.value).subscribe((datas) => {
-        console.log("Success", datas);
-        this.patientForm.reset();
-        this.toastr.success("Form Submitted Successfully");
+    this.angulardbsvc.postDetails(this.patientForm.value).subscribe((datas) => {
+      console.log("Success", datas);
+      this.patientForm.reset();
+      this.toastr.success("Form Submitted Successfully")
+    },
+      err => {
+        this.toastr.error("Form Failed to Submit");
+        console.log(err);
 
-      });
-    }
-    catch (err: any) {
-      this.toastr.error("Form Failed to Submit", err.name);
-
-    }
+      }
+    );
   }
-  // function call to get data which has type Patient
-  patientdetails() {
+  patientview() {
 
-    this.angulardbsvc.alldata("Patient").subscribe((datas: any) => {
+    this.angulardbsvc.viewDocumentFetch("Patient").subscribe((datas: any) => {
       console.log("Patient Details", datas)
-      this.details = datas.docs;
-      this.patientRecord = this.details;
-      this.details = datas['rows'];
+      this.patientdetail = datas.rows;
+      this.patientRecord = this.patientdetail.map((el: any) => el.doc);
 
       this.lookupIdArray = lodash.uniq(this.patientRecord.map((el: any) => el['listofvolunteer']))
       this.angulardbsvc.getAll(this.lookupIdArray).subscribe((res: any) => {
@@ -166,7 +184,33 @@ export class PatientDetailUpdateComponent implements OnInit {
       })
     },
       err => {
-        this.toastr.error("Form Failed to Found", err);
+        this.toastr.error("Failed to Display list of patient inan organisation");
+        console.log(err);
+      });
+  }
+
+  // function call to get data which has type Patient
+  patientdata() {
+
+    this.angulardbsvc.alldata("Patient").subscribe((datas: any) => {
+      console.log("Patient Details", datas)
+      this.details = datas.docs;
+      this.patientallRecord = this.details;
+      this.details = datas['rows'];
+
+      this.lookupIdArray = lodash.uniq(this.patientallRecord.map((el: any) => el['listofvolunteer']))
+      this.angulardbsvc.getAll(this.lookupIdArray).subscribe((res: any) => {
+        const volunteerlookup = res.rows.map((el: { doc: any; }) => el.doc)
+        this.patientallRecord.forEach((element: any) => {
+          const volunteername = volunteerlookup.filter((el: any) => el['_id'] === element['listofvolunteer'])[0]
+          element['Volunteer'] = volunteername['first_name']
+        });
+        console.log(res)
+      })
+    },
+      err => {
+        this.toastr.error("Failed to display list of patient in our Organisation");
+        console.log(err);
       });
   }
 }

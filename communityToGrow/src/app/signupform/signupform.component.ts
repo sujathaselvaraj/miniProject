@@ -15,7 +15,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SignupformComponent implements OnInit {
   checkout: FormGroup;
-  submitted = true;
   userRecord: any = {
     fullName: '',
     aadhar: '',
@@ -48,8 +47,8 @@ export class SignupformComponent implements OnInit {
           '',
           [
             Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(20)
+            Validators.minLength(12),
+            Validators.maxLength(12)
           ]
         ],
         email: ['', [Validators.required, Validators.email]],
@@ -58,8 +57,7 @@ export class SignupformComponent implements OnInit {
           '',
           [
             Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(40)
+            Validators.minLength(8)
           ]
         ],
         confirmPassword: ['', Validators.required]
@@ -75,15 +73,16 @@ export class SignupformComponent implements OnInit {
   onSubmit(Formvalue: any): void {
     this.nodesvc.storedata(Formvalue).subscribe((data: any) => {
       console.log("data returned from server", data);
+      this.router.navigate(['/']);
+
     },
       err => {
         this.toastr.error("Data Failed to return from Server", err)
       })
-    this.submitted = true;
+
     if (this.checkout.valid) {
       this.toastr.success("Form Submitted Successfully");
 
-      this.router.navigate(['/']);
 
       return;
     }

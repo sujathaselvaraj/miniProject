@@ -1,3 +1,4 @@
+<button class="btn btn-primary" type="button" (click)="logoutClick()" id="logoutbutton">Logout</button>
 <div class="doctorContainer">
         <form [formGroup]="doctorform" *ngIf="isShown">
                 <h1>Doctor Detail
@@ -44,7 +45,7 @@
                                 </div>
 
                         </div>
-                        <div class="form-group">
+                        <div>
                                 <label>Aadhar</label>
                                 <input id="aadhar" type="text" formControlName="aadhar" class="form-control">
                         </div>
@@ -140,38 +141,42 @@
                         </div>
 
                 </div>
-
-                <div> <button class="btn btn-primary" type="button"
-                                (click)="doctorDetailSubmission()">Submit</button>&nbsp;&nbsp;<button
-                                class="btn btn-primary" type="button" (click)="doctordata()">Doctor List in
-                                MAK</button>
-                        <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">Doctor list added by
-                                you</button>
+                <div><button class="btn btn-primary" (click)="toggleShown()" type="checkbox">Submit
+                        </button>
+                        <button class="btn btn-primary" (click)="toggleHide()" type="checkbox">Doctor List in MAK
+                        </button>
+                        <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">Doctor List Added by You
+                        </button>
                 </div>
-
         </form>
-        <h2>List Of Doctors in Our Organisation</h2>
-
-        <table>
-                <caption>Doctor List</caption>
-                <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Gender</th>
-                        <th>Type</th>
-                        <th>Mobile Number</th>
-                        <th>Mail Id</th>
-                </tr>
-                <tr *ngFor="let obj of doctorallRecord">
-                        <td>{{obj.first_name}}</td>
-                        <td>{{obj.last_name}}</td>
-                        <td>{{obj.gender}}</td>
-                        <td>{{obj.type}}</td>
-                        <td>{{obj.mobileNo}}</td>
-                        <td>{{obj.emailId}}</td>
-                </tr>
-        </table>
         <div *ngIf="isHide">
+
+                <h2>List Of Doctors in Our Organisation</h2>
+
+                <table>
+                        <caption>Doctor List</caption>
+                        <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Gender</th>
+                                <th>Type</th>
+                                <th>Mobile Number</th>
+                                <th>Mail Id</th>
+                        </tr>
+                        <tr *ngFor="let obj of doctorallRecord">
+                                <td>{{obj.first_name}}</td>
+                                <td>{{obj.last_name}}</td>
+                                <td>{{obj.gender}}</td>
+                                <td>{{obj.type}}</td>
+                                <td>{{obj.mobileNo}}</td>
+                                <td>{{obj.emailId}}</td>
+                        </tr>
+                </table>
+                <a class="btn btn-primary" href="doctor" id="redirecting">To Join
+                        in Our
+                        Organisation</a>
+        </div>
+        <div *ngIf="isShow">
                 <h2>List Of Doctors in one Organisation</h2>
 
                 <table>
@@ -193,11 +198,10 @@
                                 <td>{{obj.emailId}}</td>
                         </tr>
                 </table>
-                <button class="btn btn-primary" type="checkbox" (click)="toggleShow()" id="redirecting">To Join
+                <a href="doctor" id="redirecting">To Join
                         in Our
-                        Organisation</button>
+                        Organisation</a>
 
         </div>
-
 
 </div>
