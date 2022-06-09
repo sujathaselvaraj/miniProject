@@ -80,11 +80,7 @@ export class SignupformComponent implements OnInit {
       console.log(resp)
       if (resp.docs.length >= 1) {
         this.toastr.error("Aadhar already exist.Please use another");
-        // this.submitted =false
       }
-      // else{
-      //   this.submitted =true
-      // }
     }, err => {
       console.error(err)
     })
