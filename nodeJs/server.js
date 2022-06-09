@@ -3,10 +3,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const dbconnection =require('./dbconnection');
 const app = express();
+app.disable("x-powered-by");
+let helmet = require("helmet");
+app.use(helmet.hidePoweredBy());
 const port = 8000;
 
 
- app.use(cors({
+app.use(cors({
 origin:'http://localhost:4200'
 }));
 app.use(bodyParser.json());
@@ -24,7 +27,8 @@ app.get('/getdata/:id',(req,res)=>{
         console.log("data Fetch from db", data);
         res.send(data);
       }).catch((err=>{
-        console.log("error",err);
+        this.toastr.error("Data Failed to fetch");
+        console.log(err);
       }))
     })
 app.post('/postdata',function (req,res) {
@@ -35,12 +39,15 @@ app.post('/postdata',function (req,res) {
     emailId:req.body.email,
     Password:req.body.Password,
     Confirmpassword:req.body.confirmPassword,
+    type:"Login"
+
     
   }
   console.log("data from angular",objectnew);
+  console.log(objectnew.aadhar)
  
   dbconnection.testdb.insert(objectnew).then((data)=>{
-    console.log("data inserted successfully ",data);
+    console.log("Data inserted successfully ",data);
     res.send(data);
 
   }).catch((err=>{
