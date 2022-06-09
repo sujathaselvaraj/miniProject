@@ -73,7 +73,7 @@ export class PatientDetailUpdateComponent implements OnInit {
     this.volunteerfetch();
     if (!this.isHide) {
       this.patientdata();
-    };
+    }
     if (!this.isShow) {
       this.patientview();
     }
@@ -100,8 +100,10 @@ export class PatientDetailUpdateComponent implements OnInit {
     this.angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
       console.log(res)
       this.locationList = res.docs
-      console.log("Location Details", this.locationList)
-    })
+    },
+      err => {
+        console.log(err)
+      })
   }
   logoutClick() {
     this.angulardbsvc.logout();
@@ -115,7 +117,10 @@ export class PatientDetailUpdateComponent implements OnInit {
     this.angulardbsvc.fetchDataUsingFind('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((resp: any) => {
       console.log(resp)
       this.volunteerList = resp.docs;
-      console.log("volunteer Details", this.volunteerList)
+      console.log("Data fetched Successfully")
+    }, err => {
+      console.log(err);
+      console.log("Failed to Fetch")
     })
   }
   // function to assign value in radio button
@@ -184,7 +189,6 @@ export class PatientDetailUpdateComponent implements OnInit {
       })
     },
       err => {
-        this.toastr.error("Failed to Display list of patient inan organisation");
         console.log(err);
       });
   }
@@ -209,7 +213,6 @@ export class PatientDetailUpdateComponent implements OnInit {
       })
     },
       err => {
-        this.toastr.error("Failed to display list of patient in our Organisation");
         console.log(err);
       });
   }

@@ -67,7 +67,7 @@ export class DoctorListUpdateComponent implements OnInit {
     this.initialfetch();
     if (!this.isHide) {
       this.doctordata();
-    };
+    }
     if (!this.isShow) {
       this.doctorview();
     }

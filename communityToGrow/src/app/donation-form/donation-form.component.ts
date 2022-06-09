@@ -108,7 +108,8 @@ export class DonationFormComponent implements OnInit {
       this.toastr.success("Form Submitted Successfully");
     },
       err => {
-        this.toastr.error("Form Failed to submit", err)
+        this.toastr.error("Form Failed to submit");
+        console.log(err);
 
       });
   }

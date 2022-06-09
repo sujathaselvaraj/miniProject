@@ -57,7 +57,7 @@ export class VolunteerComponent implements OnInit {
     this.initialfetch();
     if (!this.isHide) {
       this.volunteerdata();
-    };
+    }
     if (!this.isShow) {
       this.volunteerview();
     }
@@ -156,7 +156,7 @@ export class VolunteerComponent implements OnInit {
 
     },
       err => {
-        this.toastr.error("Form Failed to Display");
+        this.toastr.error("Form Failed to submit");
         console.log(err);
 
       });

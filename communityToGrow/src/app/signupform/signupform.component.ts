@@ -73,6 +73,7 @@ export class SignupformComponent implements OnInit {
   onSubmit(Formvalue: any): void {
     this.nodesvc.storedata(Formvalue).subscribe((data: any) => {
       console.log("data returned from server", data);
+      this.toastr.success("Form Submitted Successfully")
       this.router.navigate(['/']);
 
     },
@@ -80,12 +81,7 @@ export class SignupformComponent implements OnInit {
         this.toastr.error("Data Failed to return from Server", err)
       })
 
-    if (this.checkout.valid) {
-      this.toastr.success("Form Submitted Successfully");
 
-
-      return;
-    }
     console.log(JSON.stringify(this.checkout.value, null, 2));
 
   }

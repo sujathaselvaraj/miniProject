@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class NodeapiService {
   basicAuth = 'Basic ' + btoa(this.username + ':' + this.password);
   url!: string;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public toastr: ToastrService) {
     console.log('Node Working')
 
   }
