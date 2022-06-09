@@ -13,7 +13,7 @@
     </div><br>
     <div>
         <label>Aadhar</label>
-        <input id="aadhar" type="text" formControlName="aadhar" class="form-control" />
+        <input id="aadhar" type="text" formControlName="aadhar" class="form-control" (change)="checkForValidity()" />
     </div>
     <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
         <div *ngIf="f.aadhar.errors?.required">Aadhar is required.</div>

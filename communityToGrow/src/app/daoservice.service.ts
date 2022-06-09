@@ -28,6 +28,13 @@ export class DaoserviceService {
 
 
   }
+  aadharValidation(query: any) {
+    const geturl = `${this.url}/_find`;
+    const queryData = {
+      selector: query
+    }
+    return this.http.post(geturl, queryData, this.httpOptions)
+  }
   // function to post the data in couchdb
 
 
