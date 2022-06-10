@@ -90,10 +90,10 @@ export class SignupformComponent implements OnInit {
       console.log("data returned from server", data);
       this.toastr.success("Form Submitted Successfully")
       this.router.navigate(['/']);
-
     },
       err => {
-        this.toastr.error("Data Failed to return from Server", err)
+        this.toastr.error("Form Failed to submit");
+        console.log(err);
       })
   }
 

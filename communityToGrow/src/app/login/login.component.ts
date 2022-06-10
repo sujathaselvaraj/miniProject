@@ -27,7 +27,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.loginform)
+    this.loginform = this.fb.group({
+      aadhar: [''],
+      Password: [''],
+      type: ['Entry']
+    })
   }
   get aadhar() {
     return this.loginform.get('aadhar')!;
@@ -38,17 +42,17 @@ export class LoginComponent implements OnInit {
   login(Formvalue: any) {
     this.api.check_get(Formvalue.aadhar).subscribe((data) => {
       console.log("data returned from server", data);
+      const loginData = { data: JSON.stringify(data.docs[0]) }
       localStorage.setItem('usrData', JSON.stringify(data.docs[0]))
 
       if (data.docs.length <= 0) {
         this.toastr.error("Please Register");
-        this.router.navigate(['/signUp']);
-
       }
       if (data.docs[0].aadhar === Formvalue.aadhar) {
         if (data.docs[0].Password === Formvalue.Password) {
 
           this.router.navigate(['/who_we_are'], {
+            queryParams: loginData,
           });
 
           this.toastr.success("Login Successfully");
@@ -59,12 +63,12 @@ export class LoginComponent implements OnInit {
       }
       else {
         this.toastr.error("Please Register");
-        this.router.navigate(['/signUp']);
 
       }
     },
       err => {
-        this.toastr.error("Failed to Login", err);
+        this.toastr.error("Failed to Login");
+        console.log(err);
       });
 
   }

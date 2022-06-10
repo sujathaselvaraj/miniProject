@@ -14,11 +14,8 @@ export class HttpCallInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             tap(evt => {
                 console.log(evt)
-                // this.toastr.success("Details Entered Successfully")
             }, err => {
                 console.log(err)
-                // alert(err.error.reason)
-                this.toastr.error(err.error.reason);
             })
         )
     }

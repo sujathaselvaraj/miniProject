@@ -77,9 +77,9 @@
         </div>
         <div *ngIf="f.phone_number?.touched && f.phone_number?.invalid" class="alert alert-danger">
             <div *ngIf="f.phone_number.errors?.required">Phone Number is required.</div>
-            <div *ngIf="f.phone_number.errors?.minlength">Phone Number should have minimum 12 digits
+            <div *ngIf="f.phone_number.errors?.minlength">Phone Number should have minimum 10 digits
             </div>
-            <div *ngIf="f.phone_number.errors?.maxlength">Phone Number should have maximum 12 digits
+            <div *ngIf="f.phone_number.errors?.maxlength">Phone Number should have maximum 10 digits
             </div>
         </div>
 

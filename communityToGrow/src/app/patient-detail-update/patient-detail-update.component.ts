@@ -139,7 +139,7 @@ export class PatientDetailUpdateComponent implements OnInit {
       gender: ['', [Validators.required]],
       bloodgroup: ['', [Validators.required]],
       aadhar: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
-      phone_number: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
+      phone_number: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       email: ['', [Validators.required]],
       disorder: ['', [Validators.required, Validators.minLength(3)]],
       listofvolunteer: [''],
