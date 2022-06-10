@@ -10,7 +10,6 @@ export class NodeapiService {
   public password = "f56766c5716a7b37a531aaa7bdb53315";
   public username = "apikey-v2-1xzbb618xtgfg14nm7uasm9coajsc9dzzpg8p57atbtg";
   basicAuth = 'Basic ' + btoa(this.username + ':' + this.password);
-  url!: string;
 
   constructor(public http: HttpClient, public toastr: ToastrService) {
     console.log('Node Working')
@@ -28,7 +27,7 @@ export class NodeapiService {
     return this.http.post<any>('http://localhost:8000/postdata/', FormData);
   }
 
-  test_get(id: any) {
+  check_get(id: any) {
     return this.http.get<any>('http://localhost:8000/getdata/' + id)
   }
 }

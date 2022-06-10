@@ -95,10 +95,6 @@ export class SignupformComponent implements OnInit {
       err => {
         this.toastr.error("Data Failed to return from Server", err)
       })
-
-
-    console.log(JSON.stringify(this.checkout.value, null, 2));
-
   }
 
 }

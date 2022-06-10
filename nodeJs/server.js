@@ -8,12 +8,11 @@ let helmet = require("helmet");
 app.use(helmet.hidePoweredBy());
 const port = 8000;
 
-
+// enable cross-origin HTTP requests
 app.use(cors({
 origin:'http://localhost:4200'
 }));
 app.use(bodyParser.json());
-
 
 app.get('/getdata/:id',(req,res)=>{
       console.log("aadhar",req.params.id);

@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 export class LocationComponent implements OnInit {
   locationForm: FormGroup;
 
-  // locationList: any = ['Tamil Nadu', 'Kerala', 'Punjab', 'Mumbai', 'New Delhi', 'Rajastan', 'Gujarat', 'Andhra Pradesh'];
   locationList: any = ['']
   locationRecord: any = {
     location: '',
