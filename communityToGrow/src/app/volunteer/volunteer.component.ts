@@ -30,7 +30,7 @@ export class VolunteerComponent implements OnInit {
     mobileNo: '',
     type: '',
     Login: '',
-    location: '',
+    Location: '',
     job: '',
     volunteerList: ''
   }
@@ -49,7 +49,7 @@ export class VolunteerComponent implements OnInit {
       aadhar: [this.volunteerdetails.aadhar],
       emailId: [this.volunteerdetails.emailId],
       mobileNo: [this.volunteerdetails.emailId],
-      location: [this.locationList._id],
+      Location: [this.locationList._id],
       type: [this.volunteerdetails.type],
       job: [this.volunteerdetails.job],
       Login: [this.id]
@@ -121,7 +121,7 @@ export class VolunteerComponent implements OnInit {
           Validators.maxLength(12)
         ]
       ],
-      location: [''],
+      Location: [''],
 
       emailId: ['', [Validators.required, Validators.email]],
       mobileNo: [

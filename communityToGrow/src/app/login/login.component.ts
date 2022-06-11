@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { NodeapiService } from '../nodeapi.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginform = this.fb.group({
-      aadhar: [''],
-      Password: [''],
+      aadhar: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
+      Password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       type: ['Entry']
     })
   }
@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
   login(Formvalue: any) {
     this.api.check_get(Formvalue.aadhar).subscribe((data) => {
       console.log("data returned from server", data);
-      const loginData = { data: JSON.stringify(data.docs[0]) }
       localStorage.setItem('usrData', JSON.stringify(data.docs[0]))
 
       if (data.docs.length <= 0) {
@@ -51,9 +50,7 @@ export class LoginComponent implements OnInit {
       if (data.docs[0].aadhar === Formvalue.aadhar) {
         if (data.docs[0].Password === Formvalue.Password) {
 
-          this.router.navigate(['/who_we_are'], {
-            queryParams: loginData,
-          });
+          this.router.navigate(['/who_we_are']);
 
           this.toastr.success("Login Successfully");
         }
@@ -67,8 +64,8 @@ export class LoginComponent implements OnInit {
       }
     },
       err => {
-        this.toastr.error("Failed to Login");
         console.log(err);
+        this.toastr.error("Failed to Login");
       });
 
   }

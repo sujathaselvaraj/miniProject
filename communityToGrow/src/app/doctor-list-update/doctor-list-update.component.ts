@@ -29,7 +29,7 @@ export class DoctorListUpdateComponent implements OnInit {
     mobileNo: '',
     type: '',
     Login: '',
-    location: '',
+    Location: '',
     education: {
       qualification: '',
       insti_name: '',
@@ -56,7 +56,7 @@ export class DoctorListUpdateComponent implements OnInit {
       aadhar: [this.doctorRecord.aadhar],
       mobileNo: [this.doctorRecord.mobileNo],
       type: [this.doctorRecord.type],
-      location: [this.locationList._id],
+      Location: [this.locationList._id],
       qualification: [this.doctorRecord.education.qualification],
       insti_name: [this.doctorRecord.education.insti_name],
       desig: [this.doctorRecord.job.desig],
@@ -135,7 +135,7 @@ export class DoctorListUpdateComponent implements OnInit {
         ]
       ],
       type: ['Doctor'],
-      location: [''],
+      Location: [''],
       qualification: ['', [Validators.required, Validators.minLength(2)]],
       insti_name: [
         '',

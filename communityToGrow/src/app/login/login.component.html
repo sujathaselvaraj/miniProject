@@ -15,17 +15,19 @@
                 <label>Aadhar Number</label>
                 <input type="text" id="aadhar" formControlName="aadhar" class="form-control"
                     placeholder="Enter aadhar number">
-                <div class="help-block text-danger" *ngIf="aadhar?.touched">
-                    <span *ngIf="aadhar.errors?.required"> aadhar is REQUIRED!!! </span>
-                    <span *ngIf="aadhar.errors?.aadhar"> aadhar is invalid!!! </span>
+                <div class="help-block text-danger" *ngIf="aadhar?.touched && aadhar?.invalid">
+                    <div *ngIf="aadhar.errors?.required"> Aadhar is REQUIRED!!! </div>
+                    <div *ngIf="aadhar.errors?.minlength"> Aadhar should have maximum 12 digits</div>
+                    <div *ngIf="aadhar.errors?.maxlength"> Aadhar should have maximum 12 digits</div>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
                     <input type="password" class="form-control" id="Password" formControlName="Password"
-                        placeholder="Password" name="Password"><br><br>
-                    <div class="help-block text-danger" *ngIf="Password?.touched">
-                        <span *ngIf="Password.errors?.required"> Password is REQUIRED!!! </span>
-                        <span *ngIf="Password.errors?.Password"> Password is invalid!!! </span>
+                        placeholder="Password" name="Password">
+                    <div class="help-block text-danger" *ngIf="Password?.touched && Password?.invalid">
+                        <div *ngIf="Password.errors?.required"> Password is REQUIRED!!! </div>
+                        <div *ngIf="Password.errors?.minlength"> Password should have minimum 8 character</div>
+                        <div *ngIf="Password.errors?.maxlength"> Password should have maximum 8 character</div>
                     </div>
                 </div>
                 <div><button type="submit" class="btn">Login</button><a href="signUp">New User</a></div>

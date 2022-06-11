@@ -56,7 +56,7 @@
                 <div>
                     <h3>Choose the location of our Organisation to you want be a part.</h3>
 
-                    <select formControlName="location" class="form-control">
+                    <select formControlName="Location" class="form-control">
                         <option disabled>Select location</option>
                         <option>Choose location</option>
                         <option *ngFor="let web of locationList" value={{web._id}}>{{web.location}}</option>
@@ -65,7 +65,7 @@
                 </div>
 
                 <label>Aadhar</label>
-                <input id="aadhar" type="text" formControlName="aadhar" class="form-control"><br>
+                <input id="aadhar" type="number" formControlName="aadhar" class="form-control"><br>
                 <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
                     <div *ngIf="f.aadhar.errors?.required">Aadhar Number is required.</div>
                     <div *ngIf="f.aadhar.errors?.minlength">Aadhar should have minimum 12 Digits.
@@ -85,9 +85,9 @@
             </div>
             <div><button class="btn btn-primary" (click)="toggleShown()" type="checkbox">Submit
                 </button>
-                <button class="btn btn-primary" (click)="toggleHide()" type="checkbox">Doctor List in MAK
+                <button class="btn btn-primary" (click)="toggleHide()" type="checkbox">Volunteer List in MAF
                 </button>
-                <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">Doctor List Added by You
+                <button class="btn btn-primary" (click)="toggleShow()" type="checkbox">Volunteer List Added by You
                 </button>
             </div><br>
 

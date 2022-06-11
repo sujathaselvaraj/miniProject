@@ -15,7 +15,7 @@ export class HttpCallInterceptor implements HttpInterceptor {
             tap(evt => {
                 console.log(evt)
             }, err => {
-                console.log(err)
+                console.log(err.error.reason);
             })
         )
     }

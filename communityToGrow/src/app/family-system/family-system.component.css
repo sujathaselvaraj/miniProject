@@ -9,15 +9,16 @@
     border-radius: 12px;
     border: 3px solid blueviolet;
     font-size: 19px;
-    height: 510vh;
+    height: 470vh;
     line-height: 40px;
     margin-left: 200px;
     margin-top: 20px;
     padding: 50px;
     width: 1000px;
+    margin-bottom: 20vh;
 }
 
-.about_mak,
+.about_maf,
 .successStories,
 .mission {
     display: flex;
@@ -25,14 +26,14 @@
     height: 60vh;
 }
 
-.about_mak_definition,
+.about_maf_definition,
 .mission_details {
     height: 100vh;
     padding: 20px;
     width: 70%;
 }
 
-.about_mak_image,
+.about_maf_image,
 .missionImages {
     height: 100vh;
     width: 30%;
@@ -60,7 +61,7 @@
     width: 50%;
 }
 
-.mak_image,
+.maf_image,
 .successStoryImages,
 .missionImg {
     border-radius: 16px;
@@ -83,9 +84,13 @@ h1 {
 }
 
 .state_details,
-.mak_details {
-    margin-top: 15vh;
+.maf_details {
     padding: 40px;
+}
+
+.maf_details,
+.mission_details {
+    margin-top: 5vh;
 }
 
 .helpingImg:hover {
@@ -104,14 +109,14 @@ span:hover {
     font-size: 60px;
 }
 
-.mak_image:hover,
+.maf_image:hover,
 .successStoryImages:hover,
 .missionImg:hover {
     height: 300px;
     width: 300px;
 }
 
-.mak_image:hover,
+.maf_image:hover,
 .successStoryImages:hover {
     margin-left: -30px;
 }
@@ -119,6 +124,7 @@ span:hover {
 
 .registerForm {
     height: 100vh;
+    padding: 20px;
 }
 
 .registerForm,
@@ -127,7 +133,6 @@ span:hover {
     flex-direction: row;
     justify-content: space-between;
     margin-left: -35px;
-    /* margin-top: 3vh; */
     width: 1000px;
 }
 

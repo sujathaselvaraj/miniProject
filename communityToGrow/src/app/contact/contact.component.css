@@ -1,6 +1,7 @@
 .contact {
     width: 1200px;
     color: white;
+    margin-bottom: 20vh;
 }
 
 .contact_aim,
@@ -90,15 +91,17 @@ span {
     margin-left: 150px;
     font-size: 19px;
     padding: 30px;
+
 }
 
 .branch_row1,
 .branch_row2,
 .branch_row3 {
-    width: 100%;
+    width: 93%;
     height: 33.33%;
     display: flex;
     flex-direction: row;
+
 
 }
 
@@ -118,9 +121,8 @@ h5 {
     padding: 3%;
     height: 95%;
     margin-top: 3vh;
-    border: 3px solid rgb(248, 182, 228);
+    border: 3px solid #a2ee27;
     border-radius: 12px;
-    justify-content: space-around;
     margin-left: 25px;
 }
 

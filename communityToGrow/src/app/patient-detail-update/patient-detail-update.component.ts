@@ -30,11 +30,11 @@ export class PatientDetailUpdateComponent implements OnInit {
     gender: '',
     bloodgroup: '',
     aadhar: '',
-    location: '',
+    Location: '',
     phone_number: '',
     email: '',
     disorder: '',
-    listofvolunteer: '',
+    Volunteer: '',
     helper_name: '',
     type: '',
     Login: ''
@@ -49,20 +49,23 @@ export class PatientDetailUpdateComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public angulardbsvc: DaoserviceService, public http: HttpClient, private toastr: ToastrService) {
     //getting the parent id from localStorage
-
+    this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
+    this.userId = this.userData
+    this.id = this.userId._id;
+    console.log(this.id)
 
     this.patientForm = this.fb.group({
       f_name: [this.details.f_name],
       l_name: [this.details.l_name],
       age: [this.details.age],
       gender: [this.details.gender],
-      location: [this.locationList._id],
+      Location: [this.locationList._id],
       bloodgroup: [this.bloodGroup.value],
       aadhar: [this.details.aadhar],
       phone_number: [this.details.phone_number],
       email: [this.details.email],
       disorder: [this.details.disorder],
-      listofvolunteer: [this.volunteerList._id],
+      Volunteer: [this.volunteerList._id],
       type: [this.details.disorder],
       Login: [this.id],
       volunteerName: [this.volunteerList.first_name]
@@ -107,7 +110,7 @@ export class PatientDetailUpdateComponent implements OnInit {
   }
   logoutClick() {
     this.angulardbsvc.logout();
-    this.toastr.success("Logouted Successfully")
+    this.toastr.success("Logout Successfully")
   }
   volunteerfetch() {
     const queryParam = {
@@ -135,22 +138,19 @@ export class PatientDetailUpdateComponent implements OnInit {
       f_name: ['', [Validators.required, Validators.minLength(3)]],
       l_name: ['', [Validators.required, Validators.minLength(3)]],
       age: ['', [Validators.required]],
-      location: [''],
+      Location: [''],
       gender: ['', [Validators.required]],
       bloodgroup: ['', [Validators.required]],
       aadhar: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
       phone_number: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       email: ['', [Validators.required]],
       disorder: ['', [Validators.required, Validators.minLength(3)]],
-      listofvolunteer: [''],
+      Volunteer: [''],
       type: ['Patient'],
       Login: this.id
 
     });
-    this.userData = JSON.parse(localStorage.getItem('usrData') || '{}')
-    this.userId = this.userData
-    this.id = this.userId._id;
-    console.log(this.id)
+
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -178,11 +178,11 @@ export class PatientDetailUpdateComponent implements OnInit {
       this.patientdetail = datas.rows;
       this.patientRecord = this.patientdetail.map((el: any) => el.doc);
 
-      this.lookupIdArray = lodash.uniq(this.patientRecord.map((el: any) => el['listofvolunteer']))
+      this.lookupIdArray = lodash.uniq(this.patientRecord.map((el: any) => el['Volunteer']))
       this.angulardbsvc.getAll(this.lookupIdArray).subscribe((res: any) => {
         const volunteerlookup = res.rows.map((el: { doc: any; }) => el.doc)
         this.patientRecord.forEach((element: any) => {
-          const volunteername = volunteerlookup.filter((el: any) => el['_id'] === element['listofvolunteer'])[0]
+          const volunteername = volunteerlookup.filter((el: any) => el['_id'] === element['Volunteer'])[0]
           element['Volunteer'] = volunteername['first_name']
         });
         console.log(res)
@@ -202,11 +202,11 @@ export class PatientDetailUpdateComponent implements OnInit {
       this.patientallRecord = this.details;
       this.details = datas['rows'];
 
-      this.lookupIdArray = lodash.uniq(this.patientallRecord.map((el: any) => el['listofvolunteer']))
+      this.lookupIdArray = lodash.uniq(this.patientallRecord.map((el: any) => el['Volunteer']))
       this.angulardbsvc.getAll(this.lookupIdArray).subscribe((res: any) => {
         const volunteerlookup = res.rows.map((el: { doc: any; }) => el.doc)
         this.patientallRecord.forEach((element: any) => {
-          const volunteername = volunteerlookup.filter((el: any) => el['_id'] === element['listofvolunteer'])[0]
+          const volunteername = volunteerlookup.filter((el: any) => el['_id'] === element['Volunteer'])[0]
           element['Volunteer'] = volunteername['first_name']
         });
         console.log(res)

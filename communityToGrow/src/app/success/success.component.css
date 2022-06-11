@@ -5,10 +5,9 @@
 
 .stars_intro {
     background-image: url('../../images/76YS.gif');
-    margin-top: 1vh;
+    margin-bottom: 20vh;
+    margin-top: -15vh;
     padding-top: 1vh;
-
-
 }
 
 .star_images_row1,
@@ -239,8 +238,8 @@
 
 .girishSharmaImage {
     height: 250px;
-    width: 250px;
     margin-top: 1vh;
+    width: 250px;
 }
 
 .arinimaProfile,
