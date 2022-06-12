@@ -25,19 +25,19 @@ app.get('/getdata/:id',(req,res)=>{
       dbconnection.testdb.find(object).then((data)=>{
         console.log("data Fetch from db", data);
         res.send(data);
-      }).catch((err=>{
+      },err=>{
         this.toastr.error("Data Failed to fetch");
         console.log(err);
-      }))
+      });
     })
 app.post('/postdata',function (req,res) {
 
   const objectnew= {
-    fullName:req.body.fullname,
+    fullName:req.body.fullName,
     aadhar:req.body.aadhar,
-    emailId:req.body.email,
+    emailId:req.body.emailId,
     Password:req.body.Password,
-    Confirmpassword:req.body.confirmPassword,
+    ConfirmPassword:req.body.ConfirmPassword,
     type:"Login"
 
     
@@ -49,9 +49,9 @@ app.post('/postdata',function (req,res) {
     console.log("Data inserted successfully ",data);
     res.send(data);
 
-  }).catch((err=>{
+  },err=>{
     console.log("error",err);
-  }))
+  });
 }
 );
 app.listen(port, (err) => {
