@@ -20,7 +20,7 @@ export class SignupformComponent implements OnInit {
     aadhar: '',
     emailId: '',
     Password: '',
-    Confirmpassword: '',
+    ConfirmPassword: '',
     type: ''
 
   };
@@ -28,11 +28,11 @@ export class SignupformComponent implements OnInit {
   constructor(private fb: FormBuilder, private toastr: ToastrService, public angulardbsvc: DaoserviceService, public nodesvc: NodeapiService, private http: HttpClient, private router: Router) {
 
     this.checkout = this.fb.group({
-      fullName: [this.userRecord.fullname],
+      fullName: [this.userRecord.fullName],
       aadhar: [this.userRecord.aadhar],
       emailId: [this.userRecord.emailId],
       Password: [this.userRecord.Password],
-      Confirmpassword: [this.userRecord.Confirmpassword],
+      ConfirmPassword: [this.userRecord.ConfirmPassword],
       type: 'Login',
 
 
@@ -42,7 +42,7 @@ export class SignupformComponent implements OnInit {
   ngOnInit(): void {
     this.checkout = this.fb.group(
       {
-        fullname: ['', Validators.required],
+        fullName: ['', Validators.required],
         aadhar: [
           '',
           [
@@ -51,7 +51,7 @@ export class SignupformComponent implements OnInit {
             Validators.maxLength(12)
           ]
         ],
-        email: ['', [Validators.required, Validators.email]],
+        emailId: ['', [Validators.required, Validators.email]],
         type: ['Login'],
         Password: [
           '',
@@ -60,7 +60,7 @@ export class SignupformComponent implements OnInit {
             Validators.minLength(8)
           ]
         ],
-        confirmPassword: ['', Validators.required]
+        ConfirmPassword: ['', Validators.required]
       },
       {
         validators: [Validation.match('password', 'confirmPassword')]

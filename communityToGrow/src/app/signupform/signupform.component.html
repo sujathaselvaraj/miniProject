@@ -1,13 +1,13 @@
 <form [formGroup]="checkout" (ngSubmit)="onSubmit(this.checkout.value)">
     <h2>Registration Form</h2>
     <div>
-        <label>Full Name</label>
-        <input id="fullname" type="text" formControlName="fullname" class="form-control" />
+        <label for="fullName">Full Name</label>
+        <input id="fullName" type="text" formControlName="fullName" class="form-control" />
 
     </div>
-    <div *ngIf="f.fullname?.touched && f.fullname?.invalid" class="alert alert-danger">
-        <div *ngIf="f.fullname.errors?.required">First Name is required.</div>
-        <div *ngIf="f.fullname.errors?.minlength">First Name should be 3
+    <div *ngIf="f.fullName?.touched && f.fullname?.invalid" class="alert alert-danger">
+        <div *ngIf="f.fullName.errors?.required">First Name is required.</div>
+        <div *ngIf="f.fullName.errors?.minlength">First Name should be 3
             character.
         </div>
     </div><br>
@@ -24,12 +24,12 @@
     </div><br>
     <div>
         <label>Email</label>
-        <input id="emailId" type="text" formControlName="email" class="form-control" />
+        <input id="emailId" type="text" formControlName="emailId" class="form-control" />
     </div>
-    <div *ngIf="f.email?.invalid && f.email?.touched">
-        <div *ngIf="f.email.errors?.required" class="alert alert-danger">
+    <div *ngIf="f.emailId?.invalid && f.email?.touched">
+        <div *ngIf="f.emailId.errors?.required" class="alert alert-danger">
             Email is required</div>
-        <div *ngIf="f.email.errors?.invalid" class="alert alert-danger">Please
+        <div *ngIf="f.emailId.errors?.invalid" class="alert alert-danger">Please
             provide
             a valid email address</div>
     </div><br>
@@ -49,11 +49,11 @@
     </div><br>
     <div>
         <label>Confirm Password</label>
-        <input id="ConfirmPassword" type="password" formControlName="confirmPassword" class="form-control" />
+        <input id="ConfirmPassword" type="password" formControlName="ConfirmPassword" class="form-control" />
 
     </div>
-    <div *ngIf="f.confirmPassword?.touched && f.confirmPassword?.invalid" class="alert alert-danger">
-        <div *ngIf="f.confirmPassword.errors?.required">Confirm Password is required.
+    <div *ngIf="f.ConfirmPassword?.touched && f.ConfirmPassword?.invalid" class="alert alert-danger">
+        <div *ngIf="f.ConfirmPassword.errors?.required">Confirm Password is required.
         </div>
     </div><br>
     <div>

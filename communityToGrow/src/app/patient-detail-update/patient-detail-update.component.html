@@ -40,8 +40,8 @@
         </div><br>
 
         <div>
-            <label for="location">location:</label>
-            <select formControlName="location" class="form-control">
+            <label for="Location">location:</label>
+            <select formControlName="Location" class="form-control">
                 <option disabled>Select location</option>
                 <option>Choose location</option>
                 <option *ngFor="let web of locationList" value={{web._id}}>{{web.location}}</option>

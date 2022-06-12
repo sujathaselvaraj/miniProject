@@ -2,7 +2,7 @@
 
 # Description
 
-Make a Family (MAF)):
+Make a Family (MAF):
 Make a Family (MAF) is one of the software to help the people with disabilities and motivating the phyically challenged people.
 
 

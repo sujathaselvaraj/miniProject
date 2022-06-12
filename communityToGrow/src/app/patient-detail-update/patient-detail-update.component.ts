@@ -101,8 +101,9 @@ export class PatientDetailUpdateComponent implements OnInit {
       "type": "Location"
     }
     this.angulardbsvc.fetchDataUsingFind('project_db', queryParams, ['type', 'location', '_id']).subscribe((res: any) => {
-      console.log(res)
+      console.log("location", res)
       this.locationList = res.docs
+      console.log("LocationList", this.locationList)
     },
       err => {
         console.log(err)
@@ -118,7 +119,7 @@ export class PatientDetailUpdateComponent implements OnInit {
     }
 
     this.angulardbsvc.fetchDataUsingFind('project_db', queryParam, ['type', 'first_name', '_id']).subscribe((resp: any) => {
-      console.log(resp)
+      console.log("Lookup", resp)
       this.volunteerList = resp.docs;
       console.log("Data fetched Successfully")
     }, err => {
