@@ -72,7 +72,7 @@ export class DaoserviceService {
   }
   getAll(type: Array<string>) {
     console.log(type);
-    const geturl = `${this.endpt}project_db/_all_docs?include_docs=true&keys=["` + type.join('","') + `"]`
+    const geturl = `${this.endpt}project_db/_all_docs?include_docs=true&keys=["${type.join('","')}"]`
     return this.http.get(geturl, this.httpOptions);
   }
 

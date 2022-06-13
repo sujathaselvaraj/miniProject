@@ -26,7 +26,6 @@ app.get('/getdata/:id',(req,res)=>{
         console.log("data Fetch from db", data);
         res.send(data);
       },err=>{
-        this.toastr.error("Data Failed to fetch");
         console.log(err);
       });
     })

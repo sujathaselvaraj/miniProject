@@ -169,7 +169,7 @@ export class DoctorListUpdateComponent implements OnInit {
   }
   logoutClick() {
     this.angulardbsvc.logout();
-    this.toastr.success("Logouted Successfully")
+    this.toastr.success("Logout Successfully")
   }
   doctordata() {
     this.angulardbsvc.alldata("Doctor").subscribe((datas: any) => {

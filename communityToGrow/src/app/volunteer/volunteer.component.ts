@@ -75,7 +75,7 @@ export class VolunteerComponent implements OnInit {
   }
   logoutClick() {
     this.angulardbsvc.logout();
-    this.toastr.success("Logouted Successfully")
+    this.toastr.success("Logout Successfully")
   }
   toggleShown() {
     this.volunteerDetailSubmission();

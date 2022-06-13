@@ -11,6 +11,6 @@ export class BuildCommunityComponent {
   constructor(public angulardbsvc: DaoserviceService, public toastr: ToastrService) { }
   logoutClick() {
     this.angulardbsvc.logout();
-    this.toastr.success("Logouted Successfully")
+    this.toastr.success("Logout Successfully")
   }
 }

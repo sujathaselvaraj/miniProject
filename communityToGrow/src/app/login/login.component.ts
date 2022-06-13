@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginform = this.fb.group({
       aadhar: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
-      Password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
-      type: ['Entry']
+      Password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]]
     })
   }
   get aadhar() {

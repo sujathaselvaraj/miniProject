@@ -115,7 +115,7 @@ export class DonationFormComponent implements OnInit {
   }
   logoutClick() {
     this.angulardbsvc.logout();
-    this.toastr.success("Logouted Successfully")
+    this.toastr.success("Logout Successfully")
   }
 
 }
