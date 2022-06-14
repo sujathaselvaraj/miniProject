@@ -115,8 +115,7 @@ command to install: npm install npm-package_name
 1. body-parser : 1.20.0,
 2. cors : 2.8.5,
 3. express : 4.18.1,
-4. helmet : 5.1.0,
-5. nano : 10.0.0,
+4. nano : 10.0.0
 
 # Database
 

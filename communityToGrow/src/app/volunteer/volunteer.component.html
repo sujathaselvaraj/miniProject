@@ -6,9 +6,9 @@
             </h1>
             <div>
                 <div>
-                    <label>First Name:</label>
-                    <input type="text" name="first_name" class="form-control" id="first_name"
-                        formControlName="first_name" name="first_name"><br>
+                    <label for="first_name">First Name:</label>
+                    <input type="text" class="form-control" id="first_name" formControlName="first_name"
+                        name="first_name"><br>
                 </div>
                 <div *ngIf="f.first_name?.touched && f.first_name?.invalid" class="alert alert-danger">
                     <div *ngIf="f.first_name.errors?.required">First Name is required.</div>
@@ -16,8 +16,8 @@
                     </div>
                 </div>
                 <div>
-                    <label>Last Name:</label>
-                    <input type="text" name="last_name" class="form-control" id="last_name" formControlName="last_name"
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" class="form-control" id="last_name" formControlName="last_name"
                         name="last_name"><br>
                 </div>
                 <div *ngIf="f.last_name?.touched && f.last_name?.invalid" class="alert alert-danger">
@@ -26,13 +26,13 @@
                     </div>
                 </div>
                 <div><label for="gender">Gender</label><br>
-                    <input type="radio" name="gender" value="male" id="male" formControlName="gender"
+                    <input type="radio" name="gender" value="male" id="gender" formControlName="gender"
                         (change)="genderSelection()"> Male<br>
-                    <input type="radio" name="gender" value="female" id="female" formControlName="gender"
+                    <input type="radio" name="gender" value="female" id="gender" formControlName="gender"
                         (change)="genderSelection()"> Female<br>
                 </div><br>
                 <div>
-                    <label>Email</label>
+                    <label for="emailId">Email</label>
                     <input id="emailId" type="email" formControlName="emailId" class="form-control"><br>
                     <div *ngIf="f.emailId?.invalid && f.emailId?.touched">
                         <div *ngIf="f.emailId.errors?.required" class="alert alert-danger">
@@ -64,8 +64,8 @@
 
                 </div>
 
-                <label>Aadhar</label>
-                <input id="aadhar" type="number" formControlName="aadhar" class="form-control"><br>
+                <label for="aadhar">Aadhar</label>
+                <input id="aadhar" type="tel" formControlName="aadhar" class="form-control"><br>
                 <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
                     <div *ngIf="f.aadhar.errors?.required">Aadhar Number is required.</div>
                     <div *ngIf="f.aadhar.errors?.minlength">Aadhar should have minimum 12 Digits.
@@ -73,8 +73,8 @@
                     <div *ngIf="f.aadhar.errors?.maxlength">Aadhar should have maximum 12 Digits.
                     </div>
                 </div>
-                <label>Job:</label>
-                <input type="text" name="job" class="form-control" id="job" formControlName="job" /><br>
+                <label for="job">Job:</label>
+                <input type="text" class="form-control" id="job" formControlName="job" /><br>
                 <div *ngIf="f.job?.touched && f.job?.invalid" class="alert alert-danger">
                     <div *ngIf="f.job.errors?.required">Job detail is required.
                     </div>

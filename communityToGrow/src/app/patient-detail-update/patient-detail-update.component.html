@@ -4,26 +4,26 @@
         <h1>Patients Details Form</h1>
 
         <div>
-            <label>First Name</label>
-            <input type="text" name="f_name" class="form-control" id="f_name" formControlName="f_name">
+            <label for="f_name">First Name</label>
+            <input type="text" class="form-control" id="f_name" formControlName="f_name">
             <div *ngIf="f.f_name?.touched && f.f_name?.invalid" class="alert alert-danger">
                 <div *ngIf="f.f_name.errors?.required">First Name is required.</div>
                 <div *ngIf="f.f_name.errors?.minlength">First Name should be 3 character.
                 </div>
             </div>
         </div>
-        <label>Last Name:</label><br>
-        <input type="text" name="l_name" class="form-control" id="l_name" formControlName="l_name" name="l_name">
+        <label for="l_name">Last Name:</label><br>
+        <input type="text" class="form-control" id="l_name" formControlName="l_name" name="l_name">
         <div *ngIf="f.l_name?.touched && f.l_name?.invalid" class="alert alert-danger">
             <div *ngIf="f.l_name.errors?.required">Last Name is required.</div>
             <div *ngIf="f.l_name.errors?.minlength">Last Name should be 3 character.
             </div>
         </div>
         <div>
-            <label>Gender:</label>
-            <div><input type="radio" name="gender" formControlName="gender" (change)="changeGender()" value="male">Male
+            <label for="gender">Gender:</label>
+            <div><input type="radio" id="gender" formControlName="gender" (change)="changeGender()" value="male">Male
             </div>
-            <div><input type="radio" name="gender" formControlName="gender" (change)="changeGender()"
+            <div><input type="radio" id="gender" formControlName="gender" (change)="changeGender()"
                     value="female">Female
             </div>
             <div *ngIf="f.gender?.touched && f.gender?.invalid" class="alert alert-danger">
@@ -32,8 +32,8 @@
         </div>
 
         <div>
-            <label>Age:</label>
-            <input type="tel" name="age" class="form-control" id="age" formControlName="age" name="age">
+            <label for="age">Age:</label>
+            <input type="tel" class="form-control" id="age" formControlName="age" name="age">
         </div>
         <div *ngIf="f.age?.touched && f.age?.invalid" class="alert alert-danger">
             <div *ngIf="f.age.errors?.required">Age is required.</div>
@@ -49,7 +49,7 @@
         </div><br>
         <div>
             <label for="bloodgroup">Blood Group:</label>
-            <select formControlName="bloodgroup" class="form-control">
+            <select formControlName="bloodgroup" id="bloodgroup" class="form-control">
                 <option disabled>Select BloodGroup</option>
                 <option>Choose BloodGroup</option>
                 <option *ngFor="let group of bloodGroup">{{group}}</option>
@@ -59,8 +59,8 @@
                 <div *ngIf="f.bloodgroup.errors?.required">Bloodgroup is required.</div>
             </div>
         </div><br>
-        <div><label>Aadhar</label>
-            <input id="aadhar" type="text" formControlName="aadhar" class="form-control" name="aadhar">
+        <div><label for="aadhar">Aadhar</label>
+            <input id="aadhar" type="text" formControlName="aadhar" class="form-control">
         </div>
         <div *ngIf="f.aadhar?.touched && f.aadhar?.invalid" class="alert alert-danger">
             <div *ngIf="f.aadhar.errors?.required">Adhar is required.</div>
@@ -71,7 +71,7 @@
         </div><br>
 
         <div>
-            <label>Phone Number:</label>
+            <label for="phone_number">Phone Number:</label>
             <input type="tel" name="phone_number" class="form-control" id="phone_number" formControlName="phone_number">
 
         </div>
@@ -84,7 +84,7 @@
         </div>
 
         <div>
-            <label>Email:
+            <label for="email">Email:
             </label>
             <input type="email" class="form-control" id="email" formControlName="email" name="email">
         </div>
@@ -95,7 +95,7 @@
         </div>
 
         <div>
-            <label for="disability">
+            <label for="disorder">
                 Disorder:
             </label>
 
@@ -107,7 +107,7 @@
             </div>
         </div><br>
         <label for="Volunteer">volunteer:</label>
-        <select formControlName="Volunteer" class="form-control">
+        <select formControlName="Volunteer" id="Volunteer" class="form-control">
             <option disabled>Select volunteer</option>
             <option>Choose volunteer</option>
             <option *ngFor="let web of volunteerList" value="{{web['_id']}}">{{web.first_name}}</option>

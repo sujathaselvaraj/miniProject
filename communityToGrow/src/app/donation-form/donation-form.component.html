@@ -2,30 +2,30 @@
 <form [formGroup]="donationform" (ngSubmit)="submit()">
     <h2>Donation Information</h2>
     <div class="form-group"><label for="amount">Amount</label><br>
-        <input type="radio" name="fund" value="500" id="500" formControlName="fund" (change)="changeFund()"> $500<br>
-        <input type="radio" name="fund" value="200" id="200" formControlName="fund" (change)="changeFund()"> $200<br>
-        <input type="radio" name="fund" value="100" id="100" formControlName="fund" (change)="changeFund()"> $100<br>
-        <input type="radio" name="fund" value="50" id="50" formControlName="fund" (change)="changeFund()"> $50<br>
-        <input type="radio" name="fund" value="25" id="25" formControlName="fund" (change)="changeFund()"> $25<br>
-        <input type="radio" name="fund" value="other" formControlName="fund" (change)="otherFund()"> Other
+        <input type="radio" name="fund" value="500" id="amount" formControlName="fund" (change)="changeFund()"> $500<br>
+        <input type="radio" name="fund" value="200" id="amount" formControlName="fund" (change)="changeFund()"> $200<br>
+        <input type="radio" name="fund" value="100" id="amount" formControlName="fund" (change)="changeFund()"> $100<br>
+        <input type="radio" name="fund" value="50" id="amount" formControlName="fund" (change)="changeFund()"> $50<br>
+        <input type="radio" name="fund" value="25" id="amount" formControlName="fund" (change)="changeFund()"> $25<br>
+        <input type="radio" name="fund" value="other" id="amount" formControlName="fund" (change)="otherFund()"> Other
     </div><br>
 
     <div><input type="text" name="fundOther" formControlName="fundOther"></div><br>
     <div><label for="typeOfDonation">Type of Donation</label><br>
-        <input type="radio" name="donationType" value="One Time Donation" id="one" formControlName="donationType"
-            (change)="changeDonationType()"> One Time Donation<br>
-        <input type="radio" name="donationType" value="Recuring Donation" id="more" formControlName="donationType"
-            (change)="changeDonationType()"> Recuring Donation
+        <input type="radio" name="donationType" value="One Time Donation" id="typeOfDonation"
+            formControlName="donationType" (change)="changeDonationType()"> One Time Donation<br>
+        <input type="radio" name="donationType" value="Recuring Donation" id="typeOfDonation"
+            formControlName="donationType" (change)="changeDonationType()"> Recuring Donation
     </div><br>
 
 
     <div><label for="frequency">Frequency</label><br>
-        <input type="radio" value="weekly" name="frequency" id="weekly" formControlName="frequency"
+        <input type="radio" value="weekly" name="frequency" id="frequency" formControlName="frequency"
             (change)="changeFrequency()">
         Weekly<br>
-        <input type="radio" value="monthly" name="frequency" id="monthly" formControlName="frequency"
+        <input type="radio" value="monthly" name="frequency" id="frequency" formControlName="frequency"
             (change)="changeFrequency()">Monthly<br>
-        <input type="radio" value="yearly" name="frequency" id="yearly" formControlName="frequency"
+        <input type="radio" value="yearly" name="frequency" id="frequency" formControlName="frequency"
             (change)="changeFrequency()">
         Yearly
 
@@ -43,7 +43,7 @@
 
 
     <div><label for="tributeName">Tribute Name</label>
-        <input type="text" class="form-control" id="tribute" formControlName="tribute" name="tribute"><br>
+        <input type="text" class="form-control" id="tributeName" formControlName="tribute" name="tribute"><br>
         <div *ngIf="f.tribute?.touched && f.tribute?.invalid" class="alert alert-danger">
             <div *ngIf="f.tribute.errors?.required">Tribute Name is required.</div>
             <div *ngIf="f.tribute.errors?.minlength">Tribute Name should be 3 character.</div>
@@ -67,9 +67,10 @@
         </div>
     </div>
     <div><label for="gender">Gender</label><br>
-        <input type="radio" name="gender" value="male" id="male" formControlName="gender" (change)="genderSelection()">
+        <input type="radio" name="gender" value="male" id="gender" formControlName="gender"
+            (change)="genderSelection()">
         Male<br>
-        <input type="radio" name="gender" value="female" id="female" formControlName="gender"
+        <input type="radio" name="gender" value="female" id="gender" formControlName="gender"
             (change)="genderSelection()"> Female<br>
     </div>
 
