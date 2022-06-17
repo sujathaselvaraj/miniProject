@@ -11,6 +11,7 @@ import { SignupformComponent } from './signupform/signupform.component';
 import { StayConnectedComponent } from './stay-connected/stay-connected.component';
 import { SuccessComponent } from './success/success.component';
 import { VolunteerComponent } from './volunteer/volunteer.component';
+import { LocationComponent } from './location/location.component';
 
 
 const routes: Routes = [{ path: 'oursuccess', component: SuccessComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [{ path: 'oursuccess', component: SuccessComponent },
 { path: 'patient', component: PatientDetailUpdateComponent },
 { path: 'doctor', component: DoctorListUpdateComponent },
 { path: 'volunteer', component: VolunteerComponent },
+{ path: 'location', component: LocationComponent },
 ];
 
 @NgModule({

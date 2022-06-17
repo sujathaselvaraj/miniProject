@@ -5,12 +5,8 @@
                 <h2>Choose the location of our Organisation to you want be a part.</h2>
 
                 <div class="form-group">
-                        <label for="location">location:</label>
-                        <select formControlName="location" class="form-control">
-                                <option disabled>Select location</option>
-                                <option>Choose location</option>
-                                <option *ngFor="let web of locationList">{{web.location}}</option>
-                        </select>
+                        <label for="location">New Location:</label>
+                        <input formControlName="location" class="form-control" id="location">
                         <div *ngIf="f.location?.touched && f.location?.invalid" class="alert alert-danger">
                                 <div *ngIf="f.location.errors?.required">Name is required.</div>
                         </div>
